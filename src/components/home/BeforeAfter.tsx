@@ -55,16 +55,15 @@ export function BeforeAfter() {
             onMouseDown={(e) => handleMove(e.clientX)}
             onTouchMove={(e) => handleMove(e.touches[0].clientX)}
           >
-            {/* "After" side — full background (with Skindinavia) — flawless makeup */}
+            {/* "After" side — full background (with Skindinavia) — flawless bridal look */}
             <div className="absolute inset-0">
               <Image
                 src="https://skindinavia.wpenginepowered.com/wp-content/uploads/2022/09/bride-makeup-trends-in-2022-1200x798.jpg"
-                alt="Flawless makeup with Skindinavia after 16 hours"
+                alt="Flawless bridal makeup with Skindinavia after 16 hours"
                 fill
                 className="object-cover"
                 unoptimized
               />
-              {/* Warm tint overlay */}
               <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/30" />
               {/* Label */}
               <div className="absolute bottom-6 right-6 z-20 text-right">
@@ -74,22 +73,19 @@ export function BeforeAfter() {
               </div>
             </div>
 
-            {/* "Before" side — clipped (without) — desaturated, degraded */}
+            {/* "Before" side — clipped (without) — the struggle */}
             <div
-              className="absolute inset-0 grayscale"
+              className="absolute inset-0"
               style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}
             >
               <Image
-                src="https://skindinavia.wpenginepowered.com/wp-content/uploads/2022/09/bride-makeup-trends-in-2022-1200x798.jpg"
-                alt="Makeup fading without setting spray"
+                src="https://skindinavia.wpenginepowered.com/wp-content/uploads/2021/10/shutterstock_1756040273-scaled.jpg"
+                alt="Makeup fading under stress without setting spray"
                 fill
-                className="object-cover brightness-75 contrast-75"
+                className="object-cover grayscale brightness-90"
                 unoptimized
               />
-              {/* Degraded overlay — warm smudge effect */}
-              <div className="absolute inset-0 bg-gradient-to-b from-neutral-500/20 via-transparent to-black/40" />
-              {/* Noise/texture to simulate degraded skin */}
-              <div className="absolute inset-0 opacity-20" style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='turbulence' baseFrequency='0.5' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E\")" }} />
+              <div className="absolute inset-0 bg-gradient-to-b from-neutral-500/10 via-transparent to-black/40" />
               {/* Label */}
               <div className="absolute bottom-6 left-6 z-20">
                 <p className="font-serif text-3xl font-light text-white/70 sm:text-4xl">4h</p>

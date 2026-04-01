@@ -1,0 +1,129 @@
+<h2>Animation Direction for Skindinavia</h2>
+<p class="subtitle">Bold kinetic motion + micro-interaction polish. No scroll-fade-ins. Layers + entrance animations.</p>
+
+<div class="section">
+  <h3>Proposed Animation Stack</h3>
+  <div class="options">
+    <div class="option" data-choice="gsap" onclick="toggleSelect(this)">
+      <div class="letter">A</div>
+      <div class="content">
+        <h3>GSAP + Framer Motion</h3>
+        <p><strong>GSAP</strong> for the theatrical stuff — text splitting/staggering, magnetic cursors, morphing, timeline-based entrance sequences. <strong>Framer Motion</strong> for component-level spring physics, layout animations, and page transitions.</p>
+        <div class="pros-cons">
+          <div class="pros"><h4>Pros</h4><ul>
+            <li>Industry standard for premium animation (Apple, Nike use GSAP)</li>
+            <li>Best text animation capability (SplitText plugin)</li>
+            <li>Spring physics from Framer Motion feel organic</li>
+            <li>Great React integration with both</li>
+          </ul></div>
+          <div class="cons"><h4>Cons</h4><ul>
+            <li>Two animation libraries = larger bundle (~45kb combined)</li>
+            <li>GSAP SplitText is a paid plugin (but we can replicate core behavior)</li>
+          </ul></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="option" data-choice="gsap-only" onclick="toggleSelect(this)">
+      <div class="letter">B</div>
+      <div class="content">
+        <h3>GSAP Only (with ScrollTrigger)</h3>
+        <p>All-in on GSAP. Timeline-based entrance animations, text effects, magnetic cursor, morphing — plus ScrollTrigger for pinning and layer effects (not fade-ins, but parallax layers and section reveals).</p>
+        <div class="pros-cons">
+          <div class="pros"><h4>Pros</h4><ul>
+            <li>One library, one mental model</li>
+            <li>ScrollTrigger pinning enables the layered depth you want</li>
+            <li>Smaller total bundle (~25kb)</li>
+          </ul></div>
+          <div class="cons"><h4>Cons</h4><ul>
+            <li>No spring physics (GSAP eases are different from spring)</li>
+            <li>Layout animations less natural than Framer Motion</li>
+          </ul></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="option" data-choice="framer-only" onclick="toggleSelect(this)">
+      <div class="letter">C</div>
+      <div class="content">
+        <h3>Framer Motion + Custom CSS</h3>
+        <p>Framer Motion for spring physics, layout animations, page transitions, and entrance animations. Custom CSS for text effects and cursor interactions. No GSAP.</p>
+        <div class="pros-cons">
+          <div class="pros"><h4>Pros</h4><ul>
+            <li>Built for React — declarative, easy to maintain</li>
+            <li>Best spring physics in the ecosystem</li>
+            <li>AnimatePresence for page/component transitions</li>
+          </ul></div>
+          <div class="cons"><h4>Cons</h4><ul>
+            <li>Weaker for complex timelines and text splitting</li>
+            <li>No magnetic cursor built-in (custom impl needed)</li>
+            <li>Can't match GSAP's theatrical control</li>
+          </ul></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>Which effects are you most excited about?</h3>
+  <p class="subtitle">Select all that apply — this helps me prioritize</p>
+  <div class="options" data-multiselect>
+    <div class="option" data-choice="text-split" onclick="toggleSelect(this)">
+      <div class="letter">1</div>
+      <div class="content">
+        <h3>Text Split Animations</h3>
+        <p>Headlines that assemble letter-by-letter or word-by-word with staggered timing. "SKINDINAVIA" letters cascading in on load.</p>
+      </div>
+    </div>
+    <div class="option" data-choice="magnetic-cursor" onclick="toggleSelect(this)">
+      <div class="letter">2</div>
+      <div class="content">
+        <h3>Magnetic Cursor Effects</h3>
+        <p>Buttons and elements that subtly pull toward the cursor on hover. Feels alive and responsive.</p>
+      </div>
+    </div>
+    <div class="option" data-choice="page-transitions" onclick="toggleSelect(this)">
+      <div class="letter">3</div>
+      <div class="content">
+        <h3>Smooth Page Transitions</h3>
+        <p>Content slides/morphs between pages instead of hard cuts. Shared element transitions between product cards and detail pages.</p>
+      </div>
+    </div>
+    <div class="option" data-choice="hover-effects" onclick="toggleSelect(this)">
+      <div class="letter">4</div>
+      <div class="content">
+        <h3>Liquid/Elastic Hover Effects</h3>
+        <p>Product cards that elastically scale, images that tilt with 3D perspective, buttons with liquid fill animations.</p>
+      </div>
+    </div>
+    <div class="option" data-choice="layered-sections" onclick="toggleSelect(this)">
+      <div class="letter">5</div>
+      <div class="content">
+        <h3>Layered Section Depth</h3>
+        <p>Sections that stack and reveal with pinned parallax — not fade-ins, but z-depth layers sliding over each other as you scroll. Like peeling back pages.</p>
+      </div>
+    </div>
+    <div class="option" data-choice="product-3d" onclick="toggleSelect(this)">
+      <div class="letter">6</div>
+      <div class="content">
+        <h3>3D Product Showcases</h3>
+        <p>Product images that rotate on hover or follow cursor with 3D perspective tilt. Spray bottles that feel like you could reach out and grab them.</p>
+      </div>
+    </div>
+    <div class="option" data-choice="morph-shapes" onclick="toggleSelect(this)">
+      <div class="letter">7</div>
+      <div class="content">
+        <h3>Morphing Background Shapes</h3>
+        <p>Organic blob shapes that slowly morph behind product sections. Gradient meshes that shift and breathe.</p>
+      </div>
+    </div>
+    <div class="option" data-choice="stagger-grids" onclick="toggleSelect(this)">
+      <div class="letter">8</div>
+      <div class="content">
+        <h3>Staggered Grid Entrances</h3>
+        <p>Product grids where cards fly in one-by-one with spring physics. Each card enters with a slight delay, creating a cascade wave effect.</p>
+      </div>
+    </div>
+  </div>
+</div>

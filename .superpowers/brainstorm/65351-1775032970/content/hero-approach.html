@@ -1,0 +1,68 @@
+<h2>Homepage Hero — Which Direction?</h2>
+<p class="subtitle">Using real Skindinavia product images. Animations: magnetic hover, 3D tilt, morphing blobs, spring physics entrance.</p>
+
+<div class="cards">
+  <div class="card" data-choice="hero-floating" onclick="toggleSelect(this)">
+    <div class="card-image" style="background: linear-gradient(135deg, #faf5f0 0%, #f0e8e0 100%); padding: 30px; min-height: 280px; position: relative; overflow: hidden;">
+      <!-- Morphing blob background -->
+      <div style="position: absolute; top: -20%; right: -10%; width: 300px; height: 300px; background: radial-gradient(ellipse, rgba(236,72,153,0.08) 0%, transparent 70%); border-radius: 60% 40% 50% 50%; animation: none;"></div>
+      <!-- Product bottles floating -->
+      <div style="display: flex; justify-content: center; align-items: flex-end; gap: 8px; height: 100%; position: relative;">
+        <div style="width: 50px; height: 140px; background: linear-gradient(180deg, #2563eb 0%, #1e40af 100%); border-radius: 8px 8px 4px 4px; transform: rotate(-5deg) translateY(-20px); box-shadow: 0 20px 40px rgba(0,0,0,0.1);"></div>
+        <div style="width: 55px; height: 160px; background: linear-gradient(180deg, #ec4899 0%, #be185d 100%); border-radius: 8px 8px 4px 4px; transform: translateY(-40px); box-shadow: 0 25px 50px rgba(0,0,0,0.12);"></div>
+        <div style="width: 50px; height: 140px; background: linear-gradient(180deg, #10b981 0%, #059669 100%); border-radius: 8px 8px 4px 4px; transform: rotate(5deg) translateY(-15px); box-shadow: 0 20px 40px rgba(0,0,0,0.1);"></div>
+      </div>
+      <div style="position: absolute; bottom: 15px; left: 50%; transform: translateX(-50%); font-size: 11px; color: #999; letter-spacing: 0.15em;">REAL PRODUCT PHOTOS HERE</div>
+    </div>
+    <div class="card-body">
+      <h3>A — Floating Product Showcase</h3>
+      <p>Three hero bottles floating at different heights with subtle bobbing animation. Morphing gradient blob behind them. Each bottle has 3D tilt on cursor move. Headline and CTA enter with spring physics from below.</p>
+      <p style="margin-top: 8px; font-size: 13px; color: #888;"><strong>Vibe:</strong> Elegant product display. The bottles ARE the hero. Clean, premium, product-forward.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="hero-split" onclick="toggleSelect(this)">
+    <div class="card-image" style="background: linear-gradient(135deg, #faf5f0 0%, #f0e8e0 100%); padding: 30px; min-height: 280px; display: flex;">
+      <!-- Left: text -->
+      <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; padding-right: 20px;">
+        <div style="font-size: 9px; letter-spacing: 0.2em; color: #999; margin-bottom: 8px;">PATENTED. TRUSTED. SINCE 2005.</div>
+        <div style="font-size: 20px; font-weight: 300; line-height: 1.3; color: #111;">When You Need<br/>to Pull an<br/><span style="font-weight: 600;">All Nighter</span></div>
+        <div style="margin-top: 16px; display: flex; gap: 8px;">
+          <div style="background: #111; color: white; padding: 6px 14px; font-size: 10px; letter-spacing: 0.1em; border-radius: 3px;">SHOP NOW</div>
+          <div style="border: 1px solid #111; padding: 6px 14px; font-size: 10px; letter-spacing: 0.1em; border-radius: 3px;">OUR STORY</div>
+        </div>
+      </div>
+      <!-- Right: product -->
+      <div style="flex: 1; display: flex; align-items: center; justify-content: center; position: relative;">
+        <div style="position: absolute; width: 200px; height: 200px; background: radial-gradient(ellipse, rgba(236,72,153,0.1) 0%, transparent 70%); border-radius: 50%;"></div>
+        <div style="width: 65px; height: 180px; background: linear-gradient(180deg, #ec4899 0%, #be185d 100%); border-radius: 10px 10px 5px 5px; box-shadow: 0 30px 60px rgba(0,0,0,0.15); transform: perspective(600px) rotateY(-5deg);"></div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>B — Split Hero with Single Spotlight</h3>
+      <p>Left side: headline + CTAs with staggered spring entrance. Right side: single hero product (Bridal bestseller) with 3D perspective tilt following cursor. Morphing blob behind the bottle. Product swaps on a timer or user click.</p>
+      <p style="margin-top: 8px; font-size: 13px; color: #888;"><strong>Vibe:</strong> Editorial beauty campaign. One product at a time, full attention. Like a magazine spread come to life.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="hero-fullbleed" onclick="toggleSelect(this)">
+    <div class="card-image" style="min-height: 280px; position: relative; overflow: hidden; background: #0a0a0a; padding: 30px;">
+      <!-- Dark bg with product -->
+      <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 250px; height: 250px; background: radial-gradient(ellipse, rgba(236,72,153,0.15) 0%, transparent 60%);"></div>
+      <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -55%); width: 60px; height: 170px; background: linear-gradient(180deg, #ec4899 0%, #be185d 100%); border-radius: 10px 10px 5px 5px; box-shadow: 0 0 80px rgba(236,72,153,0.3);"></div>
+      <div style="position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); text-align: center;">
+        <div style="font-size: 18px; font-weight: 200; color: white; letter-spacing: 0.3em;">SKINDINAVIA</div>
+        <div style="font-size: 10px; color: rgba(255,255,255,0.5); letter-spacing: 0.15em; margin-top: 6px;">THE WORLD'S #1 SETTING SPRAY</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>C — Dark Cinematic Full-Bleed</h3>
+      <p>Full-screen dark hero with dramatic product glow. Single bottle centered with radial light bloom. Logo and tagline enter cinematically. Scroll down reveals the white shopping experience. Magnetic cursor creates light trail effect.</p>
+      <p style="margin-top: 8px; font-size: 13px; color: #888;"><strong>Vibe:</strong> Luxury fragrance ad meets beauty tech. Bold first impression, then clean white for shopping. High contrast.</p>
+    </div>
+  </div>
+</div>
+
+<div class="section" style="margin-top: 24px;">
+  <p class="subtitle">Remember: real product photos from skindinavia.com will replace the colored blocks. These are wireframes showing layout + animation intent.</p>
+</div>

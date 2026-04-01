@@ -1,40 +1,49 @@
-import { pressLogos } from "@/lib/mock-data";
-import { Separator } from "@/components/ui/separator";
+"use client";
+
+import Image from "next/image";
+import { pressLogos, pressLogoImages } from "@/lib/mock-data";
+
+const scrollLogos = [...pressLogos, ...pressLogos];
 
 export function PressLogos() {
   return (
-    <section className="border-y border-border/50 py-16">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+    <section className="border-y border-border/50 py-16 overflow-hidden">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8 mb-10">
         <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
-          As Featured In
+          Recognized Globally — You Might Have Read About Us Somewhere
         </p>
+      </div>
 
-        {/* Desktop: wrapped grid */}
-        <div className="mt-10 hidden flex-wrap items-center justify-center gap-x-2 gap-y-4 md:flex">
-          {pressLogos.map((name, i) => (
-            <div key={name} className="flex items-center gap-2">
-              <span className="text-sm font-medium uppercase tracking-[0.15em] text-muted-foreground/70 transition-colors hover:text-foreground">
-                {name}
-              </span>
-              {i < pressLogos.length - 1 && (
-                <Separator orientation="vertical" className="!h-4" />
-              )}
-            </div>
-          ))}
-        </div>
-
-        {/* Mobile: horizontal scroll */}
-        <div className="mt-10 flex gap-6 overflow-x-auto pb-2 scrollbar-none md:hidden">
-          {pressLogos.map((name) => (
-            <span
-              key={name}
-              className="shrink-0 text-sm font-medium uppercase tracking-[0.15em] text-muted-foreground/70"
-            >
-              {name}
-            </span>
-          ))}
+      <div className="relative group">
+        <div className="flex items-center gap-16 group-hover:[animation-play-state:paused]" style={{ animation: "marquee 40s linear infinite", width: "max-content" }}>
+          {scrollLogos.map((name, i) => {
+            const logoUrl = pressLogoImages[name];
+            if (!logoUrl) return null;
+            return (
+              <div
+                key={`${name}-${i}`}
+                className="shrink-0 opacity-40 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0"
+              >
+                <Image
+                  src={logoUrl}
+                  alt={name}
+                  width={120}
+                  height={40}
+                  className="h-8 w-auto object-contain"
+                  unoptimized
+                />
+              </div>
+            );
+          })}
         </div>
       </div>
+
+      <style>{`
+        @keyframes marquee {
+          from { transform: translateX(0); }
+          to { transform: translateX(-50%); }
+        }
+      `}</style>
     </section>
   );
 }

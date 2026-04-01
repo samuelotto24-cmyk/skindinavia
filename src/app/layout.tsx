@@ -7,6 +7,7 @@ import AnnouncementBar from "@/components/layout/AnnouncementBar";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import CartDrawer from "@/components/layout/CartDrawer";
+import { PageTransition } from "@/components/animation/PageTransition";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -38,7 +39,9 @@ export default function RootLayout({
         <CartProvider>
           <AnnouncementBar />
           <Header />
-          <main className="flex-1">{children}</main>
+          <main className="flex-1">
+            <PageTransition>{children}</PageTransition>
+          </main>
           <Footer />
           <CartDrawer />
         </CartProvider>

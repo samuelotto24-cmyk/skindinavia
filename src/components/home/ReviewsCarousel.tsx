@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { reviews } from "@/lib/mock-data";
 import { Button } from "@/components/ui/button";
 
@@ -49,10 +50,15 @@ export function ReviewsCarousel() {
         >
           {/* Review cards */}
           <div className="grid gap-6 md:grid-cols-3">
+            <AnimatePresence mode="wait">
             {visibleReviews.map((review, i) => (
-              <div
-                key={`${review.id}-${currentIndex}`}
-                className={`rounded-2xl border border-border/50 bg-card p-8 transition-all duration-500 ${
+              <motion.div
+                key={`${review.id}-${currentIndex}-${i}`}
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                transition={{ type: "spring", stiffness: 200, damping: 25, delay: i * 0.05 }}
+                className={`rounded-2xl border border-border/50 bg-card p-8 ${
                   i > 0 ? "hidden md:block" : ""
                 }`}
               >
@@ -97,8 +103,9 @@ export function ReviewsCarousel() {
                     </span>
                   )}
                 </div>
-              </div>
+              </motion.div>
             ))}
+            </AnimatePresence>
           </div>
 
           {/* Navigation */}

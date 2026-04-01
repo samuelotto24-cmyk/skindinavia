@@ -1,13 +1,9 @@
-import type { Metadata } from "next";
-import Link from "next/link";
-import { products, getProductsByCategory, getCategoryLabel } from "@/lib/mock-data";
-import { ProductCard } from "@/components/product/ProductCard";
+"use client";
 
-export const metadata: Metadata = {
-  title: "Shop All Products — Skindinavia",
-  description:
-    "Browse the full Skindinavia collection. Setting sprays, primer sprays, kits, and professional bulk options trusted by makeup artists worldwide.",
-};
+import Link from "next/link";
+import { motion } from "framer-motion";
+import { getProductsByCategory, getCategoryLabel } from "@/lib/mock-data";
+import { ProductCard } from "@/components/product/ProductCard";
 
 const categories = [
   "finishing-sprays",
@@ -76,11 +72,35 @@ export default function ShopPage() {
                 </Link>
               </div>
 
-              <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+              <motion.div
+                initial="hidden"
+                animate="visible"
+                variants={{
+                  hidden: {},
+                  visible: { transition: { staggerChildren: 0.08 } },
+                }}
+                className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3"
+              >
                 {catProducts.map((product) => (
-                  <ProductCard key={product.id} product={product} />
+                  <motion.div
+                    key={product.id}
+                    variants={{
+                      hidden: { opacity: 0, y: 20 },
+                      visible: {
+                        opacity: 1,
+                        y: 0,
+                        transition: {
+                          type: "spring",
+                          stiffness: 200,
+                          damping: 25,
+                        },
+                      },
+                    }}
+                  >
+                    <ProductCard product={product} />
+                  </motion.div>
                 ))}
-              </div>
+              </motion.div>
             </div>
           </section>
         );

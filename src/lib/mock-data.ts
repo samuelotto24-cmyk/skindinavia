@@ -20,6 +20,8 @@ export type Product = {
   defaultPrice: number;
   badge?: string;
   accentColor: string;
+  image: string;
+  images: string[];
   rating: number;
   reviewCount: number;
   features: string[];
@@ -88,6 +90,8 @@ export const products: Product[] = [
     ],
     defaultPrice: 29,
     accentColor: "#3B82F6",
+    image: "https://skindinavia.wpenginepowered.com/wp-content/uploads/2014/03/MFS-4oz__93457.1681396511.570.570.png",
+    images: ["https://skindinavia.wpenginepowered.com/wp-content/uploads/2014/03/MFS-4oz__93457.1681396511.570.570.png"],
     rating: 4.8,
     reviewCount: 1247,
     features: [
@@ -120,6 +124,8 @@ export const products: Product[] = [
     defaultPrice: 29,
     badge: "Bestseller",
     accentColor: "#EC4899",
+    image: "https://skindinavia.wpenginepowered.com/wp-content/uploads/2014/11/MFSBridal-4oz__49822.1681396994.570.570.png",
+    images: ["https://skindinavia.wpenginepowered.com/wp-content/uploads/2014/11/MFSBridal-4oz__49822.1681396994.570.570.png"],
     rating: 4.9,
     reviewCount: 2156,
     features: [
@@ -151,6 +157,8 @@ export const products: Product[] = [
     ],
     defaultPrice: 29,
     accentColor: "#10B981",
+    image: "https://skindinavia.wpenginepowered.com/wp-content/uploads/2014/03/MFSOil-4oz__12722.1681400833.570.570.png",
+    images: ["https://skindinavia.wpenginepowered.com/wp-content/uploads/2014/03/MFSOil-4oz__12722.1681400833.570.570.png"],
     rating: 4.7,
     reviewCount: 892,
     features: [
@@ -181,6 +189,8 @@ export const products: Product[] = [
     ],
     defaultPrice: 35,
     accentColor: "#8B5CF6",
+    image: "https://skindinavia.wpenginepowered.com/wp-content/uploads/2014/03/Primer-4oz__94106.1681398713.570.570.png",
+    images: ["https://skindinavia.wpenginepowered.com/wp-content/uploads/2014/03/Primer-4oz__94106.1681398713.570.570.png"],
     rating: 4.6,
     reviewCount: 534,
     features: [
@@ -211,6 +221,8 @@ export const products: Product[] = [
     ],
     defaultPrice: 35,
     accentColor: "#14B8A6",
+    image: "https://skindinavia.wpenginepowered.com/wp-content/uploads/2014/03/PrepSetKitOil-4oz__71375.1681400000.570.570.png",
+    images: ["https://skindinavia.wpenginepowered.com/wp-content/uploads/2014/03/PrepSetKitOil-4oz__71375.1681400000.570.570.png"],
     rating: 4.6,
     reviewCount: 318,
     features: [
@@ -238,6 +250,8 @@ export const products: Product[] = [
     defaultPrice: 50,
     badge: "Best Value",
     accentColor: "#F59E0B",
+    image: "https://skindinavia.wpenginepowered.com/wp-content/uploads/2014/03/Prep_Set_4oz_front__45711.1623870869.570.570.jpg",
+    images: ["https://skindinavia.wpenginepowered.com/wp-content/uploads/2014/03/Prep_Set_4oz_front__45711.1623870869.570.570.jpg"],
     rating: 4.8,
     reviewCount: 673,
     features: [
@@ -264,6 +278,8 @@ export const products: Product[] = [
     sizes: [{ label: "Standard Kit", oz: "2 × 4 oz", price: 50 }],
     defaultPrice: 50,
     accentColor: "#22C55E",
+    image: "https://skindinavia.wpenginepowered.com/wp-content/uploads/2014/03/PrepSetKitOil-4oz__71375.1681400000.570.570.png",
+    images: ["https://skindinavia.wpenginepowered.com/wp-content/uploads/2014/03/PrepSetKitOil-4oz__71375.1681400000.570.570.png"],
     rating: 4.7,
     reviewCount: 412,
     features: [
@@ -290,6 +306,8 @@ export const products: Product[] = [
     sizes: [{ label: "Full Kit", oz: "3 × 4 oz", price: 65 }],
     defaultPrice: 65,
     accentColor: "#EF4444",
+    image: "https://skindinavia.wpenginepowered.com/wp-content/uploads/2017/01/kit__66659.1706023513.570.570.png",
+    images: ["https://skindinavia.wpenginepowered.com/wp-content/uploads/2017/01/kit__66659.1706023513.570.570.png"],
     rating: 4.9,
     reviewCount: 289,
     features: [
@@ -320,6 +338,8 @@ export const products: Product[] = [
     ],
     defaultPrice: 29,
     accentColor: "#06B6D4",
+    image: "https://skindinavia.wpenginepowered.com/wp-content/uploads/2019/09/Remover_4oz_front__97154.1613750224.570.570.jpg",
+    images: ["https://skindinavia.wpenginepowered.com/wp-content/uploads/2019/09/Remover_4oz_front__97154.1613750224.570.570.jpg"],
     rating: 4.5,
     reviewCount: 267,
     features: [
@@ -349,6 +369,8 @@ export const products: Product[] = [
     defaultPrice: 120,
     badge: "Pro Savings",
     accentColor: "#6366F1",
+    image: "https://skindinavia.wpenginepowered.com/wp-content/uploads/2025/07/bottles-image.png",
+    images: ["https://skindinavia.wpenginepowered.com/wp-content/uploads/2025/07/bottles-image.png"],
     rating: 4.9,
     reviewCount: 156,
     features: [
@@ -667,3 +689,43 @@ export function getCategoryLabel(category: string): string {
   };
   return labels[category] || category;
 }
+
+// ── Press Logo Images ────────────────────────────────────────────
+export const pressLogoImages: Record<string, string> = {
+  Vogue: "https://skindinavia.wpenginepowered.com/wp-content/uploads/2021/09/vogue-logo-300x89.png",
+  Allure: "https://skindinavia.wpenginepowered.com/wp-content/uploads/2021/09/allure-magazine-logo-300x87.png",
+  Glamour: "https://skindinavia.wpenginepowered.com/wp-content/uploads/2021/10/glamour-logo.png",
+  Byrdie: "https://skindinavia.wpenginepowered.com/wp-content/uploads/2021/12/BYRDIE-300x59.png",
+  PopSugar: "https://skindinavia.wpenginepowered.com/wp-content/uploads/2022/04/popsugar-logo-300x53.jpg",
+  "Marie Claire": "https://skindinavia.wpenginepowered.com/wp-content/uploads/2021/10/marie-glaire-logo.png",
+  People: "https://skindinavia.wpenginepowered.com/wp-content/uploads/2021/10/people-magazine-logo.png",
+  "Teen Vogue": "https://skindinavia.wpenginepowered.com/wp-content/uploads/2021/10/teen-vogue-logo.png",
+  Shape: "https://skindinavia.wpenginepowered.com/wp-content/uploads/2021/09/shape-magazine-logo.png",
+  Essence: "https://skindinavia.wpenginepowered.com/wp-content/uploads/2021/10/essence-logo.png",
+  Nylon: "https://skindinavia.wpenginepowered.com/wp-content/uploads/2021/09/nylon-logo-300x51.png",
+  Brides: "https://skindinavia.wpenginepowered.com/wp-content/uploads/2021/10/brides-mag-logo.png",
+  HuffPost: "https://skindinavia.wpenginepowered.com/wp-content/uploads/2021/09/huff-post-logo-300x116.png",
+  Refinery29: "https://skindinavia.wpenginepowered.com/wp-content/uploads/2021/09/refinery29-logo-png-1-300x211-1.png",
+  "Elite Daily": "https://skindinavia.wpenginepowered.com/wp-content/uploads/2022/02/Elite-Daily-Feature-Skindinavia.png",
+  "US Weekly": "https://skindinavia.wpenginepowered.com/wp-content/uploads/2021/10/us-weekly-logo.png",
+  Self: "https://skindinavia.wpenginepowered.com/wp-content/uploads/2021/10/self-magazine-logo.png",
+  "Martha Stewart": "https://skindinavia.wpenginepowered.com/wp-content/uploads/2021/09/martha-stewart-living-logo.jpg",
+  "In Touch": "https://skindinavia.wpenginepowered.com/wp-content/uploads/2021/10/intouche-magazine-logo.png",
+  "New Beauty": "https://skindinavia.wpenginepowered.com/wp-content/uploads/2021/10/new-beauty-magazine.png",
+};
+
+// ── Hero & Lifestyle Images ──────────────────────────────────────
+export const heroImages = {
+  bottlesGroup: "https://skindinavia.wpenginepowered.com/wp-content/uploads/2025/07/bottles-image-home.png",
+  bridalLifestyle: "https://skindinavia.wpenginepowered.com/wp-content/uploads/2025/04/brides2.png",
+  fashionista: "https://skindinavia.wpenginepowered.com/wp-content/uploads/2024/12/fashionista-hero-scaled-1-scaled.jpg",
+};
+
+export const instagramImages = [
+  "https://skindinavia.wpenginepowered.com/wp-content/uploads/2022/10/skindinavia_301654740_843255973747273_6612108819761506876_n.jpg",
+  "https://skindinavia.wpenginepowered.com/wp-content/uploads/2022/10/skindinavia_306708562_625611635878669_1448671653329314283_n.jpg",
+  "https://skindinavia.wpenginepowered.com/wp-content/uploads/2022/10/skindinavia_298772197_180775021098109_8376872377899932744_n.jpg",
+  "https://skindinavia.wpenginepowered.com/wp-content/uploads/2022/10/skindinavia_291508262_170947788739315_3938528357252074175_n.jpg",
+];
+
+export const brandLogo = "https://skindinavia.wpenginepowered.com/wp-content/uploads/2021/06/SKIN_LG_BK_R.png";

@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   type Product,
   type ProductSize,
@@ -14,6 +16,9 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { ProductCard } from "@/components/product/ProductCard";
+import { use3DTilt } from "@/hooks/use-3d-tilt";
+import { useMagneticHover } from "@/hooks/use-magnetic-hover";
+import { SpringEntrance } from "@/components/animation/SpringEntrance";
 
 function StarIcon({ filled }: { filled: boolean }) {
   return (
@@ -56,20 +61,12 @@ export function ProductDetail({ product }: { product: Product }) {
   const { addItem } = useCart();
   const [selectedSize, setSelectedSize] = useState<ProductSize>(product.sizes[0]);
   const [quantity, setQuantity] = useState(1);
-  const [activeImageIndex, setActiveImageIndex] = useState(0);
+  const tiltRef = use3DTilt<HTMLDivElement>({ maxRotation: 8, scale: 1.02 });
+  const addToCartRef = useMagneticHover<HTMLDivElement>({ radius: 40, strength: 0.2 });
 
-  // Generate thumbnail "variants" based on accent color
-  const thumbnailVariants = [
-    { label: "Front", opacity: "18" },
-    { label: "Back", opacity: "12" },
-    { label: "Detail", opacity: "22" },
-  ];
-
-  // Related products: same category, excluding current, max 3
   const related = products
     .filter((p) => p.category === product.category && p.id !== product.id)
     .slice(0, 3);
-  // If not enough in same category, fill from other products
   const moreRelated =
     related.length < 3
       ? products
@@ -88,14 +85,9 @@ export function ProductDetail({ product }: { product: Product }) {
       <div className="border-b border-border/50">
         <div className="mx-auto max-w-7xl px-6 py-4 lg:px-8">
           <nav className="flex items-center gap-2 text-sm text-muted-foreground">
-            <Link href="/shop" className="transition-colors hover:text-foreground">
-              Shop
-            </Link>
+            <Link href="/shop" className="transition-colors hover:text-foreground">Shop</Link>
             <span aria-hidden="true">/</span>
-            <Link
-              href={`/shop/${product.category}`}
-              className="transition-colors hover:text-foreground"
-            >
+            <Link href={`/shop/${product.category}`} className="transition-colors hover:text-foreground">
               {product.categoryLabel}
             </Link>
             <span aria-hidden="true">/</span>
@@ -108,98 +100,58 @@ export function ProductDetail({ product }: { product: Product }) {
       <section className="py-12 lg:py-20">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
-            {/* ── Gallery ── */}
-            <div>
-              {/* Main image */}
+            {/* Gallery with 3D tilt */}
+            <SpringEntrance direction="left" delay={0.1}>
               <div
-                className="flex aspect-[3/4] items-end justify-center overflow-hidden rounded-2xl"
+                ref={tiltRef}
+                className="flex aspect-[3/4] items-center justify-center overflow-hidden rounded-2xl"
                 style={{
-                  background: `linear-gradient(165deg, ${product.accentColor}06 0%, ${product.accentColor}${thumbnailVariants[activeImageIndex]?.opacity ?? "18"} 50%, ${product.accentColor}08 100%)`,
+                  background: `linear-gradient(165deg, ${product.accentColor}06 0%, ${product.accentColor}14 50%, ${product.accentColor}06 100%)`,
                 }}
               >
-                <div className="mb-16 flex flex-col items-center">
-                  <div
-                    className="h-8 w-4 rounded-t-sm"
-                    style={{ backgroundColor: `${product.accentColor}30` }}
-                  />
-                  <div
-                    className="h-56 w-28 rounded-2xl shadow-sm"
-                    style={{
-                      background: `linear-gradient(to bottom, ${product.accentColor}22, ${product.accentColor}10)`,
-                      boxShadow: `inset 0 2px 20px ${product.accentColor}12`,
-                    }}
-                  />
-                </div>
+                <Image
+                  src={product.image}
+                  alt={product.name}
+                  width={400}
+                  height={500}
+                  className="h-auto max-h-[85%] w-auto object-contain drop-shadow-xl"
+                  priority
+                />
               </div>
+            </SpringEntrance>
 
-              {/* Thumbnails */}
-              <div className="mt-4 flex gap-3">
-                {thumbnailVariants.map((variant, i) => (
-                  <button
-                    key={variant.label}
-                    onClick={() => setActiveImageIndex(i)}
-                    className={`flex aspect-square w-20 items-end justify-center overflow-hidden rounded-lg border-2 transition-all ${
-                      activeImageIndex === i
-                        ? "border-foreground"
-                        : "border-transparent opacity-60 hover:opacity-100"
-                    }`}
-                    style={{
-                      background: `linear-gradient(165deg, ${product.accentColor}08 0%, ${product.accentColor}${variant.opacity} 100%)`,
-                    }}
-                    aria-label={`View ${variant.label}`}
-                  >
-                    <div className="mb-2 flex flex-col items-center">
-                      <div
-                        className="h-2 w-1 rounded-t-sm"
-                        style={{ backgroundColor: `${product.accentColor}30` }}
-                      />
-                      <div
-                        className="h-10 w-5 rounded-md"
-                        style={{
-                          background: `linear-gradient(to bottom, ${product.accentColor}22, ${product.accentColor}10)`,
-                        }}
-                      />
-                    </div>
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* ── Product Info ── */}
+            {/* Product Info */}
             <div className="flex flex-col">
-              {/* Badge */}
-              {product.badge && (
-                <Badge
-                  variant="secondary"
-                  className="mb-4 w-fit text-[10px] uppercase tracking-wider"
-                >
-                  {product.badge}
-                </Badge>
-              )}
+              <SpringEntrance delay={0.15}>
+                {product.badge && (
+                  <Badge variant="secondary" className="mb-4 w-fit text-[10px] uppercase tracking-wider">
+                    {product.badge}
+                  </Badge>
+                )}
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+                  {product.categoryLabel}
+                </p>
+                <h1 className="mt-2 text-3xl font-light tracking-tight sm:text-4xl">
+                  {product.name}
+                </h1>
+              </SpringEntrance>
 
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
-                {product.categoryLabel}
-              </p>
-              <h1 className="mt-2 text-3xl font-light tracking-tight sm:text-4xl">
-                {product.name}
-              </h1>
+              <SpringEntrance delay={0.25}>
+                <div className="mt-3 flex items-center gap-3">
+                  <Stars rating={product.rating} />
+                  <span className="text-sm text-muted-foreground">
+                    {product.rating} ({product.reviewCount.toLocaleString()} reviews)
+                  </span>
+                </div>
 
-              {/* Rating */}
-              <div className="mt-3 flex items-center gap-3">
-                <Stars rating={product.rating} />
-                <span className="text-sm text-muted-foreground">
-                  {product.rating} ({product.reviewCount.toLocaleString()} reviews)
-                </span>
-              </div>
+                <p className="mt-6 text-3xl font-medium tracking-tight">
+                  ${selectedSize.price}
+                </p>
 
-              {/* Price */}
-              <p className="mt-6 text-3xl font-medium tracking-tight">
-                ${selectedSize.price}
-              </p>
-
-              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                {product.description}
-              </p>
+                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                  {product.description}
+                </p>
+              </SpringEntrance>
 
               <Separator className="my-6" />
 
@@ -214,20 +166,19 @@ export function ProductDetail({ product }: { product: Product }) {
                   </p>
                   <div className="mt-3 flex flex-wrap gap-2">
                     {product.sizes.map((size) => (
-                      <button
+                      <motion.button
                         key={size.label}
                         onClick={() => setSelectedSize(size)}
-                        className={`rounded-lg border px-4 py-2.5 text-sm font-medium transition-all ${
+                        whileTap={{ scale: 0.95 }}
+                        className={`rounded-lg border px-4 py-2.5 text-sm font-medium transition-colors ${
                           selectedSize.label === size.label
                             ? "border-foreground bg-foreground text-background"
                             : "border-border bg-background text-foreground hover:border-foreground/50"
                         }`}
                       >
                         {size.label}
-                        <span className="ml-1.5 text-xs opacity-60">
-                          {size.oz}
-                        </span>
-                      </button>
+                        <span className="ml-1.5 text-xs opacity-60">{size.oz}</span>
+                      </motion.button>
                     ))}
                   </div>
                 </div>
@@ -257,13 +208,17 @@ export function ProductDetail({ product }: { product: Product }) {
                 </div>
               </div>
 
-              {/* Add to Cart */}
-              <Button
-                onClick={handleAddToCart}
-                className="mt-8 h-12 w-full text-base font-medium tracking-wide"
-              >
-                Add to Cart &mdash; ${(selectedSize.price * quantity).toFixed(2)}
-              </Button>
+              {/* Add to Cart with magnetic hover */}
+              <div ref={addToCartRef} className="mt-8">
+                <motion.div whileTap={{ scale: 0.97 }}>
+                  <Button
+                    onClick={handleAddToCart}
+                    className="h-12 w-full text-base font-medium tracking-wide"
+                  >
+                    Add to Cart &mdash; ${(selectedSize.price * quantity).toFixed(2)}
+                  </Button>
+                </motion.div>
+              </div>
 
               {/* Features */}
               <ul className="mt-8 space-y-2.5">
@@ -288,31 +243,42 @@ export function ProductDetail({ product }: { product: Product }) {
               <TabsTrigger value="how-to-use">How to Use</TabsTrigger>
               <TabsTrigger value="ingredients">Ingredients</TabsTrigger>
             </TabsList>
-
-            <TabsContent value="description" className="mt-8">
-              <div className="prose prose-stone max-w-2xl">
-                {product.longDescription.split("\n\n").map((paragraph, i) => (
-                  <p
-                    key={i}
-                    className="text-sm leading-relaxed text-muted-foreground [&:not(:first-child)]:mt-4"
-                  >
-                    {paragraph}
-                  </p>
-                ))}
-              </div>
-            </TabsContent>
-
-            <TabsContent value="how-to-use" className="mt-8">
-              <p className="max-w-2xl text-sm leading-relaxed text-muted-foreground">
-                {product.howToUse}
-              </p>
-            </TabsContent>
-
-            <TabsContent value="ingredients" className="mt-8">
-              <p className="max-w-2xl text-sm leading-relaxed text-muted-foreground">
-                {product.ingredients}
-              </p>
-            </TabsContent>
+            <AnimatePresence mode="wait">
+              <TabsContent value="description" className="mt-8">
+                <motion.div
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.2 }}
+                  className="prose prose-stone max-w-2xl"
+                >
+                  {product.longDescription.split("\n\n").map((paragraph, i) => (
+                    <p key={i} className="text-sm leading-relaxed text-muted-foreground [&:not(:first-child)]:mt-4">
+                      {paragraph}
+                    </p>
+                  ))}
+                </motion.div>
+              </TabsContent>
+              <TabsContent value="how-to-use" className="mt-8">
+                <motion.p
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.2 }}
+                  className="max-w-2xl text-sm leading-relaxed text-muted-foreground"
+                >
+                  {product.howToUse}
+                </motion.p>
+              </TabsContent>
+              <TabsContent value="ingredients" className="mt-8">
+                <motion.p
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.2 }}
+                  className="max-w-2xl text-sm leading-relaxed text-muted-foreground"
+                >
+                  {product.ingredients}
+                </motion.p>
+              </TabsContent>
+            </AnimatePresence>
           </Tabs>
         </div>
       </section>
@@ -322,9 +288,7 @@ export function ProductDetail({ product }: { product: Product }) {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="flex items-end justify-between">
             <div>
-              <h2 className="text-2xl font-light tracking-tight">
-                Customer Reviews
-              </h2>
+              <h2 className="text-2xl font-light tracking-tight">Customer Reviews</h2>
               <div className="mt-2 flex items-center gap-3">
                 <Stars rating={product.rating} />
                 <span className="text-sm text-muted-foreground">
@@ -336,28 +300,19 @@ export function ProductDetail({ product }: { product: Product }) {
 
           <div className="mt-10 grid gap-8 sm:grid-cols-2">
             {reviews.map((review) => (
-              <div
-                key={review.id}
-                className="rounded-xl border border-border/50 bg-card p-6"
-              >
+              <div key={review.id} className="rounded-xl border border-border/50 bg-card p-6">
                 <div className="flex items-start justify-between">
                   <div>
                     <Stars rating={review.rating} />
                     <h3 className="mt-2 text-sm font-semibold">{review.title}</h3>
                   </div>
                   {review.verified && (
-                    <Badge variant="outline" className="text-[10px]">
-                      Verified
-                    </Badge>
+                    <Badge variant="outline" className="text-[10px]">Verified</Badge>
                   )}
                 </div>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                  {review.body}
-                </p>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{review.body}</p>
                 <div className="mt-4 flex items-center gap-2 text-xs text-muted-foreground">
-                  <span className="font-medium text-foreground">
-                    {review.author}
-                  </span>
+                  <span className="font-medium text-foreground">{review.author}</span>
                   <span aria-hidden="true">&middot;</span>
                   <span>
                     {new Date(review.date).toLocaleDateString("en-US", {
@@ -377,9 +332,7 @@ export function ProductDetail({ product }: { product: Product }) {
       {allRelated.length > 0 && (
         <section className="border-t border-border/50 py-16">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <h2 className="text-2xl font-light tracking-tight">
-              You May Also Like
-            </h2>
+            <h2 className="text-2xl font-light tracking-tight">You May Also Like</h2>
             <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
               {allRelated.map((p) => (
                 <ProductCard key={p.id} product={p} />

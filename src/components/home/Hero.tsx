@@ -9,6 +9,8 @@ import { products } from "@/lib/mock-data";
 import { use3DTilt } from "@/hooks/use-3d-tilt";
 import { useMagneticHover } from "@/hooks/use-magnetic-hover";
 import { MorphingBlob } from "@/components/animation/MorphingBlob";
+import { TextReveal } from "@/components/animation/TextReveal";
+import { CountUp } from "@/components/animation/CountUp";
 
 const heroProducts = [
   products.find((p) => p.id === "2")!, // Bridal
@@ -42,28 +44,31 @@ export function Hero() {
           {/* Narrative text */}
           <div className="max-w-xl">
             <motion.p
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
               transition={{ duration: 0.6 }}
               className="mb-6 text-xs font-medium uppercase tracking-[0.25em] text-muted-foreground"
             >
               The Original Formula
             </motion.p>
 
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.1 }}
-              className="font-serif text-4xl leading-[1.1] tracking-tight sm:text-5xl lg:text-[3.5rem]"
-            >
-              The Setting Spray Behind{" "}
-              <span className="italic">50,000 Five-Star Reviews</span>
-            </motion.h1>
+            {/* Cinematic text reveal */}
+            <h1 className="font-serif text-4xl leading-[1.1] tracking-tight sm:text-5xl lg:text-[3.5rem]">
+              <TextReveal delay={0.2}>
+                The Setting Spray Behind
+              </TextReveal>
+              <br />
+              <span className="italic">
+                <TextReveal delay={0.5}>
+                  50,000 Five-Star Reviews
+                </TextReveal>
+              </span>
+            </h1>
 
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.25 }}
+              transition={{ duration: 0.8, delay: 0.9 }}
               className="mt-6 max-w-md text-base leading-relaxed text-muted-foreground sm:text-lg"
             >
               Patented cooling technology that locks in your makeup for 16+ hours.
@@ -73,7 +78,7 @@ export function Hero() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
+              transition={{ duration: 0.8, delay: 1.1 }}
               ref={ctaRef}
               className="mt-10 flex flex-wrap gap-4"
             >
@@ -94,29 +99,42 @@ export function Hero() {
               </Button>
             </motion.div>
 
-            {/* Trust micro-stats */}
+            {/* Animated number counters */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 1, delay: 0.6 }}
+              transition={{ duration: 0.6, delay: 1.3 }}
               className="mt-14 flex gap-10"
             >
-              {[
-                { stat: "16+", label: "Hour Wear" },
-                { stat: "50K+", label: "Five-Star Reviews" },
-                { stat: "20", label: "Years Trusted" },
-              ].map((item) => (
-                <div key={item.label}>
-                  <p className="font-serif text-2xl font-medium tracking-tight">{item.stat}</p>
-                  <p className="mt-0.5 text-xs uppercase tracking-wider text-muted-foreground">{item.label}</p>
-                </div>
-              ))}
+              <div>
+                <p className="font-serif text-2xl font-medium tracking-tight">
+                  <CountUp end={16} suffix="+" duration={1.5} />
+                </p>
+                <p className="mt-0.5 text-xs uppercase tracking-wider text-muted-foreground">Hour Wear</p>
+              </div>
+              <div>
+                <p className="font-serif text-2xl font-medium tracking-tight">
+                  <CountUp end={50} suffix="K+" duration={2} />
+                </p>
+                <p className="mt-0.5 text-xs uppercase tracking-wider text-muted-foreground">Five-Star Reviews</p>
+              </div>
+              <div>
+                <p className="font-serif text-2xl font-medium tracking-tight">
+                  <CountUp end={20} duration={1.8} />
+                </p>
+                <p className="mt-0.5 text-xs uppercase tracking-wider text-muted-foreground">Years Trusted</p>
+              </div>
             </motion.div>
           </div>
 
           {/* Product showcase */}
           <div className="flex justify-center lg:justify-end">
-            <div className="relative">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1, delay: 0.3, ease: [0.33, 1, 0.68, 1] }}
+              className="relative"
+            >
               <MorphingBlob
                 color={`${activeProduct.accentColor}12`}
                 size={480}
@@ -174,7 +192,7 @@ export function Hero() {
                   ))}
                 </div>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>

@@ -2,9 +2,9 @@
 
 import { useRef } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import { products } from "@/lib/mock-data";
+import { ParallaxImage } from "@/components/animation/ParallaxImage";
 
 const moments = [
   {
@@ -83,14 +83,12 @@ export function ShopByMoment() {
                   </p>
 
                   <div className="mt-6 flex justify-center">
-                    <div className="relative h-[340px] w-[220px] transition-transform duration-500 group-hover:scale-105">
-                      <Image
-                        src={moment.product.image}
-                        alt={moment.product.name}
-                        fill
-                        className="object-contain drop-shadow-lg"
-                      />
-                    </div>
+                    <ParallaxImage
+                      src={moment.product.image}
+                      alt={moment.product.name}
+                      speed={-20}
+                      className="h-[340px] w-[220px] transition-transform duration-500 group-hover:scale-105"
+                    />
                   </div>
                 </div>
 

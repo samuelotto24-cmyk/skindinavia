@@ -42,7 +42,7 @@ export function FounderStory() {
               >
                 <Image
                   src={product.image}
-                  alt={product.name}
+                  alt="Skindinavia product"
                   fill
                   className="object-contain drop-shadow-[0_15px_30px_rgba(0,0,0,0.4)]"
                 />

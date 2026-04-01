@@ -12,7 +12,7 @@ export function PressLogos() {
   const isInView = useInView(ref, { once: true, margin: "-50px" });
 
   return (
-    <section ref={ref} className="border-y border-border/50 py-10 overflow-hidden">
+    <section ref={ref} className="py-10 overflow-hidden bg-gradient-to-r from-rose-50/30 via-sky-50/20 to-violet-50/30">
       <div className="mx-auto max-w-7xl px-6 lg:px-8 mb-8">
         <motion.p
           initial={{ opacity: 0 }}

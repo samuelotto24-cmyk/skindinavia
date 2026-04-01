@@ -5,6 +5,17 @@ import { motion, AnimatePresence } from "framer-motion";
 import { reviews } from "@/lib/mock-data";
 import { Button } from "@/components/ui/button";
 
+// Map reviews to product color tints based on content
+const reviewTints: Record<string, { bg: string; border: string }> = {
+  r1: { bg: "bg-pink-50/50", border: "border-pink-200/30" },       // Bridal review
+  r2: { bg: "bg-blue-50/50", border: "border-blue-200/30" },       // Pro/Original review
+  r3: { bg: "bg-sky-50/50", border: "border-sky-200/30" },         // Original review
+  r4: { bg: "bg-emerald-50/50", border: "border-emerald-200/30" }, // Oil Control review
+  r5: { bg: "bg-violet-50/50", border: "border-violet-200/30" },   // General review
+};
+
+const defaultTint = { bg: "bg-card", border: "border-border/30" };
+
 export function ReviewsCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
@@ -25,7 +36,6 @@ export function ReviewsCarousel() {
     return () => clearInterval(timer);
   }, [isPaused, next]);
 
-  // Determine which reviews to show (3 on desktop, carousel handles mobile via CSS)
   const visibleReviews = Array.from({ length: 3 }, (_, i) => {
     const idx = (currentIndex + i) % reviews.length;
     return reviews[idx];
@@ -35,7 +45,7 @@ export function ReviewsCarousel() {
     <section className="py-16 lg:py-20 border-t border-border/40">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+          <p className="text-xs font-medium uppercase tracking-[0.25em] text-muted-foreground">
             5,000+ Five-Star Reviews
           </p>
           <h2 className="mt-3 font-serif text-3xl tracking-tight sm:text-4xl">
@@ -48,67 +58,65 @@ export function ReviewsCarousel() {
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
         >
-          {/* Review cards */}
           <div className="grid gap-6 md:grid-cols-3">
             <AnimatePresence mode="wait">
-            {visibleReviews.map((review, i) => (
-              <motion.div
-                key={`${review.id}-${currentIndex}-${i}`}
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -20 }}
-                transition={{ type: "spring", stiffness: 200, damping: 25, delay: i * 0.05 }}
-                className={`rounded-2xl border border-border/30 bg-card p-10 ${
-                  i > 0 ? "hidden md:block" : ""
-                }`}
-              >
-                {/* Stars */}
-                <div className="flex gap-0.5 text-brand-gold">
-                  {Array.from({ length: 5 }, (_, s) => (
-                    <span key={s} className="text-lg">
-                      {s < review.rating ? "\u2605" : "\u2606"}
-                    </span>
-                  ))}
-                </div>
+            {visibleReviews.map((review, i) => {
+              const tint = reviewTints[review.id] || defaultTint;
+              return (
+                <motion.div
+                  key={`${review.id}-${currentIndex}-${i}`}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  transition={{ type: "spring", stiffness: 200, damping: 25, delay: i * 0.05 }}
+                  className={`rounded-2xl border ${tint.border} ${tint.bg} p-10 ${
+                    i > 0 ? "hidden md:block" : ""
+                  }`}
+                >
+                  <div className="flex gap-0.5 text-brand-gold">
+                    {Array.from({ length: 5 }, (_, s) => (
+                      <span key={s} className="text-lg">
+                        {s < review.rating ? "\u2605" : "\u2606"}
+                      </span>
+                    ))}
+                  </div>
 
-                {/* Quote */}
-                <h4 className="mt-5 font-serif text-lg tracking-tight">
-                  {review.title}
-                </h4>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground line-clamp-4">
-                  &ldquo;{review.body}&rdquo;
-                </p>
+                  <h4 className="mt-5 font-serif text-lg tracking-tight">
+                    {review.title}
+                  </h4>
+                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground line-clamp-5">
+                    &ldquo;{review.body}&rdquo;
+                  </p>
 
-                {/* Author */}
-                <div className="mt-6 flex items-center gap-2">
-                  <span className="text-sm font-medium">{review.author}</span>
-                  {review.verified && (
-                    <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2 py-0.5 text-[10px] font-medium text-emerald-700">
-                      <svg
-                        width="10"
-                        height="10"
-                        viewBox="0 0 10 10"
-                        fill="none"
-                        className="shrink-0"
-                      >
-                        <path
-                          d="M8.5 3L4.25 7.25 2 5"
-                          stroke="currentColor"
-                          strokeWidth="1.5"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
-                      Verified
-                    </span>
-                  )}
-                </div>
-              </motion.div>
-            ))}
+                  <div className="mt-6 flex items-center gap-2">
+                    <span className="text-sm font-medium">{review.author}</span>
+                    {review.verified && (
+                      <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2 py-0.5 text-[10px] font-medium text-emerald-700">
+                        <svg
+                          width="10"
+                          height="10"
+                          viewBox="0 0 10 10"
+                          fill="none"
+                          className="shrink-0"
+                        >
+                          <path
+                            d="M8.5 3L4.25 7.25 2 5"
+                            stroke="currentColor"
+                            strokeWidth="1.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                        Verified
+                      </span>
+                    )}
+                  </div>
+                </motion.div>
+              );
+            })}
             </AnimatePresence>
           </div>
 
-          {/* Navigation */}
           <div className="mt-10 flex items-center justify-center gap-3">
             <Button
               variant="outline"
@@ -128,7 +136,6 @@ export function ReviewsCarousel() {
               </svg>
             </Button>
 
-            {/* Dots */}
             <div className="flex gap-1.5">
               {reviews.map((_, i) => (
                 <button

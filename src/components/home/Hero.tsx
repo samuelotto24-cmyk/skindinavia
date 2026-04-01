@@ -39,7 +39,7 @@ export function Hero() {
   }, []);
 
   return (
-    <section className="relative min-h-[85vh] flex items-center overflow-hidden">
+    <section className="relative overflow-hidden">
       {/* Warm gradient background */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#f8f3ed] via-[#faf7f3] to-[#f5eff0]" />
 
@@ -58,8 +58,8 @@ export function Hero() {
       {/* Subtle texture overlay */}
       <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")" }} />
 
-      <div className="relative mx-auto w-full max-w-7xl px-6 py-20 lg:px-8 lg:py-24">
-        <div className="grid items-center gap-10 lg:grid-cols-[1fr,1.2fr] lg:gap-12">
+      <div className="relative mx-auto w-full max-w-7xl px-6 py-16 lg:px-8 lg:py-16">
+        <div className="grid items-start gap-10 lg:grid-cols-[1fr,1.2fr] lg:gap-12 lg:pt-4">
           {/* Narrative text */}
           <div className="max-w-xl">
             <motion.p
@@ -160,7 +160,7 @@ export function Hero() {
 
               <div
                 ref={tiltRef}
-                className="relative z-10 h-[520px] w-[340px] sm:h-[600px] sm:w-[400px] lg:h-[640px] lg:w-[420px]"
+                className="relative z-10 h-[440px] w-[300px] sm:h-[500px] sm:w-[340px] lg:h-[540px] lg:w-[360px]"
               >
                 <AnimatePresence mode="wait">
                   <motion.div

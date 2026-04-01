@@ -32,7 +32,7 @@ export function ReviewsCarousel() {
   });
 
   return (
-    <section className="py-24">
+    <section className="py-16 lg:py-20 border-t border-border/40">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="text-center">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
@@ -44,7 +44,7 @@ export function ReviewsCarousel() {
         </div>
 
         <div
-          className="mt-16"
+          className="mt-10"
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
         >

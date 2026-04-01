@@ -29,7 +29,7 @@ export function HowItWorks() {
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
 
   return (
-    <section ref={sectionRef} className="py-32 bg-gradient-to-b from-background via-card to-background">
+    <section ref={sectionRef} className="py-16 lg:py-20 border-y border-border/40 bg-gradient-to-b from-card/80 via-card to-card/80">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="text-center">
           <motion.p
@@ -59,7 +59,7 @@ export function HowItWorks() {
         </div>
 
         {/* Steps */}
-        <div className="mt-20 grid gap-8 lg:grid-cols-3 lg:gap-12">
+        <div className="mt-12 grid gap-8 lg:grid-cols-3 lg:gap-12">
           {steps.map((step, i) => (
             <motion.div
               key={step.number}
@@ -89,7 +89,7 @@ export function HowItWorks() {
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ duration: 0.8, delay: 0.8 }}
-          className="mt-16 text-center"
+          className="mt-10 text-center"
         >
           <p className="text-sm text-muted-foreground">
             U.S. Patent Protected &middot; Clinically Tested &middot; Made in USA

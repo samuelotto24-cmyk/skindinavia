@@ -13,7 +13,7 @@ export function BlogPreview() {
   const isInView = useInView(ref, { once: true, margin: "-50px" });
 
   return (
-    <section ref={ref} className="py-24">
+    <section ref={ref} className="py-16 lg:py-20 border-t border-border/40">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="text-center">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
@@ -29,7 +29,7 @@ export function BlogPreview() {
           </motion.h2>
         </div>
 
-        <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {latestPosts.map((post, i) => (
             <motion.div
               key={post.id}

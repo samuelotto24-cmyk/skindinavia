@@ -30,7 +30,7 @@ export function Hero() {
   }, []);
 
   return (
-    <section className="relative min-h-[90vh] flex items-center overflow-hidden">
+    <section className="relative min-h-[80vh] flex items-center overflow-hidden">
       {/* Warm gradient background */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#f8f3ed] via-[#faf7f3] to-background" />
 

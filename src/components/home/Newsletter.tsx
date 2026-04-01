@@ -22,7 +22,7 @@ export function Newsletter() {
   }
 
   return (
-    <section ref={sectionRef} className="bg-secondary py-24">
+    <section ref={sectionRef} className="bg-secondary py-16 lg:py-20">
       <div className="mx-auto max-w-2xl px-6 text-center lg:px-8">
         <motion.h2
           initial={{ opacity: 0, y: 15 }}

@@ -11,7 +11,7 @@ export function CaseStudyCards() {
   const isInView = useInView(ref, { once: true, margin: "-50px" });
 
   return (
-    <section ref={ref} className="py-24 bg-gradient-to-b from-background to-card/50">
+    <section ref={ref} className="py-16 lg:py-20 border-t border-border/40 bg-gradient-to-b from-card/50 to-background">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="text-center">
           <p className="text-xs font-medium uppercase tracking-[0.25em] text-muted-foreground">
@@ -27,7 +27,7 @@ export function CaseStudyCards() {
           </motion.h2>
         </div>
 
-        <div className="mt-16 grid gap-6 sm:grid-cols-2">
+        <div className="mt-10 grid gap-6 sm:grid-cols-2">
           {caseStudies.map((study, i) => (
             <motion.div
               key={study.id}

@@ -41,7 +41,7 @@ export function ShopByMoment() {
   const isInView = useInView(sectionRef, { once: true, margin: "-80px" });
 
   return (
-    <section ref={sectionRef} className="py-32">
+    <section ref={sectionRef} className="py-16 lg:py-20">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="text-center">
           <motion.p
@@ -62,7 +62,7 @@ export function ShopByMoment() {
           </motion.h2>
         </div>
 
-        <div className="mt-20 grid gap-8 lg:grid-cols-3">
+        <div className="mt-12 grid gap-6 lg:grid-cols-3">
           {moments.map((moment, i) => (
             <motion.div
               key={moment.title}
@@ -83,7 +83,7 @@ export function ShopByMoment() {
                   </p>
 
                   <div className="mt-6 flex justify-center">
-                    <div className="relative h-[280px] w-[180px] transition-transform duration-500 group-hover:scale-105">
+                    <div className="relative h-[340px] w-[220px] transition-transform duration-500 group-hover:scale-105">
                       <Image
                         src={moment.product.image}
                         alt={moment.product.name}

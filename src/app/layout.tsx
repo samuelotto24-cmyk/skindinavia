@@ -8,7 +8,6 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import CartDrawer from "@/components/layout/CartDrawer";
 import { PageTransition } from "@/components/animation/PageTransition";
-import { SmoothScroll } from "@/components/animation/SmoothScroll";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -45,7 +44,6 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col">
         <CartProvider>
-          <SmoothScroll />
           <AnnouncementBar />
           <Header />
           <main className="flex-1">

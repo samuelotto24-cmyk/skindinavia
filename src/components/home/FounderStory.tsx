@@ -18,7 +18,11 @@ export function FounderStory() {
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
 
   return (
-    <section ref={sectionRef} className="py-16 lg:py-24 bg-gradient-to-b from-[#2a2520] to-[#1f1b17] text-white">
+    <section ref={sectionRef} className="relative py-14 lg:py-16 bg-gradient-to-b from-[#2a2520] to-[#1f1b17] text-white overflow-hidden">
+      {/* Warm noise texture */}
+      <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E\")" }} />
+      {/* Warm ambient glow */}
+      <div className="absolute top-1/2 left-1/3 -translate-y-1/2 w-[500px] h-[400px] rounded-full bg-amber-500/5 blur-[100px]" />
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
           {/* Product lineup showcase */}
@@ -28,7 +32,7 @@ export function FounderStory() {
             transition={{ duration: 0.9 }}
             className="relative"
           >
-            <div className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-gradient-to-br from-[#3a332b] to-[#2a2520]">
+            <div className="relative aspect-[5/4] overflow-hidden rounded-2xl bg-gradient-to-br from-[#3a332b] to-[#2a2520]">
               {/* Product bottles arranged */}
               <div className="absolute inset-0 flex items-center justify-center gap-2 px-8">
                 {showcaseProducts.map((product, i) => (

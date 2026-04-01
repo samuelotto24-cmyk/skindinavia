@@ -14,8 +14,8 @@ export function CaseStudyCards() {
     <section ref={ref} className="py-24 bg-gradient-to-b from-background to-card/50">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
-            Proven Performance
+          <p className="text-xs font-medium uppercase tracking-[0.25em] text-muted-foreground">
+            Tested in the Field
           </p>
           <motion.h2
             initial={{ opacity: 0, y: 15 }}
@@ -23,7 +23,7 @@ export function CaseStudyCards() {
             transition={{ duration: 0.8, delay: 0.1 }}
             className="mt-3 font-serif text-3xl tracking-tight sm:text-4xl"
           >
-            Real Results, Real Stories
+            From Broadway to the Altar
           </motion.h2>
         </div>
 

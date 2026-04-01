@@ -70,9 +70,10 @@ export function FounderStory() {
                 under lights, sweat, and tears.
               </p>
               <p>
-                For 15 years, a major beauty brand sold our formula as their own bestseller.
-                Now, Skindinavia stands on its own — the original, under our name, with the
-                technology that started it all.
+                For 15 years, a major beauty brand built their #1 bestseller on our formula —
+                50,000 five-star reviews, Allure Best of Beauty Hall of Fame, all of it powered
+                by Skindinavia&apos;s patent. When that partnership ended, they reformulated.
+                We didn&apos;t. <em>The original is still here.</em>
               </p>
             </motion.div>
 

@@ -14,6 +14,7 @@ const moments = [
     product: products.find((p) => p.id === "2")!,
     href: "/products/the-makeup-finishing-spray-bridal",
     gradient: "from-rose-50/80 to-pink-50/40",
+    cta: "Shop Bridal",
   },
   {
     title: "Your Longest Days",
@@ -22,6 +23,7 @@ const moments = [
     product: products.find((p) => p.id === "1")!,
     href: "/products/the-makeup-finishing-spray",
     gradient: "from-blue-50/60 to-sky-50/30",
+    cta: "Shop Original",
   },
   {
     title: "Your Oiliest Moments",
@@ -30,6 +32,7 @@ const moments = [
     product: products.find((p) => p.id === "3")!,
     href: "/products/the-makeup-finishing-spray-oil-control",
     gradient: "from-emerald-50/50 to-teal-50/30",
+    cta: "Shop Oil Control",
   },
 ];
 
@@ -96,7 +99,7 @@ export function ShopByMoment() {
                     From <span className="font-medium text-foreground">${moment.product.sizes[0].price}</span>
                   </p>
                   <span className="text-sm font-medium underline-offset-4 transition-all group-hover:underline">
-                    Shop Now
+                    {moment.cta}
                   </span>
                 </div>
               </Link>

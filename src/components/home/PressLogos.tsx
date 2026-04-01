@@ -12,8 +12,8 @@ export function PressLogos() {
   const isInView = useInView(ref, { once: true, margin: "-50px" });
 
   return (
-    <section ref={ref} className="border-y border-border/50 py-16 overflow-hidden">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8 mb-10">
+    <section ref={ref} className="border-y border-border/50 py-10 overflow-hidden">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8 mb-8">
         <motion.p
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
@@ -37,9 +37,9 @@ export function PressLogos() {
                 <Image
                   src={logoUrl}
                   alt={name}
-                  width={120}
-                  height={40}
-                  className="h-8 w-auto object-contain"
+                  width={160}
+                  height={48}
+                  className="h-10 w-auto object-contain sm:h-12"
                   unoptimized
                 />
               </div>

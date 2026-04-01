@@ -1,10 +1,27 @@
 "use client";
 
 import { useRef } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { motion, useInView } from "framer-motion";
-import { caseStudies } from "@/lib/mock-data";
+import { caseStudies, products } from "@/lib/mock-data";
 import { Badge } from "@/components/ui/badge";
+
+// Map each case study to a relevant product image for visual interest
+const caseStudyImages: Record<string, string> = {
+  cs1: products.find((p) => p.id === "1")!.image, // Original — healthcare pros
+  cs2: products.find((p) => p.id === "1")!.image, // Original — Broadway
+  cs3: products.find((p) => p.id === "2")!.image, // Bridal — destination weddings
+  cs4: products.find((p) => p.id === "3")!.image, // Oil Control — film sets
+};
+
+// Gradient per case study for variety
+const caseStudyGradients: Record<string, string> = {
+  cs1: "from-blue-50/60 to-sky-50/30",
+  cs2: "from-amber-50/50 to-orange-50/30",
+  cs3: "from-rose-50/60 to-pink-50/30",
+  cs4: "from-violet-50/50 to-purple-50/30",
+};
 
 export function CaseStudyCards() {
   const ref = useRef<HTMLElement>(null);
@@ -37,21 +54,36 @@ export function CaseStudyCards() {
             >
               <Link
                 href={`/case-studies/${study.slug}`}
-                className="group"
+                className="group block"
               >
-                <div className="flex h-full flex-col rounded-2xl border border-border/50 bg-card p-8 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md hover:shadow-stone-200/50">
-                  <Badge variant="secondary" className="mb-4 w-fit text-[10px] uppercase tracking-wider">
-                    {study.category}
-                  </Badge>
-                  <h3 className="text-xl font-medium tracking-tight text-foreground">
-                    {study.title}
-                  </h3>
-                  <p className="mt-3 flex-1 leading-relaxed text-muted-foreground">
-                    {study.excerpt}
-                  </p>
-                  <span className="mt-6 inline-flex text-sm font-medium text-foreground underline-offset-4 transition-all group-hover:underline">
-                    Read More
-                  </span>
+                <div className="flex h-full overflow-hidden rounded-2xl border border-border/50 bg-card transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md hover:shadow-stone-200/50">
+                  {/* Product image column */}
+                  <div className={`relative hidden sm:block w-[140px] shrink-0 bg-gradient-to-br ${caseStudyGradients[study.id]}`}>
+                    <div className="absolute inset-0 flex items-center justify-center p-4">
+                      <Image
+                        src={caseStudyImages[study.id]}
+                        alt=""
+                        width={100}
+                        height={160}
+                        className="h-auto max-h-[140px] w-auto object-contain drop-shadow-lg transition-transform duration-500 group-hover:scale-110"
+                      />
+                    </div>
+                  </div>
+                  {/* Text content */}
+                  <div className="flex flex-1 flex-col p-6">
+                    <Badge variant="secondary" className="mb-3 w-fit text-[10px] uppercase tracking-wider">
+                      {study.category}
+                    </Badge>
+                    <h3 className="font-serif text-lg font-medium tracking-tight text-foreground">
+                      {study.title}
+                    </h3>
+                    <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">
+                      {study.excerpt}
+                    </p>
+                    <span className="mt-4 inline-flex text-sm font-medium text-foreground underline-offset-4 transition-all group-hover:underline">
+                      Read Case Study &rarr;
+                    </span>
+                  </div>
                 </div>
               </Link>
             </motion.div>

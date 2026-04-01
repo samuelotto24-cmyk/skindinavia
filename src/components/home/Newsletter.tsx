@@ -73,7 +73,7 @@ export function Newsletter() {
                 size="lg"
                 className="h-11 rounded-xl px-8 text-sm tracking-wide"
               >
-                Subscribe
+                Get Early Access
               </Button>
             </div>
           </form>

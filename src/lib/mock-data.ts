@@ -65,6 +65,7 @@ export type BlogPost = {
   date: string;
   author: string;
   category: string;
+  image: string;
 };
 
 // ── Products ───────────────────────────────────────────────────
@@ -566,6 +567,7 @@ export const blogPosts: BlogPost[] = [
     date: "2026-03-15",
     author: "Skindinavia Team",
     category: "Science",
+    image: "https://skindinavia.wpenginepowered.com/wp-content/uploads/2023/01/Featured-photo-setting-spray-article-1200x1500.jpg",
   },
   {
     id: "b2",
@@ -576,6 +578,7 @@ export const blogPosts: BlogPost[] = [
     date: "2026-03-01",
     author: "Kim Weber",
     category: "Bridal",
+    image: "https://skindinavia.wpenginepowered.com/wp-content/uploads/2022/09/bride-makeup-trends-in-2022-1200x798.jpg",
   },
   {
     id: "b3",
@@ -586,6 +589,7 @@ export const blogPosts: BlogPost[] = [
     date: "2026-02-18",
     author: "Skindinavia Team",
     category: "Tips",
+    image: "https://skindinavia.wpenginepowered.com/wp-content/uploads/2022/10/Winter-Skin-Tips-1200x869.jpg",
   },
   {
     id: "b4",
@@ -596,6 +600,7 @@ export const blogPosts: BlogPost[] = [
     date: "2026-02-05",
     author: "Tanya Brooks",
     category: "Tips",
+    image: "https://skindinavia.wpenginepowered.com/wp-content/uploads/2022/09/minimal-makeup-skindinavia-1200x1653.jpg",
   },
 ];
 

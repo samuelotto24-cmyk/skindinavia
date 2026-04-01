@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
+import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 
 export function BeforeAfter() {
@@ -54,33 +55,47 @@ export function BeforeAfter() {
             onMouseDown={(e) => handleMove(e.clientX)}
             onTouchMove={(e) => handleMove(e.touches[0].clientX)}
           >
-            {/* "After" side — full background (with Skindinavia) */}
-            <div className="absolute inset-0 bg-gradient-to-br from-[#faf5f0] to-[#f5efe8]">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="text-center">
-                  <p className="font-serif text-5xl font-light text-foreground/10 sm:text-7xl lg:text-8xl">16h</p>
-                  <p className="mt-2 text-sm font-medium uppercase tracking-wider text-foreground/60">With Skindinavia</p>
-                  <p className="mt-1 text-xs text-foreground/40">Flawless. Still locked in.</p>
-                </div>
+            {/* "After" side — full background (with Skindinavia) — flawless makeup */}
+            <div className="absolute inset-0">
+              <Image
+                src="https://skindinavia.wpenginepowered.com/wp-content/uploads/2022/09/bride-makeup-trends-in-2022-1200x798.jpg"
+                alt="Flawless makeup with Skindinavia after 16 hours"
+                fill
+                className="object-cover"
+                unoptimized
+              />
+              {/* Warm tint overlay */}
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/30" />
+              {/* Label */}
+              <div className="absolute bottom-6 right-6 z-20 text-right">
+                <p className="font-serif text-3xl font-light text-white sm:text-4xl">16h</p>
+                <p className="mt-1 text-xs font-medium uppercase tracking-wider text-white/80">With Skindinavia</p>
+                <p className="text-[10px] text-white/50">Flawless. Still locked in.</p>
               </div>
-              {/* Subtle radial glow */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] rounded-full bg-pink-200/20 blur-[80px]" />
             </div>
 
-            {/* "Before" side — clipped (without Skindinavia) */}
+            {/* "Before" side — clipped (without) — desaturated, degraded */}
             <div
-              className="absolute inset-0 bg-gradient-to-br from-neutral-200 to-neutral-300 grayscale"
+              className="absolute inset-0 grayscale"
               style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}
             >
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="text-center">
-                  <p className="font-serif text-5xl font-light text-neutral-400/40 sm:text-7xl lg:text-8xl">4h</p>
-                  <p className="mt-2 text-sm font-medium uppercase tracking-wider text-neutral-500/70">Without</p>
-                  <p className="mt-1 text-xs text-neutral-400/60">Fading. Creasing. Melting.</p>
-                </div>
+              <Image
+                src="https://skindinavia.wpenginepowered.com/wp-content/uploads/2022/09/bride-makeup-trends-in-2022-1200x798.jpg"
+                alt="Makeup fading without setting spray"
+                fill
+                className="object-cover brightness-75 contrast-75"
+                unoptimized
+              />
+              {/* Degraded overlay — warm smudge effect */}
+              <div className="absolute inset-0 bg-gradient-to-b from-neutral-500/20 via-transparent to-black/40" />
+              {/* Noise/texture to simulate degraded skin */}
+              <div className="absolute inset-0 opacity-20" style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='turbulence' baseFrequency='0.5' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E\")" }} />
+              {/* Label */}
+              <div className="absolute bottom-6 left-6 z-20">
+                <p className="font-serif text-3xl font-light text-white/70 sm:text-4xl">4h</p>
+                <p className="mt-1 text-xs font-medium uppercase tracking-wider text-white/50">Without</p>
+                <p className="text-[10px] text-white/30">Fading. Creasing. Melting.</p>
               </div>
-              {/* Smudge/mess texture overlay */}
-              <div className="absolute inset-0 opacity-[0.08]" style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='turbulence' baseFrequency='0.4' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E\")" }} />
             </div>
 
             {/* Slider handle */}
@@ -89,7 +104,6 @@ export function BeforeAfter() {
               style={{ left: `${position}%` }}
             >
               <div className="relative h-full w-0.5 bg-white shadow-[0_0_8px_rgba(0,0,0,0.3)]">
-                {/* Drag handle circle */}
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-lg">
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                     <path d="M5 3L2 8L5 13" stroke="#666" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -99,11 +113,11 @@ export function BeforeAfter() {
               </div>
             </div>
 
-            {/* Labels */}
-            <div className="absolute top-4 left-4 z-20 rounded-full bg-black/40 backdrop-blur-sm px-3 py-1 text-[10px] font-medium uppercase tracking-wider text-white">
-              Without
+            {/* Corner labels */}
+            <div className="absolute top-4 left-4 z-20 rounded-full bg-black/50 backdrop-blur-sm px-3 py-1.5 text-[10px] font-medium uppercase tracking-wider text-white">
+              Without Setting Spray
             </div>
-            <div className="absolute top-4 right-4 z-20 rounded-full bg-white/80 backdrop-blur-sm px-3 py-1 text-[10px] font-medium uppercase tracking-wider text-foreground">
+            <div className="absolute top-4 right-4 z-20 rounded-full bg-white/90 backdrop-blur-sm px-3 py-1.5 text-[10px] font-medium uppercase tracking-wider text-foreground">
               With Skindinavia
             </div>
           </div>

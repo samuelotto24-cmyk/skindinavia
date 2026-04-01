@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { blogPosts } from "@/lib/mock-data";
@@ -81,9 +82,15 @@ export default async function BlogPostPage({
 
       <Separator className="my-10" />
 
-      {/* Featured image placeholder */}
-      <div className="mb-10 flex h-64 items-center justify-center rounded-2xl bg-neutral-100 text-sm font-medium text-neutral-400">
-        Featured Image
+      {/* Featured image */}
+      <div className="relative mb-10 h-64 overflow-hidden rounded-2xl sm:h-80">
+        <Image
+          src={post.image}
+          alt={post.title}
+          fill
+          className="object-cover"
+          unoptimized
+        />
       </div>
 
       <div className="space-y-6 text-[15px] leading-relaxed text-muted-foreground">

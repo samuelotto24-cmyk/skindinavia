@@ -84,8 +84,8 @@ export function HowItWorks() {
               transition={{ duration: 0.5, delay: 0.2 + i * 0.1 }}
               className="text-center"
             >
-              <div className={`mx-auto h-1 w-10 rounded-full ${step.accent} mb-5 opacity-60`} />
-              <p className="font-serif text-4xl font-light text-white/15">{step.number}</p>
+              <div className={`mx-auto h-1 w-10 rounded-full ${step.accent} mb-5`} />
+              <p className="font-serif text-4xl font-light text-white/40">{step.number}</p>
               <h3 className="mt-2 font-serif text-xl tracking-tight text-white">{step.title}</h3>
               <p className="mt-2 text-sm leading-relaxed text-white/45 max-w-[220px] mx-auto">{step.detail}</p>
             </motion.div>

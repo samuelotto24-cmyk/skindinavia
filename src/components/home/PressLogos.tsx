@@ -1,17 +1,27 @@
 "use client";
 
+import { useRef } from "react";
 import Image from "next/image";
+import { motion, useInView } from "framer-motion";
 import { pressLogos, pressLogoImages } from "@/lib/mock-data";
 
 const scrollLogos = [...pressLogos, ...pressLogos];
 
 export function PressLogos() {
+  const ref = useRef<HTMLElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
+
   return (
-    <section className="border-y border-border/50 py-16 overflow-hidden">
+    <section ref={ref} className="border-y border-border/50 py-16 overflow-hidden">
       <div className="mx-auto max-w-7xl px-6 lg:px-8 mb-10">
-        <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
-          Recognized Globally — You Might Have Read About Us Somewhere
-        </p>
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.6 }}
+          className="text-center text-xs font-medium uppercase tracking-[0.25em] text-muted-foreground"
+        >
+          As Seen In
+        </motion.p>
       </div>
 
       <div className="relative group">

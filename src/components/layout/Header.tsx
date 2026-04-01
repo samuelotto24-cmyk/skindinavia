@@ -36,7 +36,7 @@ export default function Header() {
 
   return (
     <header
-      className={`sticky top-0 z-40 bg-white border-b border-neutral-200 transition-shadow duration-200 ${
+      className={`sticky top-0 z-40 bg-background border-b border-border/50 transition-shadow duration-200 ${
         scrolled ? "shadow-sm" : ""
       }`}
     >
@@ -53,9 +53,9 @@ export default function Header() {
         {/* Logo */}
         <Link
           href="/"
-          className="text-lg font-light tracking-[0.3em] uppercase"
+          className="font-serif text-xl tracking-[0.15em]"
         >
-          SKINDINAVIA
+          Skindinavia
         </Link>
 
         {/* Desktop nav */}
@@ -126,8 +126,8 @@ export default function Header() {
       <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
         <SheetContent side="left" className="w-[300px] p-0">
           <SheetHeader className="border-b border-neutral-200 px-5 py-4">
-            <SheetTitle className="text-sm font-light tracking-[0.3em] uppercase">
-              SKINDINAVIA
+            <SheetTitle className="font-serif text-base tracking-[0.15em]">
+              Skindinavia
             </SheetTitle>
           </SheetHeader>
           <nav className="flex flex-col py-4">

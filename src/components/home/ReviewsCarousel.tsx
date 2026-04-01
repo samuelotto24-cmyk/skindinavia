@@ -38,7 +38,7 @@ export function ReviewsCarousel() {
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
             5,000+ Five-Star Reviews
           </p>
-          <h2 className="mt-3 text-3xl font-light tracking-tight sm:text-4xl">
+          <h2 className="mt-3 font-serif text-3xl tracking-tight sm:text-4xl">
             What Our Customers Say
           </h2>
         </div>
@@ -58,12 +58,12 @@ export function ReviewsCarousel() {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -20 }}
                 transition={{ type: "spring", stiffness: 200, damping: 25, delay: i * 0.05 }}
-                className={`rounded-2xl border border-border/50 bg-card p-8 ${
+                className={`rounded-2xl border border-border/30 bg-card p-10 ${
                   i > 0 ? "hidden md:block" : ""
                 }`}
               >
                 {/* Stars */}
-                <div className="flex gap-0.5 text-amber-400">
+                <div className="flex gap-0.5 text-brand-gold">
                   {Array.from({ length: 5 }, (_, s) => (
                     <span key={s} className="text-lg">
                       {s < review.rating ? "\u2605" : "\u2606"}
@@ -72,7 +72,7 @@ export function ReviewsCarousel() {
                 </div>
 
                 {/* Quote */}
-                <h4 className="mt-4 font-medium tracking-tight">
+                <h4 className="mt-5 font-serif text-lg tracking-tight">
                   {review.title}
                 </h4>
                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground line-clamp-4">

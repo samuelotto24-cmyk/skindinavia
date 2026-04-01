@@ -35,7 +35,7 @@ export default function Footer() {
       {/* Newsletter */}
       <div className="border-b border-neutral-800">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 py-12 text-center">
-          <h3 className="text-sm tracking-[0.2em] uppercase mb-2">
+          <h3 className="font-serif text-lg tracking-wide mb-2">
             Join the Community
           </h3>
           <p className="text-neutral-400 text-sm mb-6 max-w-md mx-auto">
@@ -49,12 +49,12 @@ export default function Footer() {
             <input
               type="email"
               placeholder="Enter your email"
-              className="flex-1 bg-neutral-900 border border-neutral-700 px-4 py-2.5 text-sm placeholder:text-neutral-500 focus:outline-none focus:border-neutral-500"
+              className="flex-1 bg-neutral-900 border border-neutral-700 rounded-l-full px-5 py-2.5 text-sm placeholder:text-neutral-500 focus:outline-none focus:border-neutral-500"
               aria-label="Email address"
             />
             <button
               type="submit"
-              className="bg-white text-black px-6 py-2.5 text-sm tracking-wide uppercase font-medium hover:bg-neutral-200 transition-colors"
+              className="bg-white text-black rounded-r-full px-8 py-2.5 text-sm tracking-wider uppercase font-medium hover:bg-neutral-200 transition-colors"
             >
               Subscribe
             </button>
@@ -146,7 +146,7 @@ export default function Footer() {
       <div className="border-t border-neutral-800">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-neutral-500">
           <p>&copy; {new Date().getFullYear()} Skindinavia. All rights reserved.</p>
-          <p className="tracking-wide">Patented. Trusted. Since 2005.</p>
+          <p className="tracking-wider font-serif italic">Patented. Trusted. Since 2005.</p>
         </div>
       </div>
     </footer>

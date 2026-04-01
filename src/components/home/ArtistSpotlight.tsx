@@ -12,7 +12,7 @@ export function ArtistSpotlight() {
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
             Pro Artists Trust Skindinavia
           </p>
-          <h2 className="mt-3 text-3xl font-light tracking-tight sm:text-4xl">
+          <h2 className="mt-3 font-serif text-3xl tracking-tight sm:text-4xl">
             Artist Spotlight
           </h2>
         </div>
@@ -47,7 +47,7 @@ export function ArtistSpotlight() {
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
               {artist.specialty}
             </p>
-            <h3 className="mt-3 text-3xl font-light tracking-tight sm:text-4xl">
+            <h3 className="mt-3 font-serif text-3xl tracking-tight sm:text-4xl">
               {artist.name}
             </h3>
             <p className="mt-2 text-lg font-light text-muted-foreground">

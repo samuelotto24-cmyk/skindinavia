@@ -1,7 +1,10 @@
 import { Hero } from "@/components/home/Hero";
-import { FeaturedProducts } from "@/components/home/FeaturedProducts";
+import { TrustBar } from "@/components/home/TrustBar";
+import { ShopByMoment } from "@/components/home/ShopByMoment";
 import { PressLogos } from "@/components/home/PressLogos";
+import { HowItWorks } from "@/components/home/HowItWorks";
 import { ArtistSpotlight } from "@/components/home/ArtistSpotlight";
+import { FounderStory } from "@/components/home/FounderStory";
 import { CaseStudyCards } from "@/components/home/CaseStudyCards";
 import { ReviewsCarousel } from "@/components/home/ReviewsCarousel";
 import { BlogPreview } from "@/components/home/BlogPreview";
@@ -11,8 +14,11 @@ export default function HomePage() {
   return (
     <main>
       <Hero />
-      <FeaturedProducts />
+      <TrustBar />
       <PressLogos />
+      <ShopByMoment />
+      <HowItWorks />
+      <FounderStory />
       <ArtistSpotlight />
       <CaseStudyCards />
       <ReviewsCarousel />

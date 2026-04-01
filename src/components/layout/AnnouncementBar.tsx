@@ -19,7 +19,7 @@ export default function AnnouncementBar() {
   }, []);
 
   return (
-    <div className="bg-black text-white text-center py-2 px-4">
+    <div className="bg-foreground text-background text-center py-2.5 px-4">
       <p
         className={`text-xs tracking-wide transition-opacity duration-300 ${
           visible ? "opacity-100" : "opacity-0"

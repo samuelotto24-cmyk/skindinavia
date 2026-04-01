@@ -9,18 +9,17 @@ import { products } from "@/lib/mock-data";
 import { use3DTilt } from "@/hooks/use-3d-tilt";
 import { useMagneticHover } from "@/hooks/use-magnetic-hover";
 import { MorphingBlob } from "@/components/animation/MorphingBlob";
-import { SpringEntrance } from "@/components/animation/SpringEntrance";
 
 const heroProducts = [
-  products.find((p) => p.id === "2")!, // Bridal (bestseller)
+  products.find((p) => p.id === "2")!, // Bridal
   products.find((p) => p.id === "3")!, // Oil Control
   products.find((p) => p.id === "1")!, // Original
 ];
 
 export function Hero() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const tiltRef = use3DTilt<HTMLDivElement>({ maxRotation: 8, scale: 1.02 });
-  const ctaRef = useMagneticHover<HTMLDivElement>({ radius: 60, strength: 0.25 });
+  const tiltRef = use3DTilt<HTMLDivElement>({ maxRotation: 6, scale: 1.02 });
+  const ctaRef = useMagneticHover<HTMLDivElement>({ radius: 60, strength: 0.2 });
   const activeProduct = heroProducts[activeIndex];
 
   useEffect(() => {
@@ -31,103 +30,149 @@ export function Hero() {
   }, []);
 
   return (
-    <section className="relative min-h-[85vh] flex items-center overflow-hidden bg-gradient-to-b from-[#faf5f0] to-white">
-      <div className="mx-auto w-full max-w-7xl px-6 py-24 lg:px-8">
-        <div className="grid items-center gap-16 lg:grid-cols-2">
-          {/* Text content */}
+    <section className="relative min-h-[90vh] flex items-center overflow-hidden">
+      {/* Warm gradient background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#f8f3ed] via-[#faf7f3] to-background" />
+
+      {/* Subtle gold accent glow */}
+      <div className="absolute top-1/4 right-1/4 w-[600px] h-[600px] rounded-full bg-brand-gold-light/30 blur-[120px]" />
+
+      <div className="relative mx-auto w-full max-w-7xl px-6 py-28 lg:px-8">
+        <div className="grid items-center gap-16 lg:grid-cols-2 lg:gap-20">
+          {/* Narrative text */}
           <div className="max-w-xl">
-            <SpringEntrance delay={0}>
-              <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
-                Patented. Trusted. Since 2005.
-              </p>
-            </SpringEntrance>
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="mb-6 text-xs font-medium uppercase tracking-[0.25em] text-muted-foreground"
+            >
+              The Original Formula
+            </motion.p>
 
-            <SpringEntrance delay={0.1}>
-              <h1 className="text-balance text-4xl font-light leading-[1.1] tracking-tight text-foreground sm:text-5xl lg:text-6xl">
-                When You Need to Pull an{" "}
-                <span className="font-semibold">ALL NIGHTER</span> —{" "}
-                <span className="italic">Skindinavia Will Be There</span>
-              </h1>
-            </SpringEntrance>
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+              className="font-serif text-4xl leading-[1.1] tracking-tight sm:text-5xl lg:text-[3.5rem]"
+            >
+              The Setting Spray Behind{" "}
+              <span className="italic">50,000 Five-Star Reviews</span>
+            </motion.h1>
 
-            <SpringEntrance delay={0.2}>
-              <p className="mt-6 max-w-md text-base leading-relaxed text-muted-foreground sm:text-lg">
-                The World&apos;s #1 Makeup Setting Spray Formula. Locks in your
-                look for 16+ hours with patented cooling technology.
-              </p>
-            </SpringEntrance>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.25 }}
+              className="mt-6 max-w-md text-base leading-relaxed text-muted-foreground sm:text-lg"
+            >
+              Patented cooling technology that locks in your makeup for 16+ hours.
+              Invented in 2005. Trusted by professionals. Finally, under our own name.
+            </motion.p>
 
-            <SpringEntrance delay={0.4}>
-              <div ref={ctaRef} className="mt-10 flex flex-wrap gap-4">
-                <Button
-                  size="lg"
-                  className="h-12 px-8 text-sm tracking-wide"
-                  render={<Link href="/shop" />}
-                >
-                  Shop Bestsellers
-                </Button>
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="h-12 px-8 text-sm tracking-wide"
-                  render={<Link href="/about-us" />}
-                >
-                  Our Story
-                </Button>
-              </div>
-            </SpringEntrance>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              ref={ctaRef}
+              className="mt-10 flex flex-wrap gap-4"
+            >
+              <Button
+                size="lg"
+                className="h-12 px-10 text-sm tracking-wider uppercase"
+                render={<Link href="/shop" />}
+              >
+                Shop Now
+              </Button>
+              <Button
+                variant="outline"
+                size="lg"
+                className="h-12 px-10 text-sm tracking-wider uppercase"
+                render={<Link href="/about-us" />}
+              >
+                Our Story
+              </Button>
+            </motion.div>
+
+            {/* Trust micro-stats */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1, delay: 0.6 }}
+              className="mt-14 flex gap-10"
+            >
+              {[
+                { stat: "16+", label: "Hour Wear" },
+                { stat: "50K+", label: "Five-Star Reviews" },
+                { stat: "20", label: "Years Trusted" },
+              ].map((item) => (
+                <div key={item.label}>
+                  <p className="font-serif text-2xl font-medium tracking-tight">{item.stat}</p>
+                  <p className="mt-0.5 text-xs uppercase tracking-wider text-muted-foreground">{item.label}</p>
+                </div>
+              ))}
+            </motion.div>
           </div>
 
-          {/* Product spotlight */}
+          {/* Product showcase */}
           <div className="flex justify-center lg:justify-end">
             <div className="relative">
               <MorphingBlob
-                color={`${activeProduct.accentColor}15`}
-                size={450}
+                color={`${activeProduct.accentColor}12`}
+                size={480}
                 className="top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
               />
 
               <div
                 ref={tiltRef}
-                className="relative z-10 h-[480px] w-[300px] sm:h-[540px] sm:w-[340px]"
+                className="relative z-10 h-[500px] w-[320px] sm:h-[560px] sm:w-[360px]"
               >
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={activeProduct.id}
-                    initial={{ opacity: 0, x: 30 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -30 }}
-                    transition={{
-                      type: "spring",
-                      stiffness: 150,
-                      damping: 20,
-                    }}
+                    initial={{ opacity: 0, scale: 0.95, y: 10 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.95, y: -10 }}
+                    transition={{ type: "spring", stiffness: 120, damping: 18 }}
                     className="absolute inset-0 flex items-center justify-center"
                   >
                     <Image
                       src={activeProduct.image}
                       alt={activeProduct.name}
-                      width={340}
-                      height={480}
-                      className="h-auto max-h-[480px] w-auto object-contain drop-shadow-2xl"
+                      width={360}
+                      height={500}
+                      className="h-auto max-h-[500px] w-auto object-contain drop-shadow-2xl"
                       priority
                     />
                   </motion.div>
                 </AnimatePresence>
               </div>
 
-              {/* Product indicator dots */}
-              <div className="mt-6 flex justify-center gap-2">
-                {heroProducts.map((p, i) => (
-                  <button
-                    key={p.id}
-                    onClick={() => setActiveIndex(i)}
-                    className={`h-2 rounded-full transition-all duration-300 ${
-                      i === activeIndex ? "w-8 bg-foreground" : "w-2 bg-border"
-                    }`}
-                    aria-label={`Show ${p.shortName}`}
-                  />
-                ))}
+              {/* Product name + dots */}
+              <div className="mt-8 text-center">
+                <AnimatePresence mode="wait">
+                  <motion.p
+                    key={activeProduct.id}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className="text-sm font-medium tracking-wide"
+                  >
+                    {activeProduct.shortName}
+                  </motion.p>
+                </AnimatePresence>
+                <div className="mt-3 flex justify-center gap-2">
+                  {heroProducts.map((p, i) => (
+                    <button
+                      key={p.id}
+                      onClick={() => setActiveIndex(i)}
+                      className={`h-2 rounded-full transition-all duration-300 ${
+                        i === activeIndex ? "w-8 bg-foreground" : "w-2 bg-border"
+                      }`}
+                      aria-label={`Show ${p.shortName}`}
+                    />
+                  ))}
+                </div>
               </div>
             </div>
           </div>

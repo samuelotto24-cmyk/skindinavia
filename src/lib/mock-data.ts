@@ -473,7 +473,7 @@ export const artists: Artist[] = [
       { platform: "YouTube", url: "#" },
     ],
     accentColor: "#EC4899",
-    image: "https://skindinavia.wpenginepowered.com/wp-content/uploads/2022/11/0acef074e933-Laura_and_Vanessa_Marano__Vince_Trupsin_Photoshoot_2015__03.jpg",
+    image: "https://skindinavia.wpenginepowered.com/wp-content/uploads/2021/07/BTSvanessatalentprofile.jpg",
   },
   {
     id: "a2",

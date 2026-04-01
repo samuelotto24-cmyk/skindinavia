@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { artists } from "@/lib/mock-data";
 import { Badge } from "@/components/ui/badge";
@@ -31,11 +32,14 @@ export default function ArtistSpotlightsPage() {
             key={artist.id}
             className="group overflow-hidden rounded-2xl border border-border bg-background transition-shadow hover:shadow-lg"
           >
-            <div
-              className="flex h-56 items-center justify-center text-sm font-medium text-white/70"
-              style={{ backgroundColor: artist.accentColor }}
-            >
-              Artist Photo
+            <div className="relative h-56 overflow-hidden">
+              <Image
+                src={artist.image}
+                alt={artist.name}
+                fill
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                unoptimized
+              />
             </div>
             <div className="p-6">
               <Badge variant="secondary">{artist.specialty}</Badge>

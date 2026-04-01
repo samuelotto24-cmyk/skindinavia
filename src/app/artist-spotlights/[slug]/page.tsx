@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { artists } from "@/lib/mock-data";
@@ -31,12 +32,15 @@ export default async function ArtistDetailPage({
       </Button>
 
       <div className="grid gap-10 md:grid-cols-2">
-        {/* Photo placeholder */}
-        <div
-          className="flex h-80 items-center justify-center rounded-2xl text-sm font-medium text-white/70 md:h-full"
-          style={{ backgroundColor: artist.accentColor }}
-        >
-          Artist Photo
+        {/* Artist photo */}
+        <div className="relative h-80 overflow-hidden rounded-2xl md:h-full md:min-h-[400px]">
+          <Image
+            src={artist.image}
+            alt={artist.name}
+            fill
+            className="object-cover"
+            unoptimized
+          />
         </div>
 
         {/* Info */}

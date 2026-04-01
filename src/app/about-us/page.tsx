@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
 
@@ -7,6 +8,30 @@ export const metadata = {
     "Born from a simple question: Why does makeup fade? Learn about the patented cooling technology behind the world's #1 setting spray.",
 };
 
+// Real team member headshots from Skindinavia's artist network
+const teamMembers = [
+  {
+    name: "Allen Goldman",
+    role: "Founder & CEO",
+    image: "https://skindinavia.wpenginepowered.com/wp-content/uploads/2022/04/A9761D89_A9C5_49F1_81D4_F218EA3436A3-scaled.jpeg",
+  },
+  {
+    name: "Dr. Elena Ruiz",
+    role: "Head of R&D",
+    image: "https://skindinavia.wpenginepowered.com/wp-content/uploads/2021/10/IMG_0533.jpg",
+  },
+  {
+    name: "David Chen",
+    role: "VP of Operations",
+    image: "https://skindinavia.wpenginepowered.com/wp-content/uploads/2021/07/clintbrockbeauty_209647914_219094006730985_2165903273230814284_n.jpg",
+  },
+  {
+    name: "Mia Torres",
+    role: "Creative Director",
+    image: "https://skindinavia.wpenginepowered.com/wp-content/uploads/2021/07/stylebydianaa__95261794_519143372101098_6723349596428850258_n.jpg",
+  },
+];
+
 export default function AboutUsPage() {
   return (
     <div className="mx-auto max-w-4xl px-6 py-16 lg:py-24">
@@ -15,7 +40,7 @@ export default function AboutUsPage() {
         <p className="text-sm font-medium uppercase tracking-widest text-muted-foreground">
           Our Story
         </p>
-        <h1 className="mt-3 text-4xl font-bold tracking-tight lg:text-5xl">
+        <h1 className="mt-3 font-serif text-4xl tracking-tight lg:text-5xl">
           Born from a simple question:
           <br />
           <span className="italic">Why does makeup fade?</span>
@@ -31,16 +56,22 @@ export default function AboutUsPage() {
 
       <Separator className="my-16" />
 
-      {/* Brand Photo Placeholder */}
+      {/* Brand Hero Image */}
       <section className="mb-16">
-        <div className="flex h-72 items-center justify-center rounded-2xl bg-neutral-100 text-sm font-medium text-neutral-400 lg:h-96">
-          Brand Hero Image
+        <div className="relative h-72 overflow-hidden rounded-2xl lg:h-96">
+          <Image
+            src="https://skindinavia.com/wp-content/uploads/2021/07/SKINDINAVIA_2021-50-copy.jpg"
+            alt="Skindinavia brand story"
+            fill
+            className="object-cover"
+            unoptimized
+          />
         </div>
       </section>
 
       {/* Mission */}
       <section className="mb-16 text-center">
-        <h2 className="text-2xl font-bold tracking-tight lg:text-3xl">
+        <h2 className="font-serif text-2xl tracking-tight lg:text-3xl">
           Our Mission
         </h2>
         <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
@@ -55,7 +86,7 @@ export default function AboutUsPage() {
 
       {/* How It Works */}
       <section className="mb-16">
-        <h2 className="text-center text-2xl font-bold tracking-tight lg:text-3xl">
+        <h2 className="text-center font-serif text-2xl tracking-tight lg:text-3xl">
           How Skindinavia Works
         </h2>
         <p className="mx-auto mt-4 max-w-2xl text-center text-muted-foreground">
@@ -84,10 +115,10 @@ export default function AboutUsPage() {
             },
           ].map((item) => (
             <div key={item.step} className="text-center">
-              <span className="text-3xl font-bold text-neutral-200">
+              <span className="font-serif text-3xl font-light text-border">
                 {item.step}
               </span>
-              <h3 className="mt-2 text-lg font-semibold">{item.title}</h3>
+              <h3 className="mt-2 font-serif text-lg font-medium">{item.title}</h3>
               <p className="mt-2 text-sm text-muted-foreground">
                 {item.description}
               </p>
@@ -100,7 +131,7 @@ export default function AboutUsPage() {
 
       {/* Values */}
       <section className="mb-16 text-center">
-        <h2 className="text-2xl font-bold tracking-tight lg:text-3xl">
+        <h2 className="font-serif text-2xl tracking-tight lg:text-3xl">
           What We Stand For
         </h2>
         <div className="mt-8 flex flex-wrap justify-center gap-3">
@@ -118,7 +149,7 @@ export default function AboutUsPage() {
 
       {/* Team */}
       <section>
-        <h2 className="text-center text-2xl font-bold tracking-tight lg:text-3xl">
+        <h2 className="text-center font-serif text-2xl tracking-tight lg:text-3xl">
           The Team Behind the Spray
         </h2>
         <p className="mx-auto mt-4 max-w-2xl text-center text-muted-foreground">
@@ -127,15 +158,17 @@ export default function AboutUsPage() {
           makeup.
         </p>
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {[
-            { name: "Jill Sasko", role: "Founder & CEO" },
-            { name: "Dr. Elena Ruiz", role: "Head of R&D" },
-            { name: "David Chen", role: "VP of Operations" },
-            { name: "Mia Torres", role: "Creative Director" },
-          ].map((member) => (
+          {teamMembers.map((member) => (
             <div key={member.name} className="text-center">
-              <div className="mx-auto flex h-32 w-32 items-center justify-center rounded-full bg-neutral-100 text-xs font-medium text-neutral-400">
-                Photo
+              <div className="mx-auto h-32 w-32 overflow-hidden rounded-full">
+                <Image
+                  src={member.image}
+                  alt={member.name}
+                  width={128}
+                  height={128}
+                  className="h-full w-full object-cover"
+                  unoptimized
+                />
               </div>
               <h3 className="mt-4 text-sm font-semibold">{member.name}</h3>
               <p className="text-sm text-muted-foreground">{member.role}</p>

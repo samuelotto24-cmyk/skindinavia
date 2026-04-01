@@ -46,6 +46,7 @@ export type Artist = {
   specialty: string;
   socialLinks: { platform: string; url: string }[];
   accentColor: string;
+  image: string;
 };
 
 export type CaseStudy = {
@@ -472,6 +473,7 @@ export const artists: Artist[] = [
       { platform: "YouTube", url: "#" },
     ],
     accentColor: "#EC4899",
+    image: "https://skindinavia.wpenginepowered.com/wp-content/uploads/2022/11/0acef074e933-Laura_and_Vanessa_Marano__Vince_Trupsin_Photoshoot_2015__03.jpg",
   },
   {
     id: "a2",
@@ -485,6 +487,7 @@ export const artists: Artist[] = [
       { platform: "TikTok", url: "#" },
     ],
     accentColor: "#8B5CF6",
+    image: "https://skindinavia.wpenginepowered.com/wp-content/uploads/2021/07/Joe-Dulude-II-Headshot.jpg",
   },
   {
     id: "a3",
@@ -498,6 +501,7 @@ export const artists: Artist[] = [
       { platform: "Website", url: "#" },
     ],
     accentColor: "#EF4444",
+    image: "https://skindinavia.wpenginepowered.com/wp-content/uploads/2021/09/stephanieflor_219981810_245110693873959_8014344367409139541_n.jpg",
   },
   {
     id: "a4",
@@ -511,6 +515,7 @@ export const artists: Artist[] = [
       { platform: "Pinterest", url: "#" },
     ],
     accentColor: "#F59E0B",
+    image: "https://skindinavia.wpenginepowered.com/wp-content/uploads/2021/07/desireefalconmakeup_93029885_122693182710121_7053791904777010338_n.jpg",
   },
 ];
 

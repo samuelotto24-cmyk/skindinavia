@@ -2,7 +2,9 @@ import { Hero } from "@/components/home/Hero";
 import { TrustBar } from "@/components/home/TrustBar";
 import { PressLogos } from "@/components/home/PressLogos";
 import { ShopByMoment } from "@/components/home/ShopByMoment";
+import { BeforeAfter } from "@/components/home/BeforeAfter";
 import { HowItWorks } from "@/components/home/HowItWorks";
+import { ComparisonTable } from "@/components/home/ComparisonTable";
 import { FounderStory } from "@/components/home/FounderStory";
 import { ArtistSpotlight } from "@/components/home/ArtistSpotlight";
 import { CaseStudyCards } from "@/components/home/CaseStudyCards";
@@ -19,7 +21,9 @@ export default function HomePage() {
       <PressLogos />
       <GradientDivider />
       <ShopByMoment />
+      <BeforeAfter />
       <HowItWorks />
+      <ComparisonTable />
       <FounderStory />
       <ArtistSpotlight />
       <GradientDivider />

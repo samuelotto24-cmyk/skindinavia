@@ -7,6 +7,7 @@ import AnnouncementBar from "@/components/layout/AnnouncementBar";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import CartDrawer from "@/components/layout/CartDrawer";
+import { QuickShopBar } from "@/components/layout/QuickShopBar";
 import { PageTransition } from "@/components/animation/PageTransition";
 
 const geistSans = Geist({
@@ -51,6 +52,7 @@ export default function RootLayout({
           </main>
           <Footer />
           <CartDrawer />
+          <QuickShopBar />
         </CartProvider>
       </body>
     </html>

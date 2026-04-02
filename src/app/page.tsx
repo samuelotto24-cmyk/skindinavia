@@ -11,6 +11,7 @@ import { ArtistSpotlight } from "@/components/home/ArtistSpotlight";
 import { CaseStudyCards } from "@/components/home/CaseStudyCards";
 import { ReviewsCarousel } from "@/components/home/ReviewsCarousel";
 import { InstagramFeed } from "@/components/home/InstagramFeed";
+import { ShopBanner } from "@/components/home/ShopBanner";
 import { GradientDivider } from "@/components/animation/GradientDivider";
 
 export default function HomePage() {
@@ -31,6 +32,7 @@ export default function HomePage() {
       <CaseStudyCards />
       <ReviewsCarousel />
       <GradientDivider />
+      <ShopBanner />
       <InstagramFeed />
     </main>
   );

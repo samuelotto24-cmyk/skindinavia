@@ -16,7 +16,7 @@ export default function ContactUsPage() {
         <p className="text-sm font-medium uppercase tracking-widest text-muted-foreground">
           Get in Touch
         </p>
-        <h1 className="mt-3 text-4xl font-bold tracking-tight lg:text-5xl">
+        <h1 className="mt-3 text-4xl font-serif tracking-tight lg:text-5xl">
           Contact Us
         </h1>
         <p className="mx-auto mt-4 max-w-xl text-muted-foreground">

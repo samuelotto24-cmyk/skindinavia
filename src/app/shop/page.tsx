@@ -22,7 +22,7 @@ export default function ShopPage() {
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
             The Collection
           </p>
-          <h1 className="mt-3 text-4xl font-light tracking-tight sm:text-5xl">
+          <h1 className="mt-3 text-4xl font-serif font-light tracking-tight sm:text-5xl">
             Shop All Products
           </h1>
           <p className="mt-4 max-w-xl text-base text-muted-foreground">

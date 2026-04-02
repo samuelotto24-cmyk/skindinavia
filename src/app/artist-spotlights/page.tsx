@@ -17,7 +17,7 @@ export default function ArtistSpotlightsPage() {
         <p className="text-sm font-medium uppercase tracking-widest text-muted-foreground">
           Community
         </p>
-        <h1 className="mt-3 text-4xl font-bold tracking-tight lg:text-5xl">
+        <h1 className="mt-3 text-4xl font-serif tracking-tight lg:text-5xl">
           Artist Spotlights
         </h1>
         <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">

@@ -19,7 +19,7 @@ export default function FAQPage() {
         <p className="text-sm font-medium uppercase tracking-widest text-muted-foreground">
           Support
         </p>
-        <h1 className="mt-3 text-4xl font-bold tracking-tight lg:text-5xl">
+        <h1 className="mt-3 text-4xl font-serif tracking-tight lg:text-5xl">
           Frequently Asked Questions
         </h1>
         <p className="mx-auto mt-4 max-w-xl text-muted-foreground">

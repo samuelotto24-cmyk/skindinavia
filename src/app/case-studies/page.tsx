@@ -16,7 +16,7 @@ export default function CaseStudiesPage() {
         <p className="text-sm font-medium uppercase tracking-widest text-muted-foreground">
           Results
         </p>
-        <h1 className="mt-3 text-4xl font-bold tracking-tight lg:text-5xl">
+        <h1 className="mt-3 text-4xl font-serif tracking-tight lg:text-5xl">
           Case Studies
         </h1>
         <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">

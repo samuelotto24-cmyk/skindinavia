@@ -46,7 +46,7 @@ export default function TermsConditionsPage() {
         <p className="text-sm font-medium uppercase tracking-widest text-muted-foreground">
           Legal
         </p>
-        <h1 className="mt-3 text-4xl font-bold tracking-tight lg:text-5xl">
+        <h1 className="mt-3 text-4xl font-serif tracking-tight lg:text-5xl">
           Terms &amp; Conditions
         </h1>
         <p className="mx-auto mt-4 max-w-xl text-sm text-muted-foreground">

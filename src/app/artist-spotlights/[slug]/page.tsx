@@ -46,7 +46,7 @@ export default async function ArtistDetailPage({
         {/* Info */}
         <div>
           <Badge variant="secondary">{artist.specialty}</Badge>
-          <h1 className="mt-3 text-3xl font-bold tracking-tight lg:text-4xl">
+          <h1 className="mt-3 text-3xl font-serif tracking-tight lg:text-4xl">
             {artist.name}
           </h1>
           <p className="mt-1 text-lg text-muted-foreground">{artist.title}</p>

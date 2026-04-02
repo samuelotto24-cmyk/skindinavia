@@ -86,7 +86,7 @@ export default async function CategoryPage({
             <span className="text-foreground">{label}</span>
           </nav>
 
-          <h1 className="text-4xl font-light tracking-tight sm:text-5xl">
+          <h1 className="text-4xl font-serif font-light tracking-tight sm:text-5xl">
             {label}
           </h1>
           <p className="mt-4 max-w-2xl text-base text-muted-foreground">

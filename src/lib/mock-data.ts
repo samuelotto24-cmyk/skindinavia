@@ -635,7 +635,7 @@ export const pressLogos = [
 
 // ── Promo Messages ──────────────────────────────────────────────
 export const promoMessages = [
-  "FREE SHIPPING on all orders over $40",
+  "The Original Formula — Finally Under Our Own Name ✦ FREE SHIPPING over $40",
   "NEW: The Prep, Set & Remove Kit — Save 20%",
   "Trusted by 5,000+ five-star reviewers since 2005",
   "SPRING SALE: 15% off all Finishing Sprays — Use code SPRING15",

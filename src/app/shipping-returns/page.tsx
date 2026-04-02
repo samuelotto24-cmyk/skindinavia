@@ -14,7 +14,7 @@ export default function ShippingReturnsPage() {
         <p className="text-sm font-medium uppercase tracking-widest text-muted-foreground">
           Policies
         </p>
-        <h1 className="mt-3 text-4xl font-bold tracking-tight lg:text-5xl">
+        <h1 className="mt-3 text-4xl font-serif tracking-tight lg:text-5xl">
           Shipping &amp; Returns
         </h1>
       </div>

@@ -5,8 +5,10 @@ import { ShopByMoment } from "@/components/home/ShopByMoment";
 import { BeforeAfter } from "@/components/home/BeforeAfter";
 import { HowItWorks } from "@/components/home/HowItWorks";
 import { ComparisonTable } from "@/components/home/ComparisonTable";
+import { VideoSection } from "@/components/home/VideoSection";
 import { FounderStory } from "@/components/home/FounderStory";
 import { ArtistSpotlight } from "@/components/home/ArtistSpotlight";
+import { GuaranteeStrip } from "@/components/home/GuaranteeStrip";
 import { CaseStudyCards } from "@/components/home/CaseStudyCards";
 import { ReviewsCarousel } from "@/components/home/ReviewsCarousel";
 import { BlogPreview } from "@/components/home/BlogPreview";
@@ -21,9 +23,11 @@ export default function HomePage() {
       <PressLogos />
       <GradientDivider />
       <ShopByMoment />
+      <GuaranteeStrip />
       <BeforeAfter />
       <HowItWorks />
       <ComparisonTable />
+      <VideoSection />
       <FounderStory />
       <ArtistSpotlight />
       <GradientDivider />

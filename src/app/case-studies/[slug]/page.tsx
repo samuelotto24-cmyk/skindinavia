@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { caseStudies } from "@/lib/mock-data";
@@ -60,16 +61,22 @@ export default async function CaseStudyDetailPage({
       </Button>
 
       <Badge variant="secondary">{study.category}</Badge>
-      <h1 className="mt-4 text-3xl font-bold tracking-tight lg:text-4xl">
+      <h1 className="mt-4 font-serif text-3xl tracking-tight lg:text-4xl">
         {study.title}
       </h1>
       <p className="mt-3 text-lg text-muted-foreground">{study.excerpt}</p>
 
       <Separator className="my-10" />
 
-      {/* Case study photo placeholder */}
-      <div className="mb-10 flex h-64 items-center justify-center rounded-2xl bg-neutral-100 text-sm font-medium text-neutral-400">
-        Case Study Image
+      {/* Case study featured image */}
+      <div className="relative mb-10 h-64 overflow-hidden rounded-2xl sm:h-80">
+        <Image
+          src={study.image}
+          alt={study.title}
+          fill
+          className="object-cover"
+          unoptimized
+        />
       </div>
 
       <div className="space-y-6 text-[15px] leading-relaxed text-muted-foreground">

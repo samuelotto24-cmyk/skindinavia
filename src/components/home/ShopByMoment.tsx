@@ -94,7 +94,7 @@ export function ShopByMoment() {
 
                 <div className="mt-4 flex items-center justify-between px-1">
                   <p className="text-sm text-muted-foreground">
-                    From <span className="font-medium text-foreground">${moment.product.sizes[0].price}</span>
+                    From <span className="font-medium text-foreground">${moment.product.defaultPrice}</span>
                   </p>
                   <span className="text-sm font-medium underline-offset-4 transition-all group-hover:underline">
                     {moment.cta}

@@ -55,6 +55,7 @@ export type CaseStudy = {
   title: string;
   excerpt: string;
   category: string;
+  image: string;
 };
 
 export type BlogPost = {
@@ -529,6 +530,7 @@ export const caseStudies: CaseStudy[] = [
     excerpt:
       "How healthcare workers and performers kept their makeup intact under face masks and PPE using Skindinavia's long-wear technology.",
     category: "Professional",
+    image: "https://skindinavia.wpenginepowered.com/wp-content/uploads/2021/10/shutterstock_1756040273-scaled.jpg",
   },
   {
     id: "cs2",
@@ -537,6 +539,7 @@ export const caseStudies: CaseStudy[] = [
     excerpt:
       "A deep dive into how Broadway's top MUAs use Skindinavia to keep performers looking flawless through 8-show weeks under intense stage lighting.",
     category: "Theatre",
+    image: "https://skindinavia.wpenginepowered.com/wp-content/uploads/2021/09/shutterstock_223600444-scaled.jpg",
   },
   {
     id: "cs3",
@@ -545,6 +548,7 @@ export const caseStudies: CaseStudy[] = [
     excerpt:
       "Real results from bridal makeup artists using the Bridal formula for tropical destination weddings in 100°F+ temperatures.",
     category: "Bridal",
+    image: "https://skindinavia.wpenginepowered.com/wp-content/uploads/2022/09/bride-makeup-trends-in-2022-1200x798.jpg",
   },
   {
     id: "cs4",
@@ -553,6 +557,7 @@ export const caseStudies: CaseStudy[] = [
     excerpt:
       "How film makeup departments use Skindinavia to maintain prosthetics and special effects makeup during 14+ hour shoot days.",
     category: "Film & SFX",
+    image: "https://skindinavia.wpenginepowered.com/wp-content/uploads/2022/08/Neon-Eyes-1200x800.jpg",
   },
 ];
 

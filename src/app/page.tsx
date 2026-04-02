@@ -10,7 +10,6 @@ import { FounderStory } from "@/components/home/FounderStory";
 import { ArtistSpotlight } from "@/components/home/ArtistSpotlight";
 import { CaseStudyCards } from "@/components/home/CaseStudyCards";
 import { ReviewsCarousel } from "@/components/home/ReviewsCarousel";
-import { BlogPreview } from "@/components/home/BlogPreview";
 import { InstagramFeed } from "@/components/home/InstagramFeed";
 import { GradientDivider } from "@/components/animation/GradientDivider";
 
@@ -33,7 +32,6 @@ export default function HomePage() {
       <ReviewsCarousel />
       <GradientDivider />
       <InstagramFeed />
-      <BlogPreview />
     </main>
   );
 }

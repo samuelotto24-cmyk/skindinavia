@@ -54,9 +54,9 @@ export function Hero() {
 
       <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")" }} />
 
-      <div className="relative mx-auto w-full max-w-7xl px-6 py-10 lg:px-8 lg:py-12">
-        <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-8">
-          {/* Text — "why you need this" focused */}
+      <div className="relative mx-auto w-full max-w-7xl px-6 py-10 lg:px-8 lg:py-14">
+        <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-10">
+          {/* Text */}
           <div className="max-w-lg">
             <motion.p
               initial={{ opacity: 0 }}
@@ -91,7 +91,6 @@ export function Hero() {
             >
               The patented cooling spray that locks your look in for 16+ hours —
               through work, workouts, weddings, and everything in between.
-              50,000 five-star reviews can&apos;t be wrong.
             </motion.p>
 
             <motion.div
@@ -145,72 +144,68 @@ export function Hero() {
             </motion.div>
           </div>
 
-          {/* Right side — lifestyle photo + product overlay */}
+          {/* Product carousel — clickable to buy */}
           <div className="flex justify-center lg:justify-end">
             <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
+              initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1, delay: 0.2, ease: [0.33, 1, 0.68, 1] }}
               className="relative"
             >
-              {/* Lifestyle photo as background */}
-              <div className="relative h-[380px] w-[320px] sm:h-[420px] sm:w-[360px] overflow-hidden rounded-2xl">
-                <Image
-                  src="https://skindinavia.wpenginepowered.com/wp-content/uploads/2022/09/bride-makeup-trends-in-2022-1200x798.jpg"
-                  alt="Flawless makeup that lasts all day"
-                  fill
-                  className="object-cover"
-                  unoptimized
-                  priority
-                />
-                {/* Gradient overlay for product to pop */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
-              </div>
+              <MorphingBlob
+                color={`${activeProduct.accentColor}18`}
+                size={420}
+                className="top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+              />
 
-              {/* Product bottle overlaid on top of photo */}
-              <div
-                ref={tiltRef}
-                className="absolute -bottom-4 -right-8 z-10 h-[240px] w-[100px] sm:h-[280px] sm:w-[120px]"
-              >
-                <MorphingBlob
-                  color={`${activeProduct.accentColor}15`}
-                  size={200}
-                  className="top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-                />
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={activeProduct.id}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.9 }}
-                    transition={{ type: "spring", stiffness: 100, damping: 16 }}
-                    className="relative h-full w-full"
-                  >
-                    <Image
-                      src={activeProduct.image}
-                      alt={activeProduct.name}
-                      fill
-                      className="object-contain drop-shadow-[0_15px_30px_rgba(0,0,0,0.25)]"
-                      priority
-                    />
-                  </motion.div>
-                </AnimatePresence>
-              </div>
+              {/* Clickable product image */}
+              <Link href={`/products/${activeProduct.slug}`}>
+                <div
+                  ref={tiltRef}
+                  className="relative z-10 h-[380px] w-[250px] sm:h-[430px] sm:w-[280px] cursor-pointer"
+                >
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={activeProduct.id}
+                      initial={{ opacity: 0, scale: 0.9, rotate: -2 }}
+                      animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                      exit={{ opacity: 0, scale: 0.9, rotate: 2 }}
+                      transition={{ type: "spring", stiffness: 100, damping: 16 }}
+                      className="absolute inset-0 flex items-center justify-center"
+                    >
+                      <Image
+                        src={activeProduct.image}
+                        alt={activeProduct.name}
+                        width={280}
+                        height={430}
+                        className="h-auto max-h-[430px] w-auto object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.15)]"
+                        priority
+                      />
+                    </motion.div>
+                  </AnimatePresence>
+                </div>
+              </Link>
 
-              {/* Product name + dots below photo */}
+              {/* Product name + price + dots */}
               <div className="mt-4 text-center">
                 <AnimatePresence mode="wait">
-                  <motion.p
+                  <motion.div
                     key={activeProduct.id}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    className="text-xs font-medium tracking-wide"
                   >
-                    {activeProduct.shortName}
-                  </motion.p>
+                    <Link href={`/products/${activeProduct.slug}`} className="group inline-block">
+                      <p className="text-sm font-medium tracking-wide group-hover:underline underline-offset-2">
+                        {activeProduct.shortName}
+                      </p>
+                      <p className="text-xs text-muted-foreground mt-0.5">
+                        From ${activeProduct.defaultPrice}
+                      </p>
+                    </Link>
+                  </motion.div>
                 </AnimatePresence>
-                <div className="mt-2 flex justify-center gap-2">
+                <div className="mt-3 flex justify-center gap-2">
                   {heroProducts.map((p, i) => (
                     <button
                       key={p.id}

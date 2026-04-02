@@ -53,11 +53,12 @@ export default function Header() {
         </button>
 
         {/* Logo */}
-        <Link
-          href="/"
-          className="font-serif text-xl tracking-[0.15em]"
-        >
-          Skindinavia
+        <Link href="/" className="flex-shrink-0">
+          <img
+            src="https://skindinavia.wpenginepowered.com/wp-content/uploads/2021/06/SKIN_LG_BK_R.png"
+            alt="Skindinavia"
+            className="h-8 w-auto sm:h-9"
+          />
         </Link>
 
         {/* Desktop nav */}
@@ -133,8 +134,12 @@ export default function Header() {
       <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
         <SheetContent side="left" className="w-[300px] p-0">
           <SheetHeader className="border-b border-neutral-200 px-5 py-4">
-            <SheetTitle className="font-serif text-base tracking-[0.15em]">
-              Skindinavia
+            <SheetTitle>
+              <img
+                src="https://skindinavia.wpenginepowered.com/wp-content/uploads/2021/06/SKIN_LG_BK_R.png"
+                alt="Skindinavia"
+                className="h-7 w-auto"
+              />
             </SheetTitle>
           </SheetHeader>
           <nav className="flex flex-col py-4">

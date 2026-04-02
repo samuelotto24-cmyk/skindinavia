@@ -161,8 +161,17 @@ const FONT_MAP = {
     border-bottom: 1px solid var(--border);
   }
   .nav-left {
-    display: flex; align-items: center; gap: 12px;
+    display: flex; align-items: center; gap: 10px;
   }
+  .particle-toggle {
+    display: flex; align-items: center; justify-content: center;
+    width: 32px; height: 32px; border-radius: 8px;
+    border: 1px solid rgba(0,0,0,0.1); background: transparent;
+    color: #8A8580; cursor: pointer; transition: all 0.15s;
+    flex-shrink: 0;
+  }
+  .particle-toggle:hover { background: rgba(0,0,0,0.04); color: #0A0908; border-color: rgba(0,0,0,0.18); }
+  .particle-toggle.off { opacity: 0.4; }
   .nav-brand-mark {
     width: 32px; height: 32px; border-radius: 8px;
     background: var(--text); color: #fff;
@@ -639,6 +648,10 @@ const FONT_MAP = {
      ══════════════════════════════════════════════════════ -->
 <nav class="top-nav">
   <div class="nav-left">
+    <button class="particle-toggle" onclick="toggleParticles()" title="Toggle background animation">
+      <svg id="particle-icon-on" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="1.5"/><circle cx="6" cy="6" r="1"/><circle cx="18" cy="8" r="1"/><circle cx="8" cy="18" r="1"/><circle cx="17" cy="17" r="1"/><line x1="6" y1="6" x2="12" y2="12"/><line x1="12" y1="12" x2="18" y2="8"/><line x1="12" y1="12" x2="8" y2="18"/><line x1="12" y1="12" x2="17" y2="17"/></svg>
+      <svg id="particle-icon-off" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="display:none"><line x1="2" y1="2" x2="22" y2="22"/><circle cx="12" cy="12" r="1.5" opacity="0.3"/><circle cx="6" cy="6" r="1" opacity="0.3"/><circle cx="18" cy="8" r="1" opacity="0.3"/></svg>
+    </button>
     <div class="nav-brand-mark">S</div>
     <div class="nav-brand-text">
       <span class="nav-brand-name">Skindinavia</span>
@@ -1043,6 +1056,18 @@ const FONT_MAP = {
      ══════════════════════════════════════════════════════ -->
 <script>
 /* ── Tab switching ── */
+function toggleParticles() {
+  const canvas = document.getElementById('particle-canvas');
+  const btn = document.querySelector('.particle-toggle');
+  const iconOn = document.getElementById('particle-icon-on');
+  const iconOff = document.getElementById('particle-icon-off');
+  const isVisible = canvas.style.display !== 'none';
+  canvas.style.display = isVisible ? 'none' : 'block';
+  btn.classList.toggle('off', isVisible);
+  iconOn.style.display = isVisible ? 'none' : 'block';
+  iconOff.style.display = isVisible ? 'block' : 'none';
+}
+
 function switchTab(tabId) {
   // Update tab views
   document.querySelectorAll('.tab-view').forEach(v => v.classList.remove('active'));

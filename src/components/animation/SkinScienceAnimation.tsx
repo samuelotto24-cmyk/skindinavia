@@ -271,63 +271,55 @@ export function SkinScienceAnimation({ activeStage }: { activeStage: number }) {
       <text x="480" y="326" fill="rgba(255,255,255,0.08)" fontSize="7" fontFamily="sans-serif" fontStyle="italic" textAnchor="end">epidermis</text>
       <text x="480" y="358" fill="rgba(255,255,255,0.05)" fontSize="6.5" fontFamily="sans-serif" fontStyle="italic" textAnchor="end">dermis</text>
 
-      {/* ═══════════ SPRAY BOTTLE (realistic silhouette) ═══════════ */}
-      {/* Bottle body — tapered cylinder shape */}
-      <path
-        d="M 228 95 L 225 50 Q 225 35, 235 32 L 265 32 Q 275 35, 275 50 L 272 95 Z"
-        fill="rgba(255,255,255,0.06)"
-        stroke="rgba(255,255,255,0.12)"
-        strokeWidth="1"
-      />
-      {/* Bottle base — wider bottom */}
-      <path
-        d="M 225 90 Q 225 98, 230 100 L 270 100 Q 275 98, 275 90"
-        fill="rgba(255,255,255,0.04)"
-        stroke="rgba(255,255,255,0.1)"
-        strokeWidth="0.8"
-      />
-      {/* Label band */}
-      <rect x="231" y="52" width="38" height="28" rx="2" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.07)" strokeWidth="0.5" />
-      <line x1="237" y1="61" x2="263" y2="61" stroke="rgba(255,255,255,0.06)" strokeWidth="0.8" />
-      <line x1="240" y1="67" x2="260" y2="67" stroke="rgba(255,255,255,0.04)" strokeWidth="0.5" />
-      <line x1="243" y1="73" x2="257" y2="73" stroke="rgba(255,255,255,0.03)" strokeWidth="0.4" />
-      {/* Cap/overcap — the part you press */}
-      <path
-        d="M 240 32 L 240 18 Q 240 12, 245 12 L 255 12 Q 260 12, 260 18 L 260 32"
-        fill="rgba(255,255,255,0.08)"
-        stroke="rgba(255,255,255,0.14)"
-        strokeWidth="0.8"
-      />
-      {/* Finger grip ridges on cap */}
-      <line x1="242" y1="16" x2="258" y2="16" stroke="rgba(255,255,255,0.06)" strokeWidth="0.4" />
-      <line x1="242" y1="19" x2="258" y2="19" stroke="rgba(255,255,255,0.06)" strokeWidth="0.4" />
-      <line x1="242" y1="22" x2="258" y2="22" stroke="rgba(255,255,255,0.06)" strokeWidth="0.4" />
-      {/* Neck ring where cap meets bottle */}
-      <rect x="238" y="30" width="24" height="5" rx="2" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6" />
-      {/* Spray nozzle — extends from the side of the cap */}
-      <path
-        d="M 260 20 L 275 20 Q 280 20, 280 24 L 280 28 Q 280 30, 276 30 L 265 30"
-        fill="rgba(255,255,255,0.1)"
-        stroke="rgba(255,255,255,0.16)"
-        strokeWidth="0.8"
-      />
-      {/* Nozzle tip opening */}
-      <circle cx="278" cy="25" r="2" fill={c.pri} opacity="0.3" />
-      {/* Spray tube inside bottle (dashed, barely visible) */}
-      <line x1="250" y1="35" x2="250" y2="92" stroke="rgba(255,255,255,0.03)" strokeWidth="1" strokeDasharray="2 4" />
-      {/* Bottle highlight/reflection */}
-      <line x1="233" y1="40" x2="233" y2="88" stroke="rgba(255,255,255,0.06)" strokeWidth="1.5" strokeLinecap="round" />
-      {/* Nozzle activation pulses */}
-      <circle className="nozzle-pulse" cx="278" cy="25" r="6" fill={c.pri} opacity="0" filter="url(#g2)" />
-      <circle className="nozzle-pulse" cx="278" cy="25" r="12" fill={c.pri} opacity="0" filter="url(#g2)" />
+      {/* ═══════════ SPRAY BOTTLE (horizontal, large, nozzle pointing down-right) ═══════════ */}
+      <g transform="translate(30, 20) rotate(25, 120, 80)">
+        {/* Bottle body — large horizontal cylinder */}
+        <path
+          d="M 40 55 Q 35 55, 35 65 L 35 95 Q 35 105, 40 105 L 180 105 Q 185 105, 185 95 L 185 65 Q 185 55, 180 55 Z"
+          fill="rgba(255,255,255,0.07)"
+          stroke="rgba(255,255,255,0.14)"
+          strokeWidth="1.2"
+        />
+        {/* Bottom curve of bottle */}
+        <path d="M 40 105 Q 110 112, 180 105" fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth="0.8" />
+        {/* Label area */}
+        <rect x="55" y="62" width="85" height="35" rx="3" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.07)" strokeWidth="0.5" />
+        <line x1="65" y1="74" x2="130" y2="74" stroke="rgba(255,255,255,0.06)" strokeWidth="0.8" />
+        <line x1="72" y1="81" x2="123" y2="81" stroke="rgba(255,255,255,0.04)" strokeWidth="0.5" />
+        <line x1="80" y1="88" x2="115" y2="88" stroke="rgba(255,255,255,0.03)" strokeWidth="0.4" />
+        {/* Cap/pump mechanism */}
+        <rect x="185" y="60" width="30" height="40" rx="4" fill="rgba(255,255,255,0.09)" stroke="rgba(255,255,255,0.15)" strokeWidth="1" />
+        {/* Grip ridges */}
+        <line x1="189" y1="68" x2="211" y2="68" stroke="rgba(255,255,255,0.06)" strokeWidth="0.5" />
+        <line x1="189" y1="74" x2="211" y2="74" stroke="rgba(255,255,255,0.06)" strokeWidth="0.5" />
+        <line x1="189" y1="80" x2="211" y2="80" stroke="rgba(255,255,255,0.06)" strokeWidth="0.5" />
+        <line x1="189" y1="86" x2="211" y2="86" stroke="rgba(255,255,255,0.06)" strokeWidth="0.5" />
+        {/* Nozzle arm extending down */}
+        <path
+          d="M 200 100 L 200 118 Q 200 124, 205 126 L 218 126 Q 224 126, 224 120 L 224 114"
+          fill="none"
+          stroke="rgba(255,255,255,0.16)"
+          strokeWidth="1.2"
+          strokeLinecap="round"
+        />
+        {/* Nozzle tip */}
+        <circle cx="224" cy="112" r="3.5" fill={c.pri} opacity="0.35" />
+        <circle cx="224" cy="112" r="1.5" fill={c.pri} opacity="0.6" />
+        {/* Bottle reflection highlight */}
+        <line x1="45" y1="60" x2="45" y2="100" stroke="rgba(255,255,255,0.07)" strokeWidth="2" strokeLinecap="round" />
+        <line x1="50" y1="62" x2="50" y2="98" stroke="rgba(255,255,255,0.04)" strokeWidth="1" strokeLinecap="round" />
+      </g>
+      {/* Nozzle activation pulses (in world space, at nozzle tip after transform) */}
+      <circle className="nozzle-pulse" cx="250" cy="135" r="8" fill={c.pri} opacity="0" filter="url(#g2)" />
+      <circle className="nozzle-pulse" cx="250" cy="135" r="16" fill={c.pri} opacity="0" filter="url(#g2)" />
 
-      {/* ═══════════ SPRAY STREAMS ═══════════ */}
-      {[-30, -18, -8, 0, 8, 18, 30].map((offset, i) => (
+      {/* ═══════════ SPRAY STREAMS (fan from nozzle downward) ═══════════ */}
+      {[-40, -25, -12, 0, 12, 25, 40].map((offset, i) => (
         <line
           key={`str-${i}`}
           className="spray-stream"
-          x1="278" y1="30"
-          x2={250 + offset * 2} y2="295"
+          x1="250" y1="140"
+          x2={250 + offset * 2.5} y2="300"
           stroke={c.pri}
           strokeWidth={i === 3 ? "0.8" : "0.4"}
           opacity="0"
@@ -335,40 +327,41 @@ export function SkinScienceAnimation({ activeStage }: { activeStage: number }) {
         />
       ))}
 
-      {/* ═══════════ SPRAY CLOUDS ═══════════ */}
+      {/* ═══════════ SPRAY CLOUDS (mist builds between nozzle and skin) ═══════════ */}
       {[
-        { cx: 220, cy: 140, r: 28 }, { cx: 260, cy: 130, r: 32 }, { cx: 300, cy: 145, r: 26 },
-        { cx: 230, cy: 180, r: 35 }, { cx: 275, cy: 175, r: 30 },
+        { cx: 220, cy: 180, r: 30 }, { cx: 260, cy: 170, r: 36 }, { cx: 300, cy: 185, r: 28 },
+        { cx: 200, cy: 220, r: 32 }, { cx: 250, cy: 215, r: 40 }, { cx: 310, cy: 225, r: 30 },
+        { cx: 230, cy: 260, r: 35 }, { cx: 280, cy: 255, r: 32 },
       ].map((cl, i) => (
-        <ellipse key={`cloud-${i}`} className="spray-cloud" cx={cl.cx} cy={cl.cy} rx={cl.r} ry={cl.r * 0.6} fill={c.pri} opacity="0" filter="url(#g3)" />
+        <ellipse key={`cloud-${i}`} className="spray-cloud" cx={cl.cx} cy={cl.cy} rx={cl.r} ry={cl.r * 0.55} fill={c.pri} opacity="0" filter="url(#g3)" />
       ))}
 
       {/* ═══════════ MIST PARTICLES ═══════════ */}
-      {/* Large droplets */}
+      {/* Large droplets — closest to nozzle */}
       {[
-        {cx:210,cy:155},{cx:235,cy:148},{cx:250,cy:142},{cx:265,cy:150},{cx:290,cy:156},
-        {cx:220,cy:172},{cx:250,cy:168},{cx:280,cy:174},
+        {cx:230,cy:160},{cx:250,cy:155},{cx:270,cy:162},{cx:240,cy:178},{cx:260,cy:175},
+        {cx:220,cy:185},{cx:280,cy:182},{cx:250,cy:190},
       ].map((p, i) => (
         <ellipse key={`lg-${i}`} className="mist-particle mist-lg" cx={p.cx} cy={p.cy} rx="3.5" ry="5" fill={c.sec} opacity="0" filter="url(#g1)" />
       ))}
-      {/* Medium particles */}
+      {/* Medium particles — spreading wider */}
       {[
-        {cx:175,cy:188},{cx:200,cy:195},{cx:225,cy:190},{cx:250,cy:192},
-        {cx:275,cy:188},{cx:300,cy:194},{cx:325,cy:190},
-        {cx:190,cy:215},{cx:220,cy:210},{cx:255,cy:212},{cx:285,cy:208},{cx:310,cy:215},
+        {cx:180,cy:210},{cx:210,cy:205},{cx:240,cy:200},{cx:260,cy:202},
+        {cx:290,cy:208},{cx:320,cy:212},{cx:200,cy:230},
+        {cx:230,cy:225},{cx:260,cy:228},{cx:290,cy:232},{cx:310,cy:235},{cx:175,cy:240},
       ].map((p, i) => (
         <ellipse key={`md-${i}`} className="mist-particle mist-md" cx={p.cx} cy={p.cy} rx="2.5" ry="3.5" fill={c.sec} opacity="0" filter="url(#g1)" />
       ))}
-      {/* Tiny particles */}
-      {Array.from({ length: 18 }).map((_, i) => {
-        const angle = (i / 18) * Math.PI;
-        const spread = 60 + i * 5;
+      {/* Tiny particles — widest spread, near skin */}
+      {Array.from({ length: 20 }).map((_, i) => {
+        const x = 140 + (i / 20) * 220 + ((i * 7) % 30) - 15;
+        const y = 255 + (i % 4) * 8;
         return (
           <circle
             key={`sm-${i}`}
             className="mist-particle mist-sm"
-            cx={250 + Math.cos(angle) * spread * 0.7 - 20 + Math.random() * 40}
-            cy={230 + Math.sin(angle) * 20 + i * 2.5}
+            cx={x}
+            cy={y}
             r={1 + (i % 3) * 0.4}
             fill={c.sec}
             opacity="0"

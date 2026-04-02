@@ -49,7 +49,7 @@ export function ComparisonTable() {
           </motion.h2>
         </div>
 
-        <div className="grid items-start gap-8 lg:grid-cols-[1fr,1fr] lg:gap-10">
+        <div className="grid items-start gap-8 lg:grid-cols-[1.3fr,0.7fr] lg:gap-10">
           {/* LEFT: Comparison table */}
           <motion.div
             initial={{ opacity: 0, y: 15 }}
@@ -116,7 +116,7 @@ export function ComparisonTable() {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
-            <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-black">
+            <div className="relative aspect-[3/2] max-h-[280px] overflow-hidden rounded-xl bg-black">
               {videoStarted ? (
                 <iframe
                   src="https://www.youtube.com/embed/xDlJb1DGAjM?autoplay=1&mute=1&rel=0&loop=1&playlist=xDlJb1DGAjM"

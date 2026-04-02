@@ -28,7 +28,7 @@ export function CaseStudyCards() {
   const isInView = useInView(ref, { once: true, margin: "-50px" });
 
   return (
-    <section ref={ref} className="py-16 lg:py-20 border-t border-border/40 bg-gradient-to-b from-card/50 to-background">
+    <section ref={ref} className="py-12 lg:py-14 border-t border-border/40 bg-gradient-to-b from-card/50 to-background">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="text-center">
           <p className="text-xs font-medium uppercase tracking-[0.25em] text-muted-foreground">
@@ -38,13 +38,13 @@ export function CaseStudyCards() {
             initial={{ opacity: 0, y: 15 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="mt-3 font-serif text-3xl tracking-tight sm:text-4xl"
+            className="mt-3 font-serif text-2xl tracking-tight sm:text-3xl"
           >
             From Broadway to the Altar
           </motion.h2>
         </div>
 
-        <div className="mt-10 grid gap-6 sm:grid-cols-2">
+        <div className="mt-8 grid gap-4 sm:grid-cols-2">
           {caseStudies.map((study, i) => (
             <motion.div
               key={study.id}
@@ -70,17 +70,17 @@ export function CaseStudyCards() {
                     </div>
                   </div>
                   {/* Text content */}
-                  <div className="flex flex-1 flex-col p-6">
-                    <Badge variant="secondary" className="mb-3 w-fit text-[10px] uppercase tracking-wider">
+                  <div className="flex flex-1 flex-col p-5">
+                    <Badge variant="secondary" className="mb-2 w-fit text-[9px] uppercase tracking-wider">
                       {study.category}
                     </Badge>
-                    <h3 className="font-serif text-lg font-medium tracking-tight text-foreground">
+                    <h3 className="font-serif text-base font-medium tracking-tight text-foreground">
                       {study.title}
                     </h3>
-                    <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">
+                    <p className="mt-1.5 flex-1 text-xs leading-relaxed text-muted-foreground line-clamp-2">
                       {study.excerpt}
                     </p>
-                    <span className="mt-4 inline-flex text-sm font-medium text-foreground underline-offset-4 transition-all group-hover:underline">
+                    <span className="mt-3 inline-flex text-xs font-medium text-foreground underline-offset-4 transition-all group-hover:underline">
                       Read Case Study &rarr;
                     </span>
                   </div>

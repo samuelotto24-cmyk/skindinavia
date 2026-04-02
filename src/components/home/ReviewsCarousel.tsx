@@ -42,10 +42,10 @@ export function ReviewsCarousel() {
   });
 
   return (
-    <section className="py-16 lg:py-20 border-t border-border/40">
+    <section className="py-14 lg:py-16 border-t border-brand-gold/20 bg-gradient-to-b from-amber-50/30 via-background to-background">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="text-center">
-          <p className="text-xs font-medium uppercase tracking-[0.25em] text-muted-foreground">
+          <p className="text-xs font-medium uppercase tracking-[0.25em] text-brand-gold">
             5,000+ Five-Star Reviews
           </p>
           <h2 className="mt-3 font-serif text-3xl tracking-tight sm:text-4xl">

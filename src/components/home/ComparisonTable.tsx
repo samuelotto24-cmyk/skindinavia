@@ -116,7 +116,7 @@ export function ComparisonTable() {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
-            <div className="relative aspect-video overflow-hidden rounded-2xl bg-black">
+            <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-black">
               {videoStarted ? (
                 <iframe
                   src="https://www.youtube.com/embed/xDlJb1DGAjM?autoplay=1&mute=1&rel=0&loop=1&playlist=xDlJb1DGAjM"

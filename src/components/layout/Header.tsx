@@ -103,9 +103,10 @@ export default function Header() {
         </nav>
 
         {/* Right actions */}
-        <div className="flex items-center gap-3">
-          <button className="p-2" aria-label="Search">
-            <Search className="h-5 w-5" />
+        <div className="flex items-center gap-2">
+          <button className="flex items-center gap-1.5 rounded-full border border-border/60 px-3 py-1.5 text-muted-foreground transition-colors hover:border-foreground/30 hover:text-foreground" aria-label="Search">
+            <Search className="h-3.5 w-3.5" />
+            <span className="text-xs hidden sm:inline">Search</span>
           </button>
           <button
             className="p-2 relative"

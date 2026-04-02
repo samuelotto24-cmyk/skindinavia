@@ -10,6 +10,7 @@ import {
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet";
+import { SearchOverlay } from "@/components/layout/SearchOverlay";
 
 const shopDropdown = [
   { label: "Finishing Sprays", href: "/shop/finishing-sprays" },
@@ -27,6 +28,7 @@ export default function Header() {
   const { openCart, itemCount } = useCart();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 10);
@@ -104,7 +106,11 @@ export default function Header() {
 
         {/* Right actions */}
         <div className="flex items-center gap-2">
-          <button className="flex items-center gap-1.5 rounded-full border border-border/60 px-3 py-1.5 text-muted-foreground transition-colors hover:border-foreground/30 hover:text-foreground" aria-label="Search">
+          <button
+            onClick={() => setSearchOpen(true)}
+            className="flex items-center gap-1.5 rounded-full border border-border/60 px-3 py-1.5 text-muted-foreground transition-colors hover:border-foreground/30 hover:text-foreground"
+            aria-label="Search"
+          >
             <Search className="h-3.5 w-3.5" />
             <span className="text-xs hidden sm:inline">Search</span>
           </button>
@@ -163,6 +169,8 @@ export default function Header() {
           </nav>
         </SheetContent>
       </Sheet>
+
+      <SearchOverlay open={searchOpen} onClose={() => setSearchOpen(false)} />
     </header>
   );
 }

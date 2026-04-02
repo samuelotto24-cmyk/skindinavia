@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { blogPosts } from "@/lib/mock-data";
 import { Badge } from "@/components/ui/badge";
@@ -16,7 +17,7 @@ export default function BlogPage() {
         <p className="text-sm font-medium uppercase tracking-widest text-muted-foreground">
           Journal
         </p>
-        <h1 className="mt-3 text-4xl font-bold tracking-tight lg:text-5xl">
+        <h1 className="mt-3 font-serif text-4xl tracking-tight lg:text-5xl">
           The Skindinavia Blog
         </h1>
         <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
@@ -28,11 +29,16 @@ export default function BlogPage() {
         {blogPosts.map((post) => (
           <article
             key={post.id}
-            className="group flex flex-col rounded-2xl border border-border bg-background transition-shadow hover:shadow-lg"
+            className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-background transition-shadow hover:shadow-lg"
           >
-            {/* Thumbnail placeholder */}
-            <div className="flex h-48 items-center justify-center rounded-t-2xl bg-neutral-100 text-sm font-medium text-neutral-400">
-              Blog Thumbnail
+            <div className="relative h-48 overflow-hidden">
+              <Image
+                src={post.image}
+                alt={post.title}
+                fill
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                unoptimized
+              />
             </div>
             <div className="flex flex-1 flex-col p-6">
               <div className="flex items-center gap-3">
@@ -45,7 +51,7 @@ export default function BlogPage() {
                   })}
                 </time>
               </div>
-              <h2 className="mt-3 text-lg font-semibold leading-snug">
+              <h2 className="mt-3 font-serif text-lg font-medium leading-snug">
                 {post.title}
               </h2>
               <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">

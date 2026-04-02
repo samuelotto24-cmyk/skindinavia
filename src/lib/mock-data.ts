@@ -470,8 +470,8 @@ export const artists: Artist[] = [
     bio: "With over 15 years in the industry, Kim has done makeup for A-list red carpet events, destination weddings across 30+ countries, and editorial shoots for Vogue and Harper's Bazaar. She's been a Skindinavia ambassador since 2012.",
     specialty: "Bridal & Red Carpet",
     socialLinks: [
-      { platform: "Instagram", url: "#" },
-      { platform: "YouTube", url: "#" },
+      { platform: "Instagram", url: "https://instagram.com/kimweber.mua" },
+      { platform: "YouTube", url: "https://youtube.com/@kimweberbeauty" },
     ],
     accentColor: "#EC4899",
     image: "https://skindinavia.wpenginepowered.com/wp-content/uploads/2021/07/BTSvanessatalentprofile.jpg",
@@ -484,8 +484,8 @@ export const artists: Artist[] = [
     bio: "Marcus has been the lead makeup artist for 12 Broadway productions including Hamilton, Wicked, and The Lion King. His work demands products that can withstand intense stage lighting and 8-show weeks.",
     specialty: "Theatre & Stage",
     socialLinks: [
-      { platform: "Instagram", url: "#" },
-      { platform: "TikTok", url: "#" },
+      { platform: "Instagram", url: "https://instagram.com/marcusallenmua" },
+      { platform: "TikTok", url: "https://tiktok.com/@marcusallenmua" },
     ],
     accentColor: "#8B5CF6",
     image: "https://skindinavia.wpenginepowered.com/wp-content/uploads/2021/07/Joe-Dulude-II-Headshot.jpg",
@@ -498,8 +498,8 @@ export const artists: Artist[] = [
     bio: "Yuki specializes in special effects and prosthetic makeup for film and television. Her credits include work on major horror franchises and sci-fi series. She relies on Skindinavia to keep complex makeup intact during long shoot days.",
     specialty: "SFX & Film",
     socialLinks: [
-      { platform: "Instagram", url: "#" },
-      { platform: "Website", url: "#" },
+      { platform: "Instagram", url: "https://instagram.com/yukitanaka.sfx" },
+      { platform: "Website", url: "https://yukitanakamakeup.com" },
     ],
     accentColor: "#EF4444",
     image: "https://skindinavia.wpenginepowered.com/wp-content/uploads/2021/09/stephanieflor_219981810_245110693873959_8014344367409139541_n.jpg",
@@ -512,8 +512,8 @@ export const artists: Artist[] = [
     bio: "Tanya's work has been featured in Elle, Cosmopolitan, and W Magazine. She brings a bold, creative approach to beauty editorial and fashion week backstage. Known for pushing boundaries while keeping looks camera-ready.",
     specialty: "Editorial & Fashion",
     socialLinks: [
-      { platform: "Instagram", url: "#" },
-      { platform: "Pinterest", url: "#" },
+      { platform: "Instagram", url: "https://instagram.com/tanyabrooksbeauty" },
+      { platform: "Pinterest", url: "https://pinterest.com/tanyabrooksmua" },
     ],
     accentColor: "#F59E0B",
     image: "https://skindinavia.wpenginepowered.com/wp-content/uploads/2021/07/desireefalconmakeup_93029885_122693182710121_7053791904777010338_n.jpg",

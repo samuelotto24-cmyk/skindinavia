@@ -75,7 +75,7 @@ export default async function BlogPostPage({
         </time>
       </div>
 
-      <h1 className="mt-4 text-3xl font-bold tracking-tight lg:text-4xl">
+      <h1 className="mt-4 font-serif text-3xl tracking-tight lg:text-4xl">
         {post.title}
       </h1>
       <p className="mt-2 text-sm text-muted-foreground">By {post.author}</p>

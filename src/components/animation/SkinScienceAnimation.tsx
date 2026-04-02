@@ -271,32 +271,63 @@ export function SkinScienceAnimation({ activeStage }: { activeStage: number }) {
       <text x="480" y="326" fill="rgba(255,255,255,0.08)" fontSize="7" fontFamily="sans-serif" fontStyle="italic" textAnchor="end">epidermis</text>
       <text x="480" y="358" fill="rgba(255,255,255,0.05)" fontSize="6.5" fontFamily="sans-serif" fontStyle="italic" textAnchor="end">dermis</text>
 
-      {/* ═══════════ SPRAY BOTTLE ═══════════ */}
-      {/* Body */}
-      <rect x="222" y="30" width="56" height="72" rx="8" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.1)" strokeWidth="1" />
-      {/* Label area */}
-      <rect x="230" y="48" width="40" height="20" rx="3" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.06)" strokeWidth="0.5" />
-      <line x1="236" y1="55" x2="264" y2="55" stroke="rgba(255,255,255,0.06)" strokeWidth="0.8" />
-      <line x1="240" y1="60" x2="260" y2="60" stroke="rgba(255,255,255,0.04)" strokeWidth="0.5" />
-      {/* Shoulder */}
-      <path d="M 235 30 Q 235 22, 243 22 L 257 22 Q 265 22, 265 30" fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="1" />
-      {/* Neck */}
-      <rect x="240" y="100" width="20" height="16" rx="3" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.12)" strokeWidth="0.8" />
-      {/* Actuator/nozzle */}
-      <rect x="244" y="114" width="12" height="10" rx="2.5" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.18)" strokeWidth="0.6" />
-      {/* Nozzle opening */}
-      <circle cx="250" cy="126" r="2.5" fill={c.pri} opacity="0.25" />
+      {/* ═══════════ SPRAY BOTTLE (realistic silhouette) ═══════════ */}
+      {/* Bottle body — tapered cylinder shape */}
+      <path
+        d="M 228 95 L 225 50 Q 225 35, 235 32 L 265 32 Q 275 35, 275 50 L 272 95 Z"
+        fill="rgba(255,255,255,0.06)"
+        stroke="rgba(255,255,255,0.12)"
+        strokeWidth="1"
+      />
+      {/* Bottle base — wider bottom */}
+      <path
+        d="M 225 90 Q 225 98, 230 100 L 270 100 Q 275 98, 275 90"
+        fill="rgba(255,255,255,0.04)"
+        stroke="rgba(255,255,255,0.1)"
+        strokeWidth="0.8"
+      />
+      {/* Label band */}
+      <rect x="231" y="52" width="38" height="28" rx="2" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.07)" strokeWidth="0.5" />
+      <line x1="237" y1="61" x2="263" y2="61" stroke="rgba(255,255,255,0.06)" strokeWidth="0.8" />
+      <line x1="240" y1="67" x2="260" y2="67" stroke="rgba(255,255,255,0.04)" strokeWidth="0.5" />
+      <line x1="243" y1="73" x2="257" y2="73" stroke="rgba(255,255,255,0.03)" strokeWidth="0.4" />
+      {/* Cap/overcap — the part you press */}
+      <path
+        d="M 240 32 L 240 18 Q 240 12, 245 12 L 255 12 Q 260 12, 260 18 L 260 32"
+        fill="rgba(255,255,255,0.08)"
+        stroke="rgba(255,255,255,0.14)"
+        strokeWidth="0.8"
+      />
+      {/* Finger grip ridges on cap */}
+      <line x1="242" y1="16" x2="258" y2="16" stroke="rgba(255,255,255,0.06)" strokeWidth="0.4" />
+      <line x1="242" y1="19" x2="258" y2="19" stroke="rgba(255,255,255,0.06)" strokeWidth="0.4" />
+      <line x1="242" y1="22" x2="258" y2="22" stroke="rgba(255,255,255,0.06)" strokeWidth="0.4" />
+      {/* Neck ring where cap meets bottle */}
+      <rect x="238" y="30" width="24" height="5" rx="2" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6" />
+      {/* Spray nozzle — extends from the side of the cap */}
+      <path
+        d="M 260 20 L 275 20 Q 280 20, 280 24 L 280 28 Q 280 30, 276 30 L 265 30"
+        fill="rgba(255,255,255,0.1)"
+        stroke="rgba(255,255,255,0.16)"
+        strokeWidth="0.8"
+      />
+      {/* Nozzle tip opening */}
+      <circle cx="278" cy="25" r="2" fill={c.pri} opacity="0.3" />
+      {/* Spray tube inside bottle (dashed, barely visible) */}
+      <line x1="250" y1="35" x2="250" y2="92" stroke="rgba(255,255,255,0.03)" strokeWidth="1" strokeDasharray="2 4" />
+      {/* Bottle highlight/reflection */}
+      <line x1="233" y1="40" x2="233" y2="88" stroke="rgba(255,255,255,0.06)" strokeWidth="1.5" strokeLinecap="round" />
       {/* Nozzle activation pulses */}
-      <circle className="nozzle-pulse" cx="250" cy="126" r="6" fill={c.pri} opacity="0" filter="url(#g2)" />
-      <circle className="nozzle-pulse" cx="250" cy="126" r="10" fill={c.pri} opacity="0" filter="url(#g2)" />
+      <circle className="nozzle-pulse" cx="278" cy="25" r="6" fill={c.pri} opacity="0" filter="url(#g2)" />
+      <circle className="nozzle-pulse" cx="278" cy="25" r="12" fill={c.pri} opacity="0" filter="url(#g2)" />
 
       {/* ═══════════ SPRAY STREAMS ═══════════ */}
-      {[-35, -22, -10, 0, 10, 22, 35].map((offset, i) => (
+      {[-30, -18, -8, 0, 8, 18, 30].map((offset, i) => (
         <line
           key={`str-${i}`}
           className="spray-stream"
-          x1="250" y1="128"
-          x2={250 + offset * 2.5} y2="295"
+          x1="278" y1="30"
+          x2={250 + offset * 2} y2="295"
           stroke={c.pri}
           strokeWidth={i === 3 ? "0.8" : "0.4"}
           opacity="0"
@@ -306,8 +337,8 @@ export function SkinScienceAnimation({ activeStage }: { activeStage: number }) {
 
       {/* ═══════════ SPRAY CLOUDS ═══════════ */}
       {[
-        { cx: 200, cy: 200, r: 30 }, { cx: 250, cy: 190, r: 35 }, { cx: 300, cy: 200, r: 30 },
-        { cx: 220, cy: 230, r: 25 }, { cx: 280, cy: 225, r: 28 },
+        { cx: 220, cy: 140, r: 28 }, { cx: 260, cy: 130, r: 32 }, { cx: 300, cy: 145, r: 26 },
+        { cx: 230, cy: 180, r: 35 }, { cx: 275, cy: 175, r: 30 },
       ].map((cl, i) => (
         <ellipse key={`cloud-${i}`} className="spray-cloud" cx={cl.cx} cy={cl.cy} rx={cl.r} ry={cl.r * 0.6} fill={c.pri} opacity="0" filter="url(#g3)" />
       ))}
@@ -419,7 +450,11 @@ export function SkinScienceAnimation({ activeStage }: { activeStage: number }) {
       ))}
 
       {/* ═══════════ STAGE LABEL ═══════════ */}
-      <text x="250" y="455" textAnchor="middle" fill="rgba(255,255,255,0.03)" fontSize="55" fontFamily="serif" fontWeight="300" letterSpacing="20">
+      <text x="250" y="460" textAnchor="middle" fill={c.pri} opacity="0.12" fontSize="72" fontFamily="serif" fontWeight="600" letterSpacing="24">
+        {activeStage === 0 ? "MIST" : activeStage === 1 ? "COOL" : "LOCK"}
+      </text>
+      {/* Glow behind text */}
+      <text x="250" y="460" textAnchor="middle" fill={c.pri} opacity="0.06" fontSize="72" fontFamily="serif" fontWeight="600" letterSpacing="24" filter="url(#g3)">
         {activeStage === 0 ? "MIST" : activeStage === 1 ? "COOL" : "LOCK"}
       </text>
     </svg>

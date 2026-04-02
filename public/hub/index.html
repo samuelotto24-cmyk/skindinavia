@@ -1177,7 +1177,7 @@ function initProducts() {
         <span class="product-detail-label">Revenue (MTD)</span>
         <span class="product-detail-val">$${(mock.sold * prod.price).toLocaleString()}</span>
       </div>
-      <button class="product-edit-btn">Edit Product</button>
+      <button class="product-edit-btn" onclick="editProduct('${p.name}','${p.sku}',${p.price})">Edit Product</button>
     `;
     grid.appendChild(card);
   });
@@ -1212,6 +1212,84 @@ function initPromptChips() {
   });
 }
 
+/* ── Edit Product Modal ── */
+function editProduct(name, sku, price) {
+  // Create modal overlay
+  const overlay = document.createElement('div');
+  overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.3);backdrop-filter:blur(4px);z-index:200;display:flex;align-items:center;justify-content:center;animation:fadeIn 0.2s ease';
+  overlay.onclick = (e) => { if (e.target === overlay) overlay.remove(); };
+
+  overlay.innerHTML = `
+    <div style="background:#fff;border-radius:16px;padding:28px;width:90%;max-width:420px;box-shadow:0 20px 60px rgba(0,0,0,0.15);animation:fadeUpIn 0.3s ease">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
+        <h3 style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:#0A0908">Edit Product</h3>
+        <button onclick="this.closest('[style*=fixed]').remove()" style="background:none;border:none;font-size:18px;color:#8A8580;cursor:pointer">&times;</button>
+      </div>
+      <label style="display:block;font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#8A8580;margin-bottom:6px">Product Name</label>
+      <input value="${name}" style="width:100%;padding:10px 14px;border:1px solid rgba(0,0,0,0.1);border-radius:8px;font-size:14px;font-family:'DM Sans',sans-serif;color:#0A0908;margin-bottom:16px;outline:none">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px">
+        <div>
+          <label style="display:block;font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#8A8580;margin-bottom:6px">SKU</label>
+          <input value="${sku}" style="width:100%;padding:10px 14px;border:1px solid rgba(0,0,0,0.1);border-radius:8px;font-size:14px;font-family:'DM Sans',sans-serif;color:#0A0908;outline:none">
+        </div>
+        <div>
+          <label style="display:block;font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#8A8580;margin-bottom:6px">Price</label>
+          <input value="$${price}" style="width:100%;padding:10px 14px;border:1px solid rgba(0,0,0,0.1);border-radius:8px;font-size:14px;font-family:'DM Sans',sans-serif;color:#0A0908;outline:none">
+        </div>
+      </div>
+      <label style="display:block;font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#8A8580;margin-bottom:6px">Stock Level</label>
+      <select style="width:100%;padding:10px 14px;border:1px solid rgba(0,0,0,0.1);border-radius:8px;font-size:14px;font-family:'DM Sans',sans-serif;color:#0A0908;margin-bottom:20px;outline:none;background:#fff">
+        <option>In Stock</option><option>Low Stock</option><option>Out of Stock</option>
+      </select>
+      <div style="display:flex;gap:10px;justify-content:flex-end">
+        <button onclick="this.closest('[style*=fixed]').remove()" style="padding:10px 20px;border:1px solid rgba(0,0,0,0.1);border-radius:8px;background:#fff;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;color:#3D3935;cursor:pointer">Cancel</button>
+        <button onclick="this.closest('[style*=fixed]').remove()" style="padding:10px 20px;border:none;border-radius:8px;background:#0A0908;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;color:#fff;cursor:pointer">Save Changes</button>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(overlay);
+}
+
+/* ── AI Chat ── */
+const aiResponses = {
+  'write product description': 'Here\'s a compelling product description for the Bridal Finishing Spray:\n\n<strong>"Your wedding day, locked in."</strong> The Bridal Finishing Spray uses patented cooling technology to fuse your makeup to your skin — not seal it on top. Cry-proof, sweat-proof, and photo-proof for 24+ hours. Because the most important day of your life deserves the original formula that started it all.',
+  'draft email campaign': '<strong>Subject: The formula they don\'t want you to know about</strong>\n\nHi [First Name],\n\nFor 15 years, a major beauty brand sold our formula as their #1 bestseller. 50,000 five-star reviews. Allure Best of Beauty.\n\nWhen they reformulated, we didn\'t.\n\nThe original is still here — and it\'s $7 less per bottle.\n\n→ Shop the Original Formula\n\nPatented. Trusted. Since 2005.\n— Skindinavia',
+  'analyze last month\'s sales': 'Last month\'s sales analysis:\n\n<strong>Total Revenue:</strong> $11,280 (+14% MoM)\n<strong>Total Orders:</strong> 412 (+22% MoM)\n<strong>AOV:</strong> $27.38 (-6% — more single-bottle orders)\n\n<strong>Top performer:</strong> Bridal Finishing Spray — $4,920 (44% of revenue)\n<strong>Fastest growing:</strong> Oil Control — up 38% driven by summer demand\n<strong>Underperforming:</strong> Primer Spray — down 12%, consider bundling with a finishing spray\n\n<strong>Recommendation:</strong> Launch a "Summer Proof Kit" (Oil Control + Primer) at $55 to boost AOV and move primer inventory.',
+  'suggest bundle ideas': 'Based on your sales data, here are 3 bundle opportunities:\n\n<strong>1. Wedding Season Kit ($55)</strong> — Bridal Spray + Primer Spray. Your Bridal formula is up 28%. Pairing with Primer creates a complete routine at 14% savings.\n\n<strong>2. Summer Proof Kit ($50)</strong> — Oil Control Spray + Oil Control Primer. Target oily-skin customers before summer peaks.\n\n<strong>3. Pro Artist Bundle ($120)</strong> — All 3 Finishing Sprays + Primer. 20% savings. Position for MUA professionals who stock all variants.',
+  'write social caption': '<strong>Instagram caption:</strong>\n\nFun fact: The most iconic setting spray in beauty history? We made it. For 15 years.\n\nNow the original formula is back — under our name.\n\n16+ hours. Patented cooling technology. No reformulation.\n\nThe real ones know. 💧\n\n#Skindinavia #SettingSpray #TheOriginal #MakeupThatLasts',
+  'competitor analysis': '<strong>Competitive Landscape Q2 2026:</strong>\n\n<strong>Urban Decay All Nighter (reformulated)</strong> — Rating dropped from 4.7 to 3.8 since reformulation. Price increased to $36. Negative sentiment on Reddit and TikTok about "new formula doesn\'t work." This is our biggest acquisition opportunity.\n\n<strong>Charlotte Tilbury Airbrush Flawless</strong> — $38 for 3.4oz ($11.18/oz vs our $7.25/oz). Strong brand but we beat them on price AND wear time.\n\n<strong>NYX/e.l.f.</strong> — Competing on price ($8-10) but 4-hour wear max. Not a real competitor for our audience.\n\n<strong>Our moat:</strong> Only patented cooling technology on the market. Original formula credibility. Pro artist network.',
+};
+
+function sendChat() {
+  const input = document.querySelector('.chat-input');
+  const chatArea = document.querySelector('.chat-area');
+  const msg = input.value.trim();
+  if (!msg) return;
+
+  // Add user bubble
+  const userBubble = document.createElement('div');
+  userBubble.className = 'chat-bubble user';
+  userBubble.innerHTML = `<div class="chat-bubble-label">You</div>${msg}`;
+  chatArea.querySelector('.chat-input-row').before(userBubble);
+  input.value = '';
+
+  // Find matching response or generate generic one
+  const key = msg.toLowerCase();
+  let response = aiResponses[key];
+  if (!response) {
+    response = `Based on your Skindinavia data, here's my analysis of "<strong>${msg}</strong>":\n\nYour Bridal Finishing Spray continues to lead at 234 units this month. I'd recommend focusing marketing efforts on the Urban Decay switcher audience — they're actively looking for the original formula. Consider a targeted email campaign with the subject line "Miss the original? We made it."\n\nWant me to draft that campaign?`;
+  }
+
+  // Add AI bubble with typing delay
+  setTimeout(() => {
+    const aiBubble = document.createElement('div');
+    aiBubble.className = 'chat-bubble ai';
+    aiBubble.innerHTML = `<div class="chat-bubble-label">AI Advisor</div>${response.replace(/\n/g, '<br>')}`;
+    chatArea.querySelector('.chat-input-row').before(aiBubble);
+    aiBubble.scrollIntoView({ behavior: 'smooth', block: 'end' });
+  }, 800);
+}
+
 /* ── Init ── */
 document.addEventListener('DOMContentLoaded', () => {
   initGreeting();
@@ -1219,6 +1297,12 @@ document.addEventListener('DOMContentLoaded', () => {
   initProducts();
   initScrollAnimations();
   initPromptChips();
+
+  // Wire up chat send button and Enter key
+  const sendBtn = document.querySelector('.chat-send-btn');
+  const chatInput = document.querySelector('.chat-input');
+  if (sendBtn) sendBtn.addEventListener('click', sendChat);
+  if (chatInput) chatInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') sendChat(); });
 
   // Trigger initial tab animations
   requestAnimationFrame(() => {

@@ -2,17 +2,15 @@ import { Hero } from "@/components/home/Hero";
 import { TrustBar } from "@/components/home/TrustBar";
 import { PressLogos } from "@/components/home/PressLogos";
 import { ShopByMoment } from "@/components/home/ShopByMoment";
+import { GuaranteeStrip } from "@/components/home/GuaranteeStrip";
 import { BeforeAfter } from "@/components/home/BeforeAfter";
 import { HowItWorks } from "@/components/home/HowItWorks";
 import { ComparisonTable } from "@/components/home/ComparisonTable";
-import { VideoSection } from "@/components/home/VideoSection";
 import { FounderStory } from "@/components/home/FounderStory";
 import { ArtistSpotlight } from "@/components/home/ArtistSpotlight";
-import { GuaranteeStrip } from "@/components/home/GuaranteeStrip";
 import { CaseStudyCards } from "@/components/home/CaseStudyCards";
 import { ReviewsCarousel } from "@/components/home/ReviewsCarousel";
 import { BlogPreview } from "@/components/home/BlogPreview";
-import { Newsletter } from "@/components/home/Newsletter";
 import { GradientDivider } from "@/components/animation/GradientDivider";
 
 export default function HomePage() {
@@ -27,7 +25,6 @@ export default function HomePage() {
       <BeforeAfter />
       <HowItWorks />
       <ComparisonTable />
-      <VideoSection />
       <FounderStory />
       <ArtistSpotlight />
       <GradientDivider />
@@ -35,7 +32,6 @@ export default function HomePage() {
       <ReviewsCarousel />
       <GradientDivider />
       <BlogPreview />
-      <Newsletter />
     </main>
   );
 }

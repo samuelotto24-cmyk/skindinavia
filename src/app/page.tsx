@@ -3,6 +3,7 @@ import { TrustBar } from "@/components/home/TrustBar";
 import { PressLogos } from "@/components/home/PressLogos";
 import { ShopByMoment } from "@/components/home/ShopByMoment";
 import { GuaranteeStrip } from "@/components/home/GuaranteeStrip";
+import { ShopBanner } from "@/components/home/ShopBanner";
 import { BeforeAfter } from "@/components/home/BeforeAfter";
 import { HowItWorks } from "@/components/home/HowItWorks";
 import { ComparisonTable } from "@/components/home/ComparisonTable";
@@ -11,7 +12,6 @@ import { ArtistSpotlight } from "@/components/home/ArtistSpotlight";
 import { CaseStudyCards } from "@/components/home/CaseStudyCards";
 import { ReviewsCarousel } from "@/components/home/ReviewsCarousel";
 import { InstagramFeed } from "@/components/home/InstagramFeed";
-import { ShopBanner } from "@/components/home/ShopBanner";
 import { GradientDivider } from "@/components/animation/GradientDivider";
 
 export default function HomePage() {
@@ -23,6 +23,7 @@ export default function HomePage() {
       <GradientDivider />
       <ShopByMoment />
       <GuaranteeStrip />
+      <ShopBanner />
       <BeforeAfter />
       <HowItWorks />
       <ComparisonTable />
@@ -32,7 +33,6 @@ export default function HomePage() {
       <CaseStudyCards />
       <ReviewsCarousel />
       <GradientDivider />
-      <ShopBanner />
       <InstagramFeed />
     </main>
   );

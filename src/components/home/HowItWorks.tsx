@@ -65,24 +65,24 @@ export function HowItWorks() {
   }, [activeStage, isInView]);
 
   return (
-    <section ref={sectionRef} className="relative py-10 lg:py-12 bg-gradient-to-b from-[#0f0f1a] via-[#141425] to-[#0f0f1a] text-white overflow-hidden">
+    <section ref={sectionRef} className="relative py-8 lg:py-10 bg-gradient-to-b from-[#0f0f1a] via-[#141425] to-[#0f0f1a] text-white overflow-hidden">
       {/* Noise */}
       <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E\")" }} />
 
       <div className="relative mx-auto max-w-6xl px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-8">
-          <p className="text-xs font-medium uppercase tracking-[0.3em] text-sky-300/80">
+          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-sky-300">
             Patented Technology
           </p>
-          <h2 className="mt-3 font-serif text-3xl tracking-tight sm:text-4xl text-white">
+          <h2 className="mt-3 font-serif text-3xl tracking-tight sm:text-4xl lg:text-5xl text-white">
             The Science of 16-Hour Wear
           </h2>
         </div>
 
-        <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
+        <div className="grid items-center gap-6 lg:grid-cols-2 lg:gap-10">
           {/* LEFT: SVG Animation */}
-          <div className="relative mx-auto w-full max-w-[420px] aspect-square">
+          <div className="relative mx-auto w-full max-w-[380px] aspect-square">
             <SkinScienceAnimation activeStage={activeStage} />
           </div>
 

@@ -1,25 +1,53 @@
 "use client";
 
-import { useRef, useState } from "react";
-import Image from "next/image";
+import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 
-export function BeforeAfter() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const isInView = useInView(sectionRef, { once: true, margin: "-60px" });
-  const [position, setPosition] = useState(50);
-  const containerRef = useRef<HTMLDivElement>(null);
+const milestones = [
+  {
+    hour: "0h",
+    title: "Just Applied",
+    detail: "Cooling spheres activate on contact",
+    status: "Fresh",
+    color: "bg-sky-400",
+  },
+  {
+    hour: "4h",
+    title: "Post-Lunch Meeting",
+    detail: "Zero shine, zero touch-ups needed",
+    status: "Flawless",
+    color: "bg-blue-400",
+  },
+  {
+    hour: "8h",
+    title: "After-Work Gym",
+    detail: "Sweat-proof hold still locked in",
+    status: "Holding",
+    color: "bg-indigo-400",
+  },
+  {
+    hour: "12h",
+    title: "Dinner Date",
+    detail: "Looks like you just sat down in the chair",
+    status: "Perfect",
+    color: "bg-violet-400",
+  },
+  {
+    hour: "16h",
+    title: "Last Call",
+    detail: "Still the same as hour zero",
+    status: "Locked In",
+    color: "bg-pink-400",
+  },
+];
 
-  function handleMove(clientX: number) {
-    if (!containerRef.current) return;
-    const rect = containerRef.current.getBoundingClientRect();
-    const x = Math.max(0, Math.min(clientX - rect.left, rect.width));
-    setPosition((x / rect.width) * 100);
-  }
+export function BeforeAfter() {
+  const ref = useRef<HTMLElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "-60px" });
 
   return (
-    <section ref={sectionRef} className="py-14 lg:py-16">
-      <div className="mx-auto max-w-4xl px-6 lg:px-8">
+    <section ref={ref} className="py-14 lg:py-16">
+      <div className="mx-auto max-w-5xl px-6 lg:px-8">
         <div className="text-center">
           <motion.p
             initial={{ opacity: 0 }}
@@ -27,7 +55,7 @@ export function BeforeAfter() {
             transition={{ duration: 0.6 }}
             className="text-xs font-medium uppercase tracking-[0.25em] text-muted-foreground"
           >
-            See the Difference
+            All-Day Performance
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 10 }}
@@ -35,93 +63,63 @@ export function BeforeAfter() {
             transition={{ duration: 0.7, delay: 0.1 }}
             className="mt-3 font-serif text-2xl tracking-tight sm:text-3xl"
           >
-            16 Hours. Zero Touch-Ups.
+            16 Hours. One Application. Your Whole Day.
           </motion.h2>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="mt-10"
-        >
-          {/* Slider container */}
-          <div
-            ref={containerRef}
-            className="relative aspect-[16/9] overflow-hidden rounded-2xl cursor-col-resize select-none"
-            onMouseMove={(e) => {
-              if (e.buttons === 1) handleMove(e.clientX);
-            }}
-            onMouseDown={(e) => handleMove(e.clientX)}
-            onTouchMove={(e) => handleMove(e.touches[0].clientX)}
-          >
-            {/* "After" side — full background (with Skindinavia) — flawless bridal look */}
-            <div className="absolute inset-0">
-              <Image
-                src="https://skindinavia.wpenginepowered.com/wp-content/uploads/2022/09/bride-makeup-trends-in-2022-1200x798.jpg"
-                alt="Flawless bridal makeup with Skindinavia after 16 hours"
-                fill
-                className="object-cover"
-                unoptimized
-              />
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/30" />
-              {/* Label */}
-              <div className="absolute bottom-6 right-6 z-20 text-right">
-                <p className="font-serif text-3xl font-light text-white sm:text-4xl">16h</p>
-                <p className="mt-1 text-xs font-medium uppercase tracking-wider text-white/80">With Skindinavia</p>
-                <p className="text-[10px] text-white/50">Flawless. Still locked in.</p>
-              </div>
-            </div>
+        {/* Timeline */}
+        <div className="mt-12 relative">
+          {/* Connecting line */}
+          <div className="absolute top-5 left-0 right-0 h-px bg-gradient-to-r from-sky-300/40 via-violet-300/40 to-pink-300/40 hidden sm:block" />
 
-            {/* "Before" side — clipped (without) — the struggle */}
-            <div
-              className="absolute inset-0"
-              style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}
-            >
-              <Image
-                src="https://skindinavia.wpenginepowered.com/wp-content/uploads/2021/10/shutterstock_1756040273-scaled.jpg"
-                alt="Makeup fading under stress without setting spray"
-                fill
-                className="object-cover grayscale brightness-90"
-                unoptimized
-              />
-              <div className="absolute inset-0 bg-gradient-to-b from-neutral-500/10 via-transparent to-black/40" />
-              {/* Label */}
-              <div className="absolute bottom-6 left-6 z-20">
-                <p className="font-serif text-3xl font-light text-white/70 sm:text-4xl">4h</p>
-                <p className="mt-1 text-xs font-medium uppercase tracking-wider text-white/50">Without</p>
-                <p className="text-[10px] text-white/30">Fading. Creasing. Melting.</p>
-              </div>
-            </div>
-
-            {/* Slider handle */}
-            <div
-              className="absolute top-0 bottom-0 z-10 flex items-center"
-              style={{ left: `${position}%` }}
-            >
-              <div className="relative h-full w-0.5 bg-white shadow-[0_0_8px_rgba(0,0,0,0.3)]">
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-lg">
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                    <path d="M5 3L2 8L5 13" stroke="#666" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                    <path d="M11 3L14 8L11 13" stroke="#666" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
+          <div className="grid grid-cols-2 gap-6 sm:grid-cols-5 sm:gap-3">
+            {milestones.map((m, i) => (
+              <motion.div
+                key={m.hour}
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.2 + i * 0.08 }}
+                className="relative text-center"
+              >
+                {/* Dot on timeline */}
+                <div className="flex justify-center mb-4">
+                  <div className={`h-2.5 w-2.5 rounded-full ${m.color} ring-4 ring-background relative z-10`} />
                 </div>
-              </div>
-            </div>
 
-            {/* Corner labels */}
-            <div className="absolute top-4 left-4 z-20 rounded-full bg-black/50 backdrop-blur-sm px-3 py-1.5 text-[10px] font-medium uppercase tracking-wider text-white">
-              Without Setting Spray
-            </div>
-            <div className="absolute top-4 right-4 z-20 rounded-full bg-white/90 backdrop-blur-sm px-3 py-1.5 text-[10px] font-medium uppercase tracking-wider text-foreground">
-              With Skindinavia
-            </div>
+                {/* Hour */}
+                <p className="font-serif text-2xl font-light tracking-tight text-foreground/80 sm:text-3xl">
+                  {m.hour}
+                </p>
+
+                {/* Title */}
+                <p className="mt-1.5 text-xs font-medium uppercase tracking-wider text-foreground">
+                  {m.title}
+                </p>
+
+                {/* Detail */}
+                <p className="mt-1 text-[11px] leading-relaxed text-muted-foreground max-w-[140px] mx-auto">
+                  {m.detail}
+                </p>
+
+                {/* Status pill */}
+                <div className="mt-2.5 inline-flex">
+                  <span className={`rounded-full px-2.5 py-0.5 text-[9px] font-medium uppercase tracking-wider text-white ${m.color}`}>
+                    {m.status}
+                  </span>
+                </div>
+              </motion.div>
+            ))}
           </div>
+        </div>
 
-          <p className="mt-4 text-center text-xs text-muted-foreground">
-            Drag to compare &middot; Based on clinical wear testing
-          </p>
-        </motion.div>
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.6, delay: 0.7 }}
+          className="mt-8 text-center text-xs text-muted-foreground"
+        >
+          Based on clinical wear testing &middot; Results may vary by skin type
+        </motion.p>
       </div>
     </section>
   );

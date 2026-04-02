@@ -233,6 +233,15 @@ const FONT_MAP = {
     padding: 8px 16px; cursor: pointer;
     transition: all 0.2s;
   }
+  .nav-site-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 8px 14px; border-radius: 8px;
+    border: 1px solid rgba(0,0,0,0.12);
+    background: transparent; color: #3D3935;
+    font-family: var(--sans); font-size: 12px; font-weight: 600;
+    text-decoration: none; cursor: pointer; transition: all 0.15s;
+  }
+  .nav-site-btn:hover { background: rgba(0,0,0,0.04); border-color: rgba(0,0,0,0.2); color: #0A0908; }
   .nav-new-btn:hover { background: #2D2A26; transform: translateY(-1px); box-shadow: var(--shadow-md); }
 
   /* ══════════════════════
@@ -677,6 +686,10 @@ const FONT_MAP = {
     </button>
   </div>
   <div class="nav-right">
+    <a href="https://skindinavia.vercel.app" target="_blank" class="nav-site-btn" title="View live website">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      View Site
+    </a>
     <div class="nav-live">
       <span class="nav-live-dot"></span>
       Live
@@ -724,6 +737,36 @@ const FONT_MAP = {
       <div class="greeting-label"><span>&#x25cf;</span> Brand Hub</div>
       <h1 id="greetingName"></h1>
       <div class="greeting-date" id="greetingDate"></div>
+    </div>
+
+    <!-- Weekly Recap -->
+    <div class="section-label" style="color:#B45309">Weekly Recap</div>
+    <div class="card fade-up" style="padding:24px;margin-bottom:20px;border-left:3px solid #B45309;background:linear-gradient(135deg,#FFFBEB,#fff)">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+        <div style="font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#B45309">Week of March 25 — March 31</div>
+        <div style="font-size:10px;color:#8A8580">Generated Monday 9:00 AM</div>
+      </div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:17px;line-height:1.65;color:#0A0908;font-style:italic">
+        Strong week. Revenue hit <strong>$3,280</strong> (+22% WoW), driven by a spike in Bridal formula orders — likely seasonal as wedding bookings accelerate into April. The SPRING15 discount code generated <strong>$840 in attributed revenue</strong> from 31 uses. Your Oil Control variant saw a <strong>38% increase</strong> in add-to-carts, suggesting the summer audience is starting to shop early. <strong>Recommendation:</strong> Consider launching the "Summer Proof Kit" bundle this week to capture that momentum before competitors run their seasonal campaigns.
+      </div>
+      <div style="display:flex;gap:20px;margin-top:16px;padding-top:14px;border-top:1px solid rgba(0,0,0,0.06)">
+        <div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;color:#059669">$3,280</div>
+          <div style="font-size:10px;color:#8A8580;text-transform:uppercase;letter-spacing:0.1em;margin-top:2px">Weekly Revenue</div>
+        </div>
+        <div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;color:#0A0908">98</div>
+          <div style="font-size:10px;color:#8A8580;text-transform:uppercase;letter-spacing:0.1em;margin-top:2px">Orders</div>
+        </div>
+        <div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;color:#0A0908">$33.47</div>
+          <div style="font-size:10px;color:#8A8580;text-transform:uppercase;letter-spacing:0.1em;margin-top:2px">Avg Order</div>
+        </div>
+        <div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;color:#059669">+22%</div>
+          <div style="font-size:10px;color:#8A8580;text-transform:uppercase;letter-spacing:0.1em;margin-top:2px">vs Last Week</div>
+        </div>
+      </div>
     </div>
 
     <!-- Revenue Card -->

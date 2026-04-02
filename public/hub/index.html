@@ -1216,10 +1216,10 @@ document.addEventListener('DOMContentLoaded', () => {
   function Particle() {
     this.x = Math.random() * canvas.width;
     this.y = Math.random() * canvas.height;
-    this.vx = (Math.random() - 0.5) * 0.35;
-    this.vy = (Math.random() - 0.5) * 0.35;
-    this.radius = Math.random() * 1.5 + 0.5;
-    this.opacity = Math.random() * 0.18 + 0.04;
+    this.vx = (Math.random() - 0.5) * 0.8;
+    this.vy = (Math.random() - 0.5) * 0.8;
+    this.radius = Math.random() * 2.5 + 1;
+    this.opacity = Math.random() * 0.5 + 0.3;
   }
   Particle.prototype.update = function() {
     this.x += this.vx; this.y += this.vy;
@@ -1228,8 +1228,8 @@ document.addEventListener('DOMContentLoaded', () => {
   };
   function init() {
     resize();
-    const count = Math.floor((canvas.width * canvas.height) / 12000);
-    particles = Array.from({ length: Math.min(count, 120) }, () => new Particle());
+    const count = Math.floor((canvas.width * canvas.height) / 6000);
+    particles = Array.from({ length: Math.min(count, 200) }, () => new Particle());
   }
   function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -1238,12 +1238,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const dx = particles[i].x - particles[j].x;
         const dy = particles[i].y - particles[j].y;
         const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 120) {
+        if (dist < 160) {
           ctx.beginPath();
           ctx.moveTo(particles[i].x, particles[i].y);
           ctx.lineTo(particles[j].x, particles[j].y);
-          ctx.strokeStyle = `rgba(0,0,0,${(1 - dist / 120) * 0.06})`;
-          ctx.lineWidth = 0.5;
+          ctx.strokeStyle = `rgba(0,0,0,${(1 - dist / 160) * 0.25})`;
+          ctx.lineWidth = 0.8;
           ctx.stroke();
         }
       }
@@ -1263,10 +1263,10 @@ document.addEventListener('DOMContentLoaded', () => {
     particles.forEach(p => {
       const dx = p.x - mouse.x, dy = p.y - mouse.y;
       const dist = Math.sqrt(dx * dx + dy * dy);
-      if (dist < 80) {
-        p.vx += (dx / dist) * 0.04; p.vy += (dy / dist) * 0.04;
+      if (dist < 120) {
+        p.vx += (dx / dist) * 0.1; p.vy += (dy / dist) * 0.1;
         const speed = Math.sqrt(p.vx*p.vx + p.vy*p.vy);
-        if (speed > 1.2) { p.vx = (p.vx/speed)*1.2; p.vy = (p.vy/speed)*1.2; }
+        if (speed > 2) { p.vx = (p.vx/speed)*2; p.vy = (p.vy/speed)*2; }
       }
     });
   });

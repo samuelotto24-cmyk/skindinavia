@@ -30,16 +30,16 @@ const CLIENT = {
   industryLabel: 'Beauty \u00b7 Setting Sprays',
   url: 'https://skindinavia.vercel.app',
   palette: {
-    bg: '#0C0A08',
-    surface: '#141110',
-    surfaceElevated: '#1C1916',
-    border: 'rgba(255,240,220,0.08)',
-    text: '#F0ECE6',
-    textMuted: 'rgba(240,236,230,0.40)',
-    accent: '#D4A574',
-    accentGlow: '#C49464',
-    accentPale: 'rgba(212,165,116,0.08)',
-    accentBorder: 'rgba(212,165,116,0.18)',
+    bg: '#FFFFFF',
+    surface: '#FFFFFF',
+    surfaceElevated: '#FAFAF9',
+    border: 'rgba(0,0,0,0.07)',
+    text: '#0A0908',
+    textMuted: '#8A8580',
+    accent: '#059669',
+    accentGlow: '#059669',
+    accentPale: 'rgba(5,150,105,0.06)',
+    accentBorder: 'rgba(5,150,105,0.18)',
   },
   font: 'playfair',
   products: [
@@ -126,10 +126,17 @@ const FONT_MAP = {
     --shadow-lg: 0 12px 32px rgba(0,0,0,0.08);
   }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  /* ── HARD WHITE OVERRIDE — cannot be overridden by theme engine ── */
+  html, body {
+    background: #FFFFFF !important;
+    color: #0A0908 !important;
+  }
+
   body {
-    font-family: var(--sans); color: var(--text); line-height: 1.65;
+    font-family: var(--sans); line-height: 1.65;
     font-size: 15px; min-height: 100vh; min-height: 100dvh;
-    background: var(--bg); overflow-x: hidden;
+    overflow-x: hidden;
   }
 
   /* ── Card entry animations ── */
@@ -224,9 +231,9 @@ const FONT_MAP = {
      ══════════════════════ */
   .bottom-nav {
     display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 100;
-    background: rgba(10,10,10,0.94);
+    background: rgba(255,255,255,0.95);
     backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-    border-top: 1px solid rgba(255,255,255,0.08);
+    border-top: 1px solid rgba(0,0,0,0.08);
     padding: 6px 8px calc(env(safe-area-inset-bottom, 8px) + 6px);
   }
   .bottom-nav-inner {
@@ -234,13 +241,13 @@ const FONT_MAP = {
   }
   .bottom-nav-btn {
     display: flex; flex-direction: column; align-items: center; gap: 3px;
-    background: none; border: none; color: rgba(255,255,255,0.45);
+    background: none; border: none; color: #8A8580;
     font-family: var(--sans); font-size: 9.5px; font-weight: 600;
     padding: 6px 12px; cursor: pointer; border-radius: 10px;
     transition: all 0.2s;
   }
   .bottom-nav-btn .bnav-icon { font-size: 20px; }
-  .bottom-nav-btn.active { color: #fff; }
+  .bottom-nav-btn.active { color: #0A0908; }
   .bottom-nav-btn.active[data-tab="dashboard"] { background: rgba(5,150,105,0.18); }
   .bottom-nav-btn.active[data-tab="marketing"] { background: rgba(29,78,216,0.18); }
   .bottom-nav-btn.active[data-tab="products"]  { background: rgba(180,83,9,0.18); }

@@ -1177,7 +1177,7 @@ function initProducts() {
         <span class="product-detail-label">Revenue (MTD)</span>
         <span class="product-detail-val">$${(mock.sold * prod.price).toLocaleString()}</span>
       </div>
-      <button class="product-edit-btn" onclick="editProduct('${p.name}','${p.sku}',${p.price})">Edit Product</button>
+      <button class="product-edit-btn" onclick="editProduct('${prod.name.replace(/'/g,"\\'")}','${prod.sku}',${prod.price})">Edit Product</button>
     `;
     grid.appendChild(card);
   });

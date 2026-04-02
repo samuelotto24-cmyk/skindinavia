@@ -327,45 +327,50 @@ export function SkinScienceAnimation({ activeStage }: { activeStage: number }) {
         />
       ))}
 
-      {/* ═══════════ SPRAY CLOUDS (mist builds between nozzle and skin) ═══════════ */}
-      {[
-        { cx: 220, cy: 180, r: 30 }, { cx: 260, cy: 170, r: 36 }, { cx: 300, cy: 185, r: 28 },
-        { cx: 200, cy: 220, r: 32 }, { cx: 250, cy: 215, r: 40 }, { cx: 310, cy: 225, r: 30 },
-        { cx: 230, cy: 260, r: 35 }, { cx: 280, cy: 255, r: 32 },
-      ].map((cl, i) => (
-        <ellipse key={`cloud-${i}`} className="spray-cloud" cx={cl.cx} cy={cl.cy} rx={cl.r} ry={cl.r * 0.55} fill={c.pri} opacity="0" filter="url(#g3)" />
-      ))}
-
-      {/* ═══════════ MIST PARTICLES ═══════════ */}
-      {/* Large droplets — closest to nozzle */}
-      {[
-        {cx:230,cy:160},{cx:250,cy:155},{cx:270,cy:162},{cx:240,cy:178},{cx:260,cy:175},
-        {cx:220,cy:185},{cx:280,cy:182},{cx:250,cy:190},
-      ].map((p, i) => (
-        <ellipse key={`lg-${i}`} className="mist-particle mist-lg" cx={p.cx} cy={p.cy} rx="3.5" ry="5" fill={c.sec} opacity="0" filter="url(#g1)" />
-      ))}
-      {/* Medium particles — spreading wider */}
-      {[
-        {cx:180,cy:210},{cx:210,cy:205},{cx:240,cy:200},{cx:260,cy:202},
-        {cx:290,cy:208},{cx:320,cy:212},{cx:200,cy:230},
-        {cx:230,cy:225},{cx:260,cy:228},{cx:290,cy:232},{cx:310,cy:235},{cx:175,cy:240},
-      ].map((p, i) => (
-        <ellipse key={`md-${i}`} className="mist-particle mist-md" cx={p.cx} cy={p.cy} rx="2.5" ry="3.5" fill={c.sec} opacity="0" filter="url(#g1)" />
-      ))}
-      {/* Tiny particles — widest spread, near skin */}
-      {Array.from({ length: 20 }).map((_, i) => {
-        const x = 140 + (i / 20) * 220 + ((i * 7) % 30) - 15;
-        const y = 255 + (i % 4) * 8;
+      {/* ═══════════ MIST HAZE (dense tiny particles, no blur filters) ═══════════ */}
+      {Array.from({ length: 50 }).map((_, i) => {
+        const progress = i / 50;
+        const spread = 30 + progress * 120;
+        const cx = 250 + (((i * 17) % 100) - 50) * (spread / 80);
+        const cy = 150 + progress * 140;
+        const r = 1.5 + (i % 5) * 0.8;
         return (
           <circle
-            key={`sm-${i}`}
-            className="mist-particle mist-sm"
-            cx={x}
-            cy={y}
-            r={1 + (i % 3) * 0.4}
+            key={`haze-${i}`}
+            className="spray-cloud"
+            cx={cx}
+            cy={cy}
+            r={r}
             fill={c.sec}
             opacity="0"
           />
+        );
+      })}
+
+      {/* ═══════════ MIST PARTICLES (pure circles, no blur filters) ═══════════ */}
+      {/* Large drops — near nozzle, fall fast */}
+      {Array.from({ length: 12 }).map((_, i) => {
+        const cx = 230 + ((i * 13) % 40);
+        const cy = 155 + ((i * 7) % 25);
+        return (
+          <circle key={`lg-${i}`} className="mist-particle mist-lg" cx={cx} cy={cy} r={2.5 + (i % 3)} fill={c.sec} opacity="0" />
+        );
+      })}
+      {/* Medium drops — spread wider */}
+      {Array.from({ length: 20 }).map((_, i) => {
+        const spread = 60 + (i / 20) * 80;
+        const cx = 250 + (((i * 19) % 100) - 50) * (spread / 100);
+        const cy = 195 + ((i * 11) % 35);
+        return (
+          <circle key={`md-${i}`} className="mist-particle mist-md" cx={cx} cy={cy} r={1.5 + (i % 3) * 0.5} fill={c.sec} opacity="0" />
+        );
+      })}
+      {/* Tiny mist — widest, near skin */}
+      {Array.from({ length: 25 }).map((_, i) => {
+        const cx = 150 + ((i * 14) % 200);
+        const cy = 250 + ((i * 9) % 30);
+        return (
+          <circle key={`sm-${i}`} className="mist-particle mist-sm" cx={cx} cy={cy} r={0.8 + (i % 4) * 0.3} fill={c.sec} opacity="0" />
         );
       })}
 

@@ -681,7 +681,7 @@ const FONT_MAP = {
       <span class="nav-live-dot"></span>
       Live
     </div>
-    <button class="nav-new-btn">+ New Campaign</button>
+    <button class="nav-new-btn" onclick="openNewCampaign()">+ New Campaign</button>
   </div>
 </nav>
 
@@ -1210,6 +1210,43 @@ function initPromptChips() {
       }
     });
   });
+}
+
+/* ── New Campaign Modal ── */
+function openNewCampaign() {
+  const overlay = document.createElement('div');
+  overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.3);backdrop-filter:blur(4px);z-index:200;display:flex;align-items:center;justify-content:center;animation:fadeIn 0.2s ease';
+  overlay.onclick = (e) => { if (e.target === overlay) overlay.remove(); };
+
+  overlay.innerHTML = `
+    <div style="background:#fff;border-radius:16px;padding:28px;width:90%;max-width:480px;box-shadow:0 20px 60px rgba(0,0,0,0.15);animation:fadeUpIn 0.3s ease">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
+        <h3 style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:#0A0908">New Campaign</h3>
+        <button onclick="this.closest('[style*=fixed]').remove()" style="background:none;border:none;font-size:18px;color:#8A8580;cursor:pointer">&times;</button>
+      </div>
+      <label style="display:block;font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#8A8580;margin-bottom:6px">Campaign Name</label>
+      <input placeholder="e.g. Summer Setting Spray Launch" style="width:100%;padding:10px 14px;border:1px solid rgba(0,0,0,0.1);border-radius:8px;font-size:14px;font-family:'DM Sans',sans-serif;color:#0A0908;margin-bottom:16px;outline:none">
+      <label style="display:block;font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#8A8580;margin-bottom:6px">Channel</label>
+      <div style="display:flex;gap:8px;margin-bottom:16px">
+        <button onclick="this.parentNode.querySelectorAll('button').forEach(b=>b.style.cssText='padding:8px 16px;border-radius:20px;font-family:DM Sans,sans-serif;font-size:12px;font-weight:600;cursor:pointer;border:1px solid rgba(0,0,0,0.1);background:#fff;color:#3D3935');this.style.cssText='padding:8px 16px;border-radius:20px;font-family:DM Sans,sans-serif;font-size:12px;font-weight:600;cursor:pointer;border:1px solid #1D4ED8;background:#DBEAFE;color:#1D4ED8'" style="padding:8px 16px;border-radius:20px;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;cursor:pointer;border:1px solid #1D4ED8;background:#DBEAFE;color:#1D4ED8">Email</button>
+        <button onclick="this.parentNode.querySelectorAll('button').forEach(b=>b.style.cssText='padding:8px 16px;border-radius:20px;font-family:DM Sans,sans-serif;font-size:12px;font-weight:600;cursor:pointer;border:1px solid rgba(0,0,0,0.1);background:#fff;color:#3D3935');this.style.cssText='padding:8px 16px;border-radius:20px;font-family:DM Sans,sans-serif;font-size:12px;font-weight:600;cursor:pointer;border:1px solid #BE185D;background:#FCE7F3;color:#BE185D'" style="padding:8px 16px;border-radius:20px;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;cursor:pointer;border:1px solid rgba(0,0,0,0.1);background:#fff;color:#3D3935">Social</button>
+        <button onclick="this.parentNode.querySelectorAll('button').forEach(b=>b.style.cssText='padding:8px 16px;border-radius:20px;font-family:DM Sans,sans-serif;font-size:12px;font-weight:600;cursor:pointer;border:1px solid rgba(0,0,0,0.1);background:#fff;color:#3D3935');this.style.cssText='padding:8px 16px;border-radius:20px;font-family:DM Sans,sans-serif;font-size:12px;font-weight:600;cursor:pointer;border:1px solid #B45309;background:#FEF3C7;color:#B45309'" style="padding:8px 16px;border-radius:20px;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;cursor:pointer;border:1px solid rgba(0,0,0,0.1);background:#fff;color:#3D3935">Paid Ads</button>
+      </div>
+      <label style="display:block;font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#8A8580;margin-bottom:6px">Target Audience</label>
+      <select style="width:100%;padding:10px 14px;border:1px solid rgba(0,0,0,0.1);border-radius:8px;font-size:14px;font-family:'DM Sans',sans-serif;color:#0A0908;margin-bottom:16px;outline:none;background:#fff">
+        <option>All Customers</option><option>Brides & Wedding</option><option>Professional MUAs</option><option>Oily Skin Segment</option><option>Urban Decay Switchers</option><option>New Subscribers</option>
+      </select>
+      <label style="display:block;font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#8A8580;margin-bottom:6px">Discount Code (optional)</label>
+      <select style="width:100%;padding:10px 14px;border:1px solid rgba(0,0,0,0.1);border-radius:8px;font-size:14px;font-family:'DM Sans',sans-serif;color:#0A0908;margin-bottom:20px;outline:none;background:#fff">
+        <option>None</option>${CLIENT.discountCodes.map(c => '<option>' + c.code + ' — ' + c.discount + '</option>').join('')}
+      </select>
+      <div style="display:flex;gap:10px;justify-content:flex-end">
+        <button onclick="this.closest('[style*=fixed]').remove()" style="padding:10px 20px;border:1px solid rgba(0,0,0,0.1);border-radius:8px;background:#fff;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;color:#3D3935;cursor:pointer">Cancel</button>
+        <button onclick="this.closest('[style*=fixed]').remove()" style="padding:10px 20px;border:none;border-radius:8px;background:#0A0908;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;color:#fff;cursor:pointer">Create Campaign</button>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(overlay);
 }
 
 /* ── Edit Product Modal ── */

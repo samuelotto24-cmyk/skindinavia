@@ -3,7 +3,7 @@
 import { useRef, useEffect } from "react";
 import gsap from "gsap";
 
-export function SkinScienceAnimation({ activeStage }: { activeStage: number }) {
+export function SkinScienceAnimation({ activeStage, light = false }: { activeStage: number; light?: boolean }) {
   const svgRef = useRef<SVGSVGElement>(null);
   const tlRef = useRef<gsap.core.Timeline | null>(null);
 
@@ -172,12 +172,20 @@ export function SkinScienceAnimation({ activeStage }: { activeStage: number }) {
     return () => { tl.kill(); };
   }, [activeStage]);
 
-  const palettes = [
+  const darkPalettes = [
     { pri: "#38bdf8", sec: "#7dd3fc", glow: "#0ea5e9", dim: "#0c4a6e" },
     { pri: "#818cf8", sec: "#a5b4fc", glow: "#6366f1", dim: "#312e81" },
     { pri: "#a78bfa", sec: "#c4b5fd", glow: "#8b5cf6", dim: "#4c1d95" },
   ];
-  const c = palettes[activeStage];
+  const lightPalettes = [
+    { pri: "#0284c7", sec: "#38bdf8", glow: "#0ea5e9", dim: "#bae6fd" },
+    { pri: "#4f46e5", sec: "#818cf8", glow: "#6366f1", dim: "#c7d2fe" },
+    { pri: "#7c3aed", sec: "#a78bfa", glow: "#8b5cf6", dim: "#ddd6fe" },
+  ];
+  const c = (light ? lightPalettes : darkPalettes)[activeStage];
+  const line = light ? "rgba(0,0,0," : "rgba(255,255,255,";
+  const skin = light ? "rgba(180,130,90," : "rgba(255,220,195,";
+  const skinAlt = light ? "rgba(160,110,70," : "rgba(255,170,150,";
 
   // Generate hex grid positions for lock stage
   const hexPositions: { x: number; y: number }[] = [];
@@ -212,9 +220,9 @@ export function SkinScienceAnimation({ activeStage }: { activeStage: number }) {
           <stop offset="100%" stopColor={c.pri} stopOpacity="0" />
         </linearGradient>
         <linearGradient id="skinG" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stopColor="#f5cba7" stopOpacity="0.18" />
-          <stop offset="50%" stopColor="#d4a574" stopOpacity="0.1" />
-          <stop offset="100%" stopColor="#8b6f47" stopOpacity="0.05" />
+          <stop offset="0%" stopColor={light ? "#d4a574" : "#f5cba7"} stopOpacity="0.18" />
+          <stop offset="50%" stopColor={light ? "#a07850" : "#d4a574"} stopOpacity="0.1" />
+          <stop offset="100%" stopColor={light ? "#6b5030" : "#8b6f47"} stopOpacity="0.05" />
         </linearGradient>
         <linearGradient id="coolOverG" x1="0%" y1="0%" x2="0%" y2="100%">
           <stop offset="0%" stopColor={c.pri} stopOpacity="0.15" />
@@ -227,30 +235,30 @@ export function SkinScienceAnimation({ activeStage }: { activeStage: number }) {
 
       {/* ═══════════ SKIN CROSS-SECTION ═══════════ */}
       {/* Deep subcutaneous */}
-      <path d="M 0 395 Q 125 388, 250 392 Q 375 396, 500 390" fill="none" stroke="rgba(255,255,255,0.02)" strokeWidth="40" />
+      <path d="M 0 395 Q 125 388, 250 392 Q 375 396, 500 390" fill="none" stroke={`${line}0.02)`} strokeWidth="40" />
       {/* Dermis with collagen fiber hints */}
-      <path d="M 0 360 Q 125 350, 250 354 Q 375 358, 500 352" fill="none" stroke="rgba(255,255,255,0.04)" strokeWidth="25" />
+      <path d="M 0 360 Q 125 350, 250 354 Q 375 358, 500 352" fill="none" stroke={`${line}0.04)`} strokeWidth="25" />
       {/* Collagen fibers in dermis */}
       {[60, 120, 180, 250, 320, 390, 440].map((x, i) => (
         <path key={`col-${i}`} d={`M ${x} ${348 + Math.sin(i) * 3} Q ${x + 15} ${355 + Math.cos(i) * 4}, ${x + 30} ${350 + Math.sin(i * 1.3) * 3}`} fill="none" stroke="rgba(255,255,255,0.025)" strokeWidth="1.5" />
       ))}
       {/* Epidermis — main skin surface */}
-      <path d="M 0 325 Q 60 318, 125 321 Q 190 324, 250 320 Q 310 316, 375 319 Q 440 322, 500 318" fill="none" stroke="rgba(255,220,195,0.25)" strokeWidth="3.5" strokeLinecap="round" />
+      <path d="M 0 325 Q 60 318, 125 321 Q 190 324, 250 320 Q 310 316, 375 319 Q 440 322, 500 318" fill="none" stroke={`${skin}0.25)`} strokeWidth="3.5" strokeLinecap="round" />
       {/* Skin cell texture */}
       {Array.from({ length: 16 }).map((_, i) => {
         const x = 30 + i * 28;
         const yBase = 320 + Math.sin(i * 0.7) * 3;
         return (
           <g key={`cell-${i}`} opacity={0.04 + (i % 3) * 0.01}>
-            <ellipse cx={x} cy={yBase + 12} rx="10" ry="8" fill="none" stroke="rgba(255,220,195,0.15)" strokeWidth="0.5" />
+            <ellipse cx={x} cy={yBase + 12} rx="10" ry="8" fill="none" stroke={`${skin}0.15)`} strokeWidth="0.5" />
           </g>
         );
       })}
       {/* Pores */}
       {[70, 150, 230, 310, 400].map((x, i) => (
         <g key={`pore-${i}`}>
-          <circle cx={x} cy={318 + Math.sin(i * 1.4) * 3} r="2" fill="rgba(255,220,195,0.06)" />
-          <line x1={x} y1={321 + Math.sin(i * 1.4) * 3} x2={x} y2={345 + Math.sin(i) * 3} stroke="rgba(255,255,255,0.02)" strokeWidth="0.8" />
+          <circle cx={x} cy={318 + Math.sin(i * 1.4) * 3} r="2" fill={`${skin}0.06)`} />
+          <line x1={x} y1={321 + Math.sin(i * 1.4) * 3} x2={x} y2={345 + Math.sin(i) * 3} stroke={`${line}0.02)`} strokeWidth="0.8" />
         </g>
       ))}
       {/* Skin body fill */}
@@ -259,46 +267,46 @@ export function SkinScienceAnimation({ activeStage }: { activeStage: number }) {
       <path className="cool-gradient-overlay" d="M 0 310 Q 250 300, 500 310 L 500 350 L 0 350 Z" fill="url(#coolOverG)" opacity="0" />
 
       {/* ═══════════ MAKEUP LAYER ═══════════ */}
-      <path d="M 40 312 Q 100 306, 170 309 Q 250 312, 330 308 Q 400 305, 460 310" stroke="rgba(255,170,150,0.35)" strokeWidth="4" fill="none" strokeLinecap="round" />
+      <path d="M 40 312 Q 100 306, 170 309 Q 250 312, 330 308 Q 400 305, 460 310" stroke={`${skinAlt}0.35)`} strokeWidth="4" fill="none" strokeLinecap="round" />
       {/* Makeup pigment dots */}
       {Array.from({ length: 14 }).map((_, i) => {
         const x = 55 + i * 30;
-        return <circle key={`pig-${i}`} cx={x} cy={309 + Math.sin(i * 0.9) * 3} r={0.8 + (i % 3) * 0.3} fill="rgba(255,170,150,0.25)" />;
+        return <circle key={`pig-${i}`} cx={x} cy={309 + Math.sin(i * 0.9) * 3} r={0.8 + (i % 3) * 0.3} fill={`${skinAlt}0.25)`} />;
       })}
 
       {/* Labels */}
-      <text x="480" y="312" fill="rgba(255,190,170,0.12)" fontSize="7" fontFamily="sans-serif" fontStyle="italic" textAnchor="end">makeup</text>
-      <text x="480" y="326" fill="rgba(255,255,255,0.08)" fontSize="7" fontFamily="sans-serif" fontStyle="italic" textAnchor="end">epidermis</text>
-      <text x="480" y="358" fill="rgba(255,255,255,0.05)" fontSize="6.5" fontFamily="sans-serif" fontStyle="italic" textAnchor="end">dermis</text>
+      <text x="480" y="312" fill={`${skinAlt}0.12)`} fontSize="7" fontFamily="sans-serif" fontStyle="italic" textAnchor="end">makeup</text>
+      <text x="480" y="326" fill={`${line}0.08)`} fontSize="7" fontFamily="sans-serif" fontStyle="italic" textAnchor="end">epidermis</text>
+      <text x="480" y="358" fill={`${line}0.05)`} fontSize="6.5" fontFamily="sans-serif" fontStyle="italic" textAnchor="end">dermis</text>
 
       {/* ═══════════ SPRAY BOTTLE (horizontal, large, nozzle pointing down-right) ═══════════ */}
       <g transform="translate(30, 20) rotate(25, 120, 80)">
         {/* Bottle body — large horizontal cylinder */}
         <path
           d="M 40 55 Q 35 55, 35 65 L 35 95 Q 35 105, 40 105 L 180 105 Q 185 105, 185 95 L 185 65 Q 185 55, 180 55 Z"
-          fill="rgba(255,255,255,0.07)"
-          stroke="rgba(255,255,255,0.14)"
+          fill={`${line}0.07)`}
+          stroke={`${line}0.14)`}
           strokeWidth="1.2"
         />
         {/* Bottom curve of bottle */}
-        <path d="M 40 105 Q 110 112, 180 105" fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth="0.8" />
+        <path d="M 40 105 Q 110 112, 180 105" fill="none" stroke={`${line}0.06)`} strokeWidth="0.8" />
         {/* Label area */}
-        <rect x="55" y="62" width="85" height="35" rx="3" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.07)" strokeWidth="0.5" />
-        <line x1="65" y1="74" x2="130" y2="74" stroke="rgba(255,255,255,0.06)" strokeWidth="0.8" />
-        <line x1="72" y1="81" x2="123" y2="81" stroke="rgba(255,255,255,0.04)" strokeWidth="0.5" />
+        <rect x="55" y="62" width="85" height="35" rx="3" fill={`${line}0.03)`} stroke={`${line}0.07)`} strokeWidth="0.5" />
+        <line x1="65" y1="74" x2="130" y2="74" stroke={`${line}0.06)`} strokeWidth="0.8" />
+        <line x1="72" y1="81" x2="123" y2="81" stroke={`${line}0.04)`} strokeWidth="0.5" />
         <line x1="80" y1="88" x2="115" y2="88" stroke="rgba(255,255,255,0.03)" strokeWidth="0.4" />
         {/* Cap/pump mechanism */}
-        <rect x="185" y="60" width="30" height="40" rx="4" fill="rgba(255,255,255,0.09)" stroke="rgba(255,255,255,0.15)" strokeWidth="1" />
+        <rect x="185" y="60" width="30" height="40" rx="4" fill={`${line}0.09)`} stroke={`${line}0.15)`} strokeWidth="1" />
         {/* Grip ridges */}
-        <line x1="189" y1="68" x2="211" y2="68" stroke="rgba(255,255,255,0.06)" strokeWidth="0.5" />
-        <line x1="189" y1="74" x2="211" y2="74" stroke="rgba(255,255,255,0.06)" strokeWidth="0.5" />
-        <line x1="189" y1="80" x2="211" y2="80" stroke="rgba(255,255,255,0.06)" strokeWidth="0.5" />
-        <line x1="189" y1="86" x2="211" y2="86" stroke="rgba(255,255,255,0.06)" strokeWidth="0.5" />
+        <line x1="189" y1="68" x2="211" y2="68" stroke={`${line}0.06)`} strokeWidth="0.5" />
+        <line x1="189" y1="74" x2="211" y2="74" stroke={`${line}0.06)`} strokeWidth="0.5" />
+        <line x1="189" y1="80" x2="211" y2="80" stroke={`${line}0.06)`} strokeWidth="0.5" />
+        <line x1="189" y1="86" x2="211" y2="86" stroke={`${line}0.06)`} strokeWidth="0.5" />
         {/* Nozzle arm extending down */}
         <path
           d="M 200 100 L 200 118 Q 200 124, 205 126 L 218 126 Q 224 126, 224 120 L 224 114"
           fill="none"
-          stroke="rgba(255,255,255,0.16)"
+          stroke={`${line}0.16)`}
           strokeWidth="1.2"
           strokeLinecap="round"
         />
@@ -306,8 +314,8 @@ export function SkinScienceAnimation({ activeStage }: { activeStage: number }) {
         <circle cx="224" cy="112" r="3.5" fill={c.pri} opacity="0.35" />
         <circle cx="224" cy="112" r="1.5" fill={c.pri} opacity="0.6" />
         {/* Bottle reflection highlight */}
-        <line x1="45" y1="60" x2="45" y2="100" stroke="rgba(255,255,255,0.07)" strokeWidth="2" strokeLinecap="round" />
-        <line x1="50" y1="62" x2="50" y2="98" stroke="rgba(255,255,255,0.04)" strokeWidth="1" strokeLinecap="round" />
+        <line x1="45" y1="60" x2="45" y2="100" stroke={`${line}0.07)`} strokeWidth="2" strokeLinecap="round" />
+        <line x1="50" y1="62" x2="50" y2="98" stroke={`${line}0.04)`} strokeWidth="1" strokeLinecap="round" />
       </g>
       {/* Nozzle activation pulses (in world space, at nozzle tip after transform) */}
       <circle className="nozzle-pulse" cx="250" cy="135" r="8" fill={c.pri} opacity="0" filter="url(#g2)" />
@@ -391,7 +399,7 @@ export function SkinScienceAnimation({ activeStage }: { activeStage: number }) {
           {/* Bright center */}
           <circle cx={p.cx} cy={p.cy} r="2.5" fill={c.pri} opacity="0.9" />
           {/* Highlight */}
-          <circle cx={p.cx - 3} cy={p.cy - 3} r="1.5" fill="white" opacity="0.4" />
+          <circle cx={p.cx - 3} cy={p.cy - 3} r="1.5" fill={light ? "black" : "white"} opacity="0.4" />
           {/* Ripple ring */}
           <circle className="cool-ripple" cx={p.cx} cy={p.cy} r="16" fill="none" stroke={c.sec} strokeWidth="1.5" opacity="0" />
         </g>
@@ -409,12 +417,12 @@ export function SkinScienceAnimation({ activeStage }: { activeStage: number }) {
 
       {/* Temperature gauge */}
       <g className="temp-gauge" opacity="0">
-        <rect x="38" y="275" width="10" height="50" rx="5" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.12)" strokeWidth="0.8" />
+        <rect x="38" y="275" width="10" height="50" rx="5" fill={`${line}0.06)`} stroke={`${line}0.12)`} strokeWidth="0.8" />
         <rect className="temp-fill" x="40" y="277" width="6" height="46" rx="3" fill={c.pri} opacity="0.6" />
-        <circle cx="43" cy="330" r="8" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.08)" strokeWidth="0.5" />
+        <circle cx="43" cy="330" r="8" fill={`${line}0.04)`} stroke={`${line}0.08)`} strokeWidth="0.5" />
         <circle cx="43" cy="330" r="4" fill={c.pri} opacity="0.4" />
         {[0, 1, 2, 3, 4].map((i) => (
-          <line key={`tick-${i}`} x1="50" y1={280 + i * 10} x2="54" y2={280 + i * 10} stroke="rgba(255,255,255,0.08)" strokeWidth="0.5" />
+          <line key={`tick-${i}`} x1="50" y1={280 + i * 10} x2="54" y2={280 + i * 10} stroke={`${line}0.08)`} strokeWidth="0.5" />
         ))}
         <text x="43" y="268" fill={c.sec} fontSize="7.5" fontFamily="sans-serif" textAnchor="middle" opacity="0.6">
           cooling

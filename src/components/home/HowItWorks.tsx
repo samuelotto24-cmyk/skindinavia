@@ -7,27 +7,9 @@ import { Button } from "@/components/ui/button";
 import { SkinScienceAnimation } from "@/components/animation/SkinScienceAnimation";
 
 const stages = [
-  {
-    number: "01",
-    title: "Mist",
-    detail: "Micro-encapsulated cooling spheres blanket your makeup in a fine, even mist.",
-    accentClass: "text-sky-600",
-    barColor: "bg-sky-500",
-  },
-  {
-    number: "02",
-    title: "Cool",
-    detail: "Patented tech lowers surface temperature, fusing makeup to your skin.",
-    accentClass: "text-indigo-600",
-    barColor: "bg-indigo-500",
-  },
-  {
-    number: "03",
-    title: "Lock",
-    detail: "Time-release polymers create 16+ hours of continuous wear protection.",
-    accentClass: "text-violet-600",
-    barColor: "bg-violet-500",
-  },
+  { number: "01", title: "Mist", detail: "Cooling spheres blanket your makeup in a fine, even mist.", accentClass: "text-sky-600", barColor: "bg-sky-500" },
+  { number: "02", title: "Cool", detail: "Temperature drops 5°F, fusing makeup to skin.", accentClass: "text-indigo-600", barColor: "bg-indigo-500" },
+  { number: "03", title: "Lock", detail: "Time-release polymers protect for 16+ hours.", accentClass: "text-violet-600", barColor: "bg-violet-500" },
 ];
 
 const STAGE_DURATION = 4000;
@@ -62,98 +44,98 @@ export function HowItWorks() {
   }, [activeStage, isInView]);
 
   return (
-    <section ref={sectionRef} className="relative py-10 lg:py-14 border-t border-border/40 overflow-hidden">
-      <div className="relative mx-auto max-w-6xl px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center mb-8">
+    <section ref={sectionRef} className="relative py-10 lg:py-12 border-t border-border/40 overflow-hidden">
+      <div className="relative mx-auto max-w-5xl px-6 lg:px-8">
+        {/* Header — inline */}
+        <div className="mb-6">
           <motion.p
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : {}}
             transition={{ duration: 0.6 }}
-            className="text-[10px] font-semibold uppercase tracking-[0.3em] text-muted-foreground mb-3"
+            className="text-[10px] font-semibold uppercase tracking-[0.3em] text-muted-foreground mb-2"
           >
             U.S. Patent Protected
           </motion.p>
-
           <motion.h2
-            initial={{ opacity: 0, y: 15 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.1 }}
-            className="font-serif text-2xl tracking-tight sm:text-3xl lg:text-4xl"
+            transition={{ duration: 0.7, delay: 0.1 }}
+            className="font-serif text-2xl tracking-tight sm:text-3xl"
           >
-            The Science of{" "}
-            <span className="text-muted-foreground/60">16-Hour Wear</span>
+            The Science of <span className="text-muted-foreground/60">16-Hour Wear</span>
           </motion.h2>
         </div>
 
-        {/* Animation — compact, centered */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={isInView ? { opacity: 1, scale: 1 } : {}}
-          transition={{ duration: 1, delay: 0.2 }}
-          className="relative mx-auto w-full max-w-[280px] aspect-square mb-8"
-        >
-          <SkinScienceAnimation activeStage={activeStage} light />
-        </motion.div>
-
-        {/* Steps — horizontal row */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-          {stages.map((stage, i) => {
-            const isActive = i === activeStage;
-            return (
-              <button
-                key={stage.number}
-                onClick={() => { setActiveStage(i); setProgress(0); }}
-                className={`text-left rounded-xl p-5 transition-all duration-500 ${
-                  isActive
-                    ? "bg-stone-50 border border-border/60"
-                    : "bg-transparent border border-transparent hover:bg-stone-50/50"
-                }`}
-              >
-                <div className="flex items-start gap-3">
-                  <span className={`font-serif text-2xl font-light transition-colors duration-500 ${
-                    isActive ? stage.accentClass : "text-muted-foreground/15"
-                  }`}>
-                    {stage.number}
-                  </span>
-                  <div className="flex-1 min-w-0">
-                    <h3 className={`font-serif text-lg tracking-tight transition-colors duration-500 ${
-                      isActive ? "text-foreground" : "text-muted-foreground/30"
-                    }`}>
-                      {stage.title}
-                    </h3>
-                    <p className={`mt-1 text-xs leading-relaxed transition-colors duration-500 ${
-                      isActive ? "text-muted-foreground" : "text-muted-foreground/20"
-                    }`}>
-                      {stage.detail}
-                    </p>
-                    {isActive && (
-                      <div className="mt-3 h-[2px] w-full rounded-full bg-border/40 overflow-hidden">
-                        <div
-                          className={`h-full rounded-full ${stage.barColor} transition-none`}
-                          style={{ width: `${progress * 100}%` }}
-                        />
-                      </div>
-                    )}
-                  </div>
-                </div>
-              </button>
-            );
-          })}
-        </div>
-
-        {/* CTA */}
-        <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
-          <Button
-            size="lg"
-            className="h-11 px-8 text-sm tracking-wider uppercase"
-            render={<Link href="/shop" />}
+        {/* Animation left + steps right */}
+        <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6 lg:gap-10">
+          {/* Animation — compact */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={isInView ? { opacity: 1 } : {}}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="shrink-0 w-[200px] h-[200px] sm:w-[220px] sm:h-[220px]"
           >
-            Shop Now
-          </Button>
-          <p className="text-[10px] text-muted-foreground/40 uppercase tracking-[0.2em]">
-            Clinically Tested &middot; Made in USA &middot; Cruelty-Free
-          </p>
+            <SkinScienceAnimation activeStage={activeStage} light />
+          </motion.div>
+
+          {/* Steps — tight list */}
+          <div className="flex-1 w-full">
+            {stages.map((stage, i) => {
+              const isActive = i === activeStage;
+              return (
+                <button
+                  key={stage.number}
+                  onClick={() => { setActiveStage(i); setProgress(0); }}
+                  className={`w-full text-left px-4 py-3 rounded-lg transition-all duration-400 ${
+                    isActive ? "bg-stone-50" : "hover:bg-stone-50/40"
+                  }`}
+                >
+                  <div className="flex items-baseline gap-3">
+                    <span className={`font-serif text-lg font-light transition-colors duration-400 ${
+                      isActive ? stage.accentClass : "text-muted-foreground/15"
+                    }`}>
+                      {stage.number}
+                    </span>
+                    <div className="flex-1">
+                      <div className="flex items-baseline gap-2">
+                        <h3 className={`font-serif text-base tracking-tight transition-colors duration-400 ${
+                          isActive ? "text-foreground" : "text-muted-foreground/30"
+                        }`}>
+                          {stage.title}
+                        </h3>
+                        <span className={`text-xs transition-colors duration-400 ${
+                          isActive ? "text-muted-foreground" : "text-muted-foreground/15"
+                        }`}>
+                          {stage.detail}
+                        </span>
+                      </div>
+                      {isActive && (
+                        <div className="mt-2 h-[1.5px] w-full rounded-full bg-border/30 overflow-hidden">
+                          <div
+                            className={`h-full rounded-full ${stage.barColor} transition-none`}
+                            style={{ width: `${progress * 100}%` }}
+                          />
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </button>
+              );
+            })}
+
+            <div className="mt-4 pl-4 flex items-center gap-4">
+              <Button
+                size="sm"
+                className="h-9 px-6 text-xs tracking-wider uppercase"
+                render={<Link href="/shop" />}
+              >
+                Shop Now
+              </Button>
+              <p className="text-[9px] text-muted-foreground/35 uppercase tracking-[0.2em]">
+                Clinically Tested &middot; Made in USA
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </section>

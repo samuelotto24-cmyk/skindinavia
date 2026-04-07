@@ -26,9 +26,9 @@ const moments = [
     cta: "Shop Original",
   },
   {
-    title: "Your Oiliest Moments",
+    title: "Shine-Free All Day",
     subtitle: "Matte. All day. No touch-ups.",
-    description: "Summer heat, humidity, oily skin — controlled all day.",
+    description: "Heat, humidity, and oil — controlled from morning to night.",
     product: products.find((p) => p.id === "3")!,
     href: "/products/the-makeup-finishing-spray-oil-control",
     lifestyle: "https://skindinavia.wpenginepowered.com/wp-content/uploads/2022/10/skindinavia_301654740_843255973747273_6612108819761506876_n.jpg",

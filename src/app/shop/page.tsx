@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { getProductsByCategory, getCategoryLabel } from "@/lib/mock-data";
@@ -16,20 +17,17 @@ const categories = [
 export default function ShopPage() {
   return (
     <>
-      {/* Hero */}
-      <section className="border-b border-border/50 bg-gradient-to-b from-stone-50 to-white pt-10 pb-12">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
-            The Collection
-          </p>
-          <h1 className="mt-3 text-4xl font-serif font-light tracking-tight sm:text-5xl">
-            Shop All Products
-          </h1>
-          <p className="mt-4 max-w-xl text-base text-muted-foreground">
-            Professional-grade setting sprays, primers, and kits trusted by
-            makeup artists on Broadway, in Hollywood, and at weddings worldwide.
-          </p>
-        </div>
+      {/* Hero — lineup banner */}
+      <section className="relative border-b border-border/50">
+        <Image
+          src="/product-lineup.png"
+          alt="The complete Skindinavia collection"
+          width={1920}
+          height={480}
+          className="w-full h-auto"
+          sizes="100vw"
+          priority
+        />
       </section>
 
       {/* Quick nav */}

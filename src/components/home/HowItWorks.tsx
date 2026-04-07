@@ -70,7 +70,7 @@ export function HowItWorks() {
   const currentStage = stages[activeStage];
 
   return (
-    <section ref={sectionRef} className="relative py-20 lg:py-28 bg-gradient-to-b from-[#08080f] via-[#0d0d1a] to-[#08080f] text-white overflow-hidden">
+    <section ref={sectionRef} className="relative py-14 lg:py-20 bg-gradient-to-b from-[#08080f] via-[#0d0d1a] to-[#08080f] text-white overflow-hidden">
       {/* Ambient glow */}
       <motion.div
         animate={{ opacity: [0.3, 0.5, 0.3] }}
@@ -84,30 +84,27 @@ export function HowItWorks() {
 
       <div className="relative mx-auto max-w-6xl px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-16">
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
+        <div className="text-center mb-10">
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={isInView ? { opacity: 1 } : {}}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2.5 rounded-full border border-white/10 bg-white/[0.04] px-5 py-2 mb-6 backdrop-blur-sm"
+            className="text-[10px] font-semibold uppercase tracking-[0.3em] text-white/30 mb-4"
           >
-            <span className="h-1.5 w-1.5 rounded-full bg-sky-400 animate-pulse" />
-            <span className="text-[10px] font-semibold uppercase tracking-[0.3em] text-white/60">
-              U.S. Patent Protected
-            </span>
-          </motion.div>
+            U.S. Patent Protected
+          </motion.p>
 
           <motion.h2
             initial={{ opacity: 0, y: 15 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="font-serif text-4xl tracking-tight sm:text-5xl lg:text-6xl"
+            className="font-serif text-3xl tracking-tight sm:text-4xl lg:text-5xl"
           >
-            <span className="bg-gradient-to-r from-white via-white to-white/60 bg-clip-text text-transparent">
+            <span className="text-white">
               The Science of
             </span>
             <br />
-            <span className="bg-gradient-to-r from-sky-200 via-indigo-200 to-violet-200 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-white/80 via-white/60 to-white/40 bg-clip-text text-transparent">
               16-Hour Wear
             </span>
           </motion.h2>
@@ -116,10 +113,9 @@ export function HowItWorks() {
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : {}}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="mt-5 mx-auto max-w-lg text-sm leading-relaxed text-white/40"
+            className="mt-4 mx-auto max-w-lg text-sm leading-relaxed text-white/35"
           >
             The only setting spray with patented temperature-control technology.
-            Not a marketing claim — a scientific breakthrough.
           </motion.p>
         </div>
 

@@ -93,7 +93,7 @@ export function FounderStory() {
               <Button
                 variant="outline"
                 size="lg"
-                className="h-11 px-8 text-sm tracking-wider uppercase border-white/20 text-white hover:bg-white/10"
+                className="h-11 px-8 text-sm tracking-wider uppercase bg-white text-foreground hover:bg-white/90"
                 render={<Link href="/about-us" />}
               >
                 Read the Full Story

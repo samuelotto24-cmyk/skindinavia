@@ -17,17 +17,24 @@ const categories = [
 export default function ShopPage() {
   return (
     <>
-      {/* Hero — lineup banner */}
-      <section className="relative border-b border-border/50">
-        <Image
-          src="/product-lineup.png"
-          alt="The complete Skindinavia collection"
-          width={1920}
-          height={480}
-          className="w-full h-auto"
-          sizes="100vw"
-          priority
-        />
+      {/* Hero — lineup banner + heading */}
+      <section className="border-b border-border/50">
+        <div className="overflow-hidden max-h-[280px] sm:max-h-[340px]">
+          <Image
+            src="/product-lineup.png"
+            alt="The complete Skindinavia collection"
+            width={1920}
+            height={480}
+            className="w-full h-auto object-cover object-center"
+            sizes="100vw"
+            priority
+          />
+        </div>
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 py-6">
+          <h1 className="text-2xl font-serif font-light tracking-tight sm:text-3xl">
+            Shop All Products
+          </h1>
+        </div>
       </section>
 
       {/* Quick nav */}

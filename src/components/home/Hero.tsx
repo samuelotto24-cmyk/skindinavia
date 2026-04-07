@@ -55,8 +55,7 @@ export function Hero() {
               transition={{ duration: 0.7, delay: 1.0 }}
               className="mt-4 max-w-md text-sm leading-relaxed text-muted-foreground sm:text-base"
             >
-              The patented cooling spray that locks your look in for 16+ hours —
-              through work, workouts, weddings, and everything in between.
+              The patented spray that locks your look in for 16+ hours.
             </motion.p>
 
             <motion.div

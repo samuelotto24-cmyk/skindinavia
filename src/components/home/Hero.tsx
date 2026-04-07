@@ -18,26 +18,7 @@ export function Hero() {
 
   return (
     <section className="relative overflow-hidden" style={{ minHeight: "calc(100svh - 3.5rem)" }}>
-      <div className="absolute inset-0 bg-gradient-to-br from-[#f8f3ed] via-[#faf7f3] to-[#f5eff0]" />
-
-      <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")" }} />
-
-      {/* Ghost product — oversized background element */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1.5, delay: 0.1, ease: [0.33, 1, 0.68, 1] }}
-        className="absolute right-[-8%] top-1/2 -translate-y-1/2 hidden lg:block pointer-events-none h-[110svh] w-[110svh]"
-      >
-        <Image
-          src={heroProduct.image}
-          alt=""
-          fill
-          sizes="110svh"
-          className="object-contain opacity-[0.05]"
-          aria-hidden
-        />
-      </motion.div>
+      <div className="absolute inset-0 bg-white" />
 
       <div className="relative mx-auto w-full max-w-7xl px-6 lg:px-8 flex items-center" style={{ minHeight: "calc(100svh - 3.5rem)" }}>
         <div className="grid items-center gap-4 lg:grid-cols-[1fr_1.2fr] lg:gap-0 w-full py-10 lg:py-0">
@@ -147,7 +128,7 @@ export function Hero() {
                     alt={heroProduct.name}
                     fill
                     sizes="(max-width: 640px) 55svh, (max-width: 1024px) 65svh, 80svh"
-                    className="object-contain drop-shadow-[0_25px_50px_rgba(0,0,0,0.18)]"
+                    className="object-contain"
                     priority
                   />
                 </div>

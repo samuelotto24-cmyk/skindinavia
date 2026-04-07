@@ -5,7 +5,7 @@ import { motion, useInView } from "framer-motion";
 import { Check, X } from "lucide-react";
 
 const rows = [
-  { label: "Wear Time", sk: "16+ hours", ud: "~12 hours", ct: "~8 hours", dr: "~4 hours" },
+  { label: "Wear Claim", sk: "16+ hours (tested)", ud: "24 hours (claimed)", ct: "~8 hours", dr: "~4 hours" },
   { label: "Price (4 oz)", sk: "$29", ud: "$36", ct: "$38 (3.4oz)", dr: "$10 (2oz)" },
   { label: "Rating", sk: "4.9 ★", ud: "3.8 ★", ct: "4.2 ★", dr: "3.5 ★" },
 ];

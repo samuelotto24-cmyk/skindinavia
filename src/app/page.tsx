@@ -4,7 +4,6 @@ import { PressLogos } from "@/components/home/PressLogos";
 import { ShopByMoment } from "@/components/home/ShopByMoment";
 import { BeforeAfter } from "@/components/home/BeforeAfter";
 import { HowItWorks } from "@/components/home/HowItWorks";
-import { ComparisonTable } from "@/components/home/ComparisonTable";
 import { FounderStory } from "@/components/home/FounderStory";
 import { ArtistSpotlight } from "@/components/home/ArtistSpotlight";
 import { ReviewsCarousel } from "@/components/home/ReviewsCarousel";
@@ -19,7 +18,6 @@ export default function HomePage() {
       <ShopByMoment />
       <BeforeAfter />
       <HowItWorks />
-      <ComparisonTable />
       <FounderStory />
       <ArtistSpotlight />
       <ReviewsCarousel />

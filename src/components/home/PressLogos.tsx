@@ -5,6 +5,29 @@ import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import { pressLogos, pressLogoImages } from "@/lib/mock-data";
 
+const logoLinks: Record<string, string> = {
+  Vogue: "https://www.vogue.com",
+  Allure: "https://www.allure.com",
+  Glamour: "https://www.glamour.com",
+  Byrdie: "https://www.byrdie.com",
+  PopSugar: "https://www.popsugar.com",
+  "Marie Claire": "https://www.marieclaire.com",
+  People: "https://www.people.com",
+  "Teen Vogue": "https://www.teenvogue.com",
+  Shape: "https://www.shape.com",
+  Essence: "https://www.essence.com",
+  Nylon: "https://www.nylon.com",
+  Brides: "https://www.brides.com",
+  HuffPost: "https://www.huffpost.com",
+  Refinery29: "https://www.refinery29.com",
+  "Elite Daily": "https://www.elitedaily.com",
+  "US Weekly": "https://www.usmagazine.com",
+  Self: "https://www.self.com",
+  "Martha Stewart": "https://www.marthastewart.com",
+  "In Touch": "https://www.intouchweekly.com",
+  "New Beauty": "https://www.newbeauty.com",
+};
+
 const scrollLogos = [...pressLogos, ...pressLogos];
 
 export function PressLogos() {
@@ -25,13 +48,17 @@ export function PressLogos() {
       </div>
 
       <div className="relative group">
-        <div className="flex items-center gap-16 group-hover:[animation-play-state:paused]" style={{ animation: "marquee 40s linear infinite", width: "max-content" }}>
+        <div className="flex items-center gap-16 group-hover:[animation-play-state:paused]" style={{ animation: "marquee 80s linear infinite", width: "max-content" }}>
           {scrollLogos.map((name, i) => {
             const logoUrl = pressLogoImages[name];
             if (!logoUrl) return null;
+            const href = logoLinks[name];
             return (
-              <div
+              <a
                 key={`${name}-${i}`}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="shrink-0 opacity-40 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0"
               >
                 <Image
@@ -42,7 +69,7 @@ export function PressLogos() {
                   className="h-10 w-auto object-contain sm:h-12"
                   unoptimized
                 />
-              </div>
+              </a>
             );
           })}
         </div>

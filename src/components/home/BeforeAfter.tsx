@@ -10,6 +10,7 @@ const milestones = [
     detail: "Cooling spheres activate on contact",
     status: "Fresh",
     color: "bg-sky-400",
+    ringColor: "ring-sky-400/20",
   },
   {
     hour: "4h",
@@ -17,6 +18,7 @@ const milestones = [
     detail: "Zero shine, zero touch-ups needed",
     status: "Flawless",
     color: "bg-blue-400",
+    ringColor: "ring-blue-400/20",
   },
   {
     hour: "8h",
@@ -24,6 +26,7 @@ const milestones = [
     detail: "Sweat-proof hold still locked in",
     status: "Holding",
     color: "bg-indigo-400",
+    ringColor: "ring-indigo-400/20",
   },
   {
     hour: "12h",
@@ -31,6 +34,7 @@ const milestones = [
     detail: "Looks like you just sat down in the chair",
     status: "Perfect",
     color: "bg-violet-400",
+    ringColor: "ring-violet-400/20",
   },
   {
     hour: "16h",
@@ -38,6 +42,7 @@ const milestones = [
     detail: "Still the same as hour zero",
     status: "Locked In",
     color: "bg-pink-400",
+    ringColor: "ring-pink-400/20",
   },
 ];
 
@@ -69,53 +74,96 @@ export function BeforeAfter() {
 
         {/* Timeline */}
         <div className="mt-12 relative">
-          {/* Connecting line */}
-          <div className="absolute top-5 left-0 right-0 h-px bg-gradient-to-r from-sky-300/40 via-violet-300/40 to-pink-300/40 hidden sm:block" />
+          {/* Connecting line — draws across */}
+          <div className="absolute top-5 left-0 right-0 h-px bg-border/30 hidden sm:block" />
+          <motion.div
+            initial={{ scaleX: 0 }}
+            animate={isInView ? { scaleX: 1 } : {}}
+            transition={{ duration: 2, delay: 0.3, ease: [0.33, 1, 0.68, 1] }}
+            className="absolute top-5 left-0 right-0 h-px bg-gradient-to-r from-sky-400 via-violet-400 to-pink-400 origin-left hidden sm:block"
+          />
 
           <div className="grid grid-cols-2 gap-6 sm:grid-cols-5 sm:gap-3">
-            {milestones.map((m, i) => (
-              <motion.div
-                key={m.hour}
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.2 + i * 0.08 }}
-                className="relative text-center"
-              >
-                {/* Dot on timeline */}
-                <div className="flex justify-center mb-4">
-                  <div className={`h-2.5 w-2.5 rounded-full ${m.color} ring-4 ring-background relative z-10`} />
-                </div>
+            {milestones.map((m, i) => {
+              const delay = 0.3 + i * 0.35;
+              return (
+                <motion.div
+                  key={m.hour}
+                  initial={{ opacity: 0 }}
+                  animate={isInView ? { opacity: 1 } : {}}
+                  transition={{ duration: 0.4, delay }}
+                  className="relative text-center"
+                >
+                  {/* Dot — pulses in */}
+                  <div className="flex justify-center mb-4">
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      animate={isInView ? { scale: 1 } : {}}
+                      transition={{ type: "spring", stiffness: 400, damping: 15, delay }}
+                      className="relative z-10"
+                    >
+                      {/* Pulse ring */}
+                      <motion.div
+                        initial={{ scale: 1, opacity: 0 }}
+                        animate={isInView ? { scale: [1, 2.5, 2.5], opacity: [0, 0.4, 0] } : {}}
+                        transition={{ duration: 0.8, delay: delay + 0.1 }}
+                        className={`absolute inset-0 rounded-full ${m.color}`}
+                      />
+                      <div className={`h-2.5 w-2.5 rounded-full ${m.color} ring-4 ring-background`} />
+                    </motion.div>
+                  </div>
 
-                {/* Hour */}
-                <p className="font-serif text-2xl font-light tracking-tight text-foreground/80 sm:text-3xl">
-                  {m.hour}
-                </p>
+                  {/* Hour — counts up feel */}
+                  <motion.p
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.4, delay: delay + 0.1 }}
+                    className="font-serif text-2xl font-light tracking-tight text-foreground/80 sm:text-3xl"
+                  >
+                    {m.hour}
+                  </motion.p>
 
-                {/* Title */}
-                <p className="mt-1.5 text-xs font-medium uppercase tracking-wider text-foreground">
-                  {m.title}
-                </p>
+                  {/* Title */}
+                  <motion.p
+                    initial={{ opacity: 0 }}
+                    animate={isInView ? { opacity: 1 } : {}}
+                    transition={{ duration: 0.3, delay: delay + 0.2 }}
+                    className="mt-1.5 text-xs font-medium uppercase tracking-wider text-foreground"
+                  >
+                    {m.title}
+                  </motion.p>
 
-                {/* Detail */}
-                <p className="mt-1 text-[11px] leading-relaxed text-muted-foreground max-w-[140px] mx-auto">
-                  {m.detail}
-                </p>
+                  {/* Detail */}
+                  <motion.p
+                    initial={{ opacity: 0 }}
+                    animate={isInView ? { opacity: 1 } : {}}
+                    transition={{ duration: 0.3, delay: delay + 0.25 }}
+                    className="mt-1 text-[11px] leading-relaxed text-muted-foreground max-w-[140px] mx-auto"
+                  >
+                    {m.detail}
+                  </motion.p>
 
-                {/* Status pill */}
-                <div className="mt-2.5 inline-flex">
-                  <span className={`rounded-full px-2.5 py-0.5 text-[9px] font-medium uppercase tracking-wider text-white ${m.color}`}>
-                    {m.status}
-                  </span>
-                </div>
-              </motion.div>
-            ))}
+                  {/* Status pill — pops in */}
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.5 }}
+                    animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                    transition={{ type: "spring", stiffness: 300, damping: 20, delay: delay + 0.3 }}
+                    className="mt-2.5 inline-flex"
+                  >
+                    <span className={`rounded-full px-2.5 py-0.5 text-[9px] font-medium uppercase tracking-wider text-white ${m.color}`}>
+                      {m.status}
+                    </span>
+                  </motion.div>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
 
         <motion.p
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.6, delay: 0.7 }}
+          transition={{ duration: 0.6, delay: 2.2 }}
           className="mt-8 text-center text-xs text-muted-foreground"
         >
           Based on clinical wear testing &middot; Results may vary by skin type

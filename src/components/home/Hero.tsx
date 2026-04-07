@@ -122,6 +122,7 @@ export function Hero() {
                 <div
                   ref={tiltRef}
                   className="relative z-10 h-[55svh] w-[55svh] sm:h-[65svh] sm:w-[65svh] lg:h-[80svh] lg:w-[80svh] cursor-pointer"
+                  style={{ mask: "radial-gradient(ellipse 70% 70% at center, black 50%, transparent 100%)", WebkitMask: "radial-gradient(ellipse 70% 70% at center, black 50%, transparent 100%)" }}
                 >
                   <Image
                     src={heroProduct.image}

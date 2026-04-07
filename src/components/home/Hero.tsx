@@ -27,16 +27,15 @@ export function Hero() {
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.5, delay: 0.1, ease: [0.33, 1, 0.68, 1] }}
-        className="absolute right-[-5%] top-1/2 -translate-y-1/2 hidden lg:block pointer-events-none"
+        className="absolute right-[-8%] top-1/2 -translate-y-1/2 hidden lg:block pointer-events-none h-[110svh] w-[110svh]"
       >
         <Image
           src={heroProduct.image}
           alt=""
-          width={800}
-          height={1200}
-          className="h-[90svh] w-auto object-contain opacity-[0.06]"
+          fill
+          sizes="110svh"
+          className="object-contain opacity-[0.05]"
           aria-hidden
-          priority
         />
       </motion.div>
 
@@ -131,7 +130,7 @@ export function Hero() {
           </div>
 
           {/* Product — dominant hero shot */}
-          <div className="flex justify-center lg:justify-end lg:-mr-8">
+          <div className="flex justify-center lg:justify-end">
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -141,28 +140,21 @@ export function Hero() {
               <Link href={`/products/${heroProduct.slug}`}>
                 <div
                   ref={tiltRef}
-                  className="relative z-10 h-[500px] w-[320px] sm:h-[600px] sm:w-[380px] lg:h-[75svh] lg:w-[480px] cursor-pointer"
+                  className="relative z-10 h-[55svh] w-[55svh] sm:h-[65svh] sm:w-[65svh] lg:h-[80svh] lg:w-[80svh] cursor-pointer"
                 >
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.8, delay: 0.3 }}
-                    className="absolute inset-0 flex items-end justify-center"
-                  >
-                    <Image
-                      src={heroProduct.image}
-                      alt={heroProduct.name}
-                      width={480}
-                      height={800}
-                      className="h-full w-auto object-contain drop-shadow-[0_25px_50px_rgba(0,0,0,0.18)]"
-                      priority
-                    />
-                  </motion.div>
+                  <Image
+                    src={heroProduct.image}
+                    alt={heroProduct.name}
+                    fill
+                    sizes="(max-width: 640px) 55svh, (max-width: 1024px) 65svh, 80svh"
+                    className="object-contain drop-shadow-[0_25px_50px_rgba(0,0,0,0.18)]"
+                    priority
+                  />
                 </div>
               </Link>
 
               {/* Product name + price */}
-              <div className="mt-3 text-center">
+              <div className="mt-1 text-center">
                 <Link href={`/products/${heroProduct.slug}`} className="group inline-block">
                   <p className="text-sm font-medium tracking-wide group-hover:underline underline-offset-2">
                     {heroProduct.shortName}

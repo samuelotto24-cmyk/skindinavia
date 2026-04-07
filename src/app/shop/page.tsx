@@ -17,7 +17,7 @@ export default function ShopPage() {
   return (
     <>
       {/* Hero */}
-      <section className="border-b border-border/50 bg-gradient-to-b from-stone-50 to-white py-20">
+      <section className="border-b border-border/50 bg-gradient-to-b from-stone-50 to-white pt-10 pb-12">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
             The Collection

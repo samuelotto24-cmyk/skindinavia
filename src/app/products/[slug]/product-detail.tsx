@@ -104,7 +104,7 @@ export function ProductDetail({ product }: { product: Product }) {
             <SpringEntrance direction="left" delay={0.1}>
               <div
                 ref={tiltRef}
-                className="flex aspect-[3/4] items-center justify-center overflow-hidden rounded-2xl"
+                className="relative aspect-[3/4] overflow-hidden rounded-2xl"
                 style={{
                   background: `linear-gradient(165deg, ${product.accentColor}06 0%, ${product.accentColor}14 50%, ${product.accentColor}06 100%)`,
                 }}
@@ -112,9 +112,9 @@ export function ProductDetail({ product }: { product: Product }) {
                 <Image
                   src={product.image}
                   alt={product.name}
-                  width={400}
-                  height={500}
-                  className="h-auto max-h-[85%] w-auto object-contain drop-shadow-xl"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-contain p-8 drop-shadow-xl"
                   priority
                 />
               </div>

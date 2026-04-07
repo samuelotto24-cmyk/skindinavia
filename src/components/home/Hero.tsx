@@ -17,14 +17,13 @@ export function Hero() {
   const ctaRef = useMagneticHover<HTMLDivElement>({ radius: 60, strength: 0.2 });
 
   return (
-    <section className="relative overflow-hidden">
+    <section className="relative overflow-hidden" style={{ minHeight: "calc(100svh - 3.5rem)" }}>
       <div className="absolute inset-0 bg-gradient-to-br from-[#f8f3ed] via-[#faf7f3] to-[#f5eff0]" />
-
 
       <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")" }} />
 
-      <div className="relative mx-auto w-full max-w-7xl px-6 py-10 lg:px-8 lg:py-14">
-        <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-10">
+      <div className="relative mx-auto w-full max-w-7xl px-6 lg:px-8 flex items-center" style={{ minHeight: "calc(100svh - 3.5rem)" }}>
+        <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-10 w-full py-10 lg:py-14">
           {/* Text */}
           <div className="max-w-lg">
             <motion.p
@@ -125,7 +124,7 @@ export function Hero() {
               <Link href={`/products/${heroProduct.slug}`}>
                 <div
                   ref={tiltRef}
-                  className="relative z-10 h-[440px] w-[300px] sm:h-[520px] sm:w-[340px] cursor-pointer"
+                  className="relative z-10 h-[450px] w-[300px] sm:h-[550px] sm:w-[360px] lg:h-[620px] lg:w-[400px] cursor-pointer"
                 >
                   <motion.div
                     initial={{ opacity: 0, scale: 0.95 }}
@@ -136,9 +135,9 @@ export function Hero() {
                     <Image
                       src={heroProduct.image}
                       alt={heroProduct.name}
-                      width={340}
-                      height={520}
-                      className="h-auto max-h-[520px] w-auto object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.15)]"
+                      width={400}
+                      height={620}
+                      className="h-auto max-h-[620px] w-auto object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.15)]"
                       priority
                     />
                   </motion.div>

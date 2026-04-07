@@ -10,21 +10,21 @@ const stages = [
   {
     number: "01",
     title: "Mist",
-    detail: "Micro-encapsulated cooling spheres blanket your makeup in a fine, even mist — engineered for uniform coverage at the molecular level.",
+    detail: "Micro-encapsulated cooling spheres blanket your makeup in a fine, even mist.",
     accentClass: "text-sky-600",
     barColor: "bg-sky-500",
   },
   {
     number: "02",
     title: "Cool",
-    detail: "Patented temperature-control technology lowers surface temperature by 5°F, fusing makeup to your skin with a cooling micro-barrier.",
+    detail: "Patented tech lowers surface temperature, fusing makeup to your skin.",
     accentClass: "text-indigo-600",
     barColor: "bg-indigo-500",
   },
   {
     number: "03",
     title: "Lock",
-    detail: "Time-release polymers activate over 16+ hours, creating continuous wear protection that outlasts sweat, humidity, and tears.",
+    detail: "Time-release polymers create 16+ hours of continuous wear protection.",
     accentClass: "text-violet-600",
     barColor: "bg-violet-500",
   },
@@ -62,15 +62,15 @@ export function HowItWorks() {
   }, [activeStage, isInView]);
 
   return (
-    <section ref={sectionRef} className="relative py-14 lg:py-20 border-t border-border/40 overflow-hidden">
+    <section ref={sectionRef} className="relative py-10 lg:py-14 border-t border-border/40 overflow-hidden">
       <div className="relative mx-auto max-w-6xl px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-10">
+        <div className="text-center mb-8">
           <motion.p
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : {}}
             transition={{ duration: 0.6 }}
-            className="text-[10px] font-semibold uppercase tracking-[0.3em] text-muted-foreground mb-4"
+            className="text-[10px] font-semibold uppercase tracking-[0.3em] text-muted-foreground mb-3"
           >
             U.S. Patent Protected
           </motion.p>
@@ -79,99 +79,81 @@ export function HowItWorks() {
             initial={{ opacity: 0, y: 15 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="font-serif text-3xl tracking-tight sm:text-4xl lg:text-5xl"
+            className="font-serif text-2xl tracking-tight sm:text-3xl lg:text-4xl"
           >
-            The Science of
-            <br />
+            The Science of{" "}
             <span className="text-muted-foreground/60">16-Hour Wear</span>
           </motion.h2>
-
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : {}}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="mt-4 mx-auto max-w-lg text-sm leading-relaxed text-muted-foreground"
-          >
-            The only setting spray with patented temperature-control technology.
-          </motion.p>
         </div>
 
-        <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
-          {/* LEFT: SVG Animation */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : {}}
-            transition={{ duration: 1, delay: 0.2 }}
-            className="relative mx-auto w-full max-w-[420px] aspect-square"
-          >
-            <SkinScienceAnimation activeStage={activeStage} light />
-          </motion.div>
+        {/* Animation — compact, centered */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={isInView ? { opacity: 1, scale: 1 } : {}}
+          transition={{ duration: 1, delay: 0.2 }}
+          className="relative mx-auto w-full max-w-[280px] aspect-square mb-8"
+        >
+          <SkinScienceAnimation activeStage={activeStage} light />
+        </motion.div>
 
-          {/* RIGHT: Interactive steps */}
-          <div>
-            <div className="space-y-3">
-              {stages.map((stage, i) => {
-                const isActive = i === activeStage;
-                return (
-                  <button
-                    key={stage.number}
-                    onClick={() => { setActiveStage(i); setProgress(0); }}
-                    className={`w-full text-left rounded-2xl p-6 transition-all duration-500 ${
-                      isActive
-                        ? "bg-stone-50 border border-border/60"
-                        : "bg-transparent border border-transparent hover:bg-stone-50/50"
-                    }`}
-                  >
-                    <div className="flex items-start gap-5">
-                      <span className={`font-serif text-4xl font-light transition-colors duration-500 ${
-                        isActive ? stage.accentClass : "text-muted-foreground/15"
-                      }`}>
-                        {stage.number}
-                      </span>
-                      <div className="flex-1 min-w-0">
-                        <h3 className={`font-serif text-2xl tracking-tight transition-colors duration-500 ${
-                          isActive ? "text-foreground" : "text-muted-foreground/30"
-                        }`}>
-                          {stage.title}
-                        </h3>
-                        <p className={`mt-2 text-sm leading-relaxed transition-all duration-500 ${
-                          isActive ? "text-muted-foreground max-h-24" : "text-muted-foreground/20 max-h-0 overflow-hidden"
-                        }`}>
-                          {stage.detail}
-                        </p>
-                        {isActive && (
-                          <div className="mt-4 h-[2px] w-full rounded-full bg-border/40 overflow-hidden">
-                            <div
-                              className={`h-full rounded-full ${stage.barColor} transition-none`}
-                              style={{ width: `${progress * 100}%` }}
-                            />
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  </button>
-                );
-              })}
-            </div>
-
-            <div className="mt-10 flex flex-col sm:flex-row items-start sm:items-center gap-5 pl-6">
-              <Button
-                size="lg"
-                className="h-12 px-10 text-sm tracking-wider uppercase"
-                render={<Link href="/shop" />}
+        {/* Steps — horizontal row */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          {stages.map((stage, i) => {
+            const isActive = i === activeStage;
+            return (
+              <button
+                key={stage.number}
+                onClick={() => { setActiveStage(i); setProgress(0); }}
+                className={`text-left rounded-xl p-5 transition-all duration-500 ${
+                  isActive
+                    ? "bg-stone-50 border border-border/60"
+                    : "bg-transparent border border-transparent hover:bg-stone-50/50"
+                }`}
               >
-                Shop Now
-              </Button>
-              <div className="flex flex-col gap-1">
-                <p className="text-[10px] text-muted-foreground/50 uppercase tracking-[0.2em]">
-                  Clinically Tested &middot; Made in USA
-                </p>
-                <p className="text-[10px] text-muted-foreground/35 uppercase tracking-[0.2em]">
-                  Cruelty-Free &middot; Oil-Free &middot; Vegan
-                </p>
-              </div>
-            </div>
-          </div>
+                <div className="flex items-start gap-3">
+                  <span className={`font-serif text-2xl font-light transition-colors duration-500 ${
+                    isActive ? stage.accentClass : "text-muted-foreground/15"
+                  }`}>
+                    {stage.number}
+                  </span>
+                  <div className="flex-1 min-w-0">
+                    <h3 className={`font-serif text-lg tracking-tight transition-colors duration-500 ${
+                      isActive ? "text-foreground" : "text-muted-foreground/30"
+                    }`}>
+                      {stage.title}
+                    </h3>
+                    <p className={`mt-1 text-xs leading-relaxed transition-colors duration-500 ${
+                      isActive ? "text-muted-foreground" : "text-muted-foreground/20"
+                    }`}>
+                      {stage.detail}
+                    </p>
+                    {isActive && (
+                      <div className="mt-3 h-[2px] w-full rounded-full bg-border/40 overflow-hidden">
+                        <div
+                          className={`h-full rounded-full ${stage.barColor} transition-none`}
+                          style={{ width: `${progress * 100}%` }}
+                        />
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </button>
+            );
+          })}
+        </div>
+
+        {/* CTA */}
+        <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <Button
+            size="lg"
+            className="h-11 px-8 text-sm tracking-wider uppercase"
+            render={<Link href="/shop" />}
+          >
+            Shop Now
+          </Button>
+          <p className="text-[10px] text-muted-foreground/40 uppercase tracking-[0.2em]">
+            Clinically Tested &middot; Made in USA &middot; Cruelty-Free
+          </p>
         </div>
       </div>
     </section>

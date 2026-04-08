@@ -83,7 +83,7 @@ export function BeforeAfter() {
             className="absolute top-5 left-0 right-0 h-px bg-gradient-to-r from-sky-400 via-violet-400 to-pink-400 origin-left hidden sm:block"
           />
 
-          <div className="grid grid-cols-2 gap-6 sm:grid-cols-5 sm:gap-3">
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-5 sm:gap-3">
             {milestones.map((m, i) => {
               const delay = 0.3 + i * 0.35;
               return (
@@ -118,7 +118,7 @@ export function BeforeAfter() {
                     initial={{ opacity: 0, y: 8 }}
                     animate={isInView ? { opacity: 1, y: 0 } : {}}
                     transition={{ duration: 0.4, delay: delay + 0.1 }}
-                    className="font-serif text-2xl font-light tracking-tight text-foreground/80 sm:text-3xl"
+                    className="font-serif text-xl font-light tracking-tight text-foreground/80 sm:text-3xl"
                   >
                     {m.hour}
                   </motion.p>

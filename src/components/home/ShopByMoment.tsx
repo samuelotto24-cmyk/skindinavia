@@ -73,7 +73,7 @@ export function ShopByMoment() {
               <Link href={moment.href} className="group block">
                 <div className="relative overflow-hidden rounded-2xl transition-all duration-500 hover:shadow-lg hover:shadow-stone-200/50">
                   {/* Lifestyle photo background */}
-                  <div className="relative h-[380px] sm:h-[420px]">
+                  <div className="relative h-[300px] sm:h-[380px] lg:h-[420px]">
                     <Image
                       src={moment.lifestyle}
                       alt={moment.title}
@@ -85,7 +85,7 @@ export function ShopByMoment() {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
 
                     {/* Text overlay at bottom */}
-                    <div className="absolute inset-x-0 bottom-0 p-6">
+                    <div className="absolute inset-x-0 bottom-0 p-4 sm:p-6">
                       <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/60">
                         {moment.subtitle}
                       </p>
@@ -98,7 +98,7 @@ export function ShopByMoment() {
                     </div>
 
                     {/* Product bottle floating on the right */}
-                    <div className="absolute right-3 bottom-16 h-[160px] w-[55px] sm:h-[190px] sm:w-[65px] transition-transform duration-500 group-hover:translate-y-[-4px]">
+                    <div className="absolute right-2 bottom-14 h-[120px] w-[42px] sm:right-3 sm:bottom-16 sm:h-[160px] sm:w-[55px] lg:h-[190px] lg:w-[65px] transition-transform duration-500 group-hover:translate-y-[-4px]">
                       <Image
                         src={moment.product.image}
                         alt={moment.product.name}

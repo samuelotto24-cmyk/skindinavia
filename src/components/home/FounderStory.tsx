@@ -36,7 +36,7 @@ export function FounderStory() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
               {/* Quote at bottom of photo */}
               <div className="absolute inset-x-0 bottom-0 p-6">
-                <p className="font-serif text-xl italic leading-snug text-white/90 sm:text-2xl">
+                <p className="font-serif text-lg italic leading-snug text-white/90 sm:text-xl lg:text-2xl">
                   &ldquo;Makeup isn&apos;t vanity — it&apos;s identity.&rdquo;
                 </p>
                 <p className="mt-2 text-xs uppercase tracking-wider text-white/50">

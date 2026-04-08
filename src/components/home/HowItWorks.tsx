@@ -73,7 +73,7 @@ export function HowItWorks() {
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="shrink-0 w-[200px] h-[200px] sm:w-[220px] sm:h-[220px]"
+            className="shrink-0 w-[160px] h-[160px] sm:w-[200px] sm:h-[200px] lg:w-[220px] lg:h-[220px]"
           >
             <SkinScienceAnimation activeStage={activeStage} light />
           </motion.div>

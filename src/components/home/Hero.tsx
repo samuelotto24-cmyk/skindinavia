@@ -33,7 +33,7 @@ export function Hero() {
               The Original Formula
             </motion.p>
 
-            <h1 className="font-serif text-3xl leading-[1.1] tracking-tight sm:text-4xl lg:text-5xl">
+            <h1 className="font-serif text-2xl leading-[1.1] tracking-tight sm:text-3xl md:text-4xl lg:text-5xl">
               <TextReveal delay={0.2}>
                 Your Makeup Is Gone
               </TextReveal>
@@ -86,7 +86,7 @@ export function Hero() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 1.3 }}
-              className="mt-8 flex gap-8"
+              className="mt-6 sm:mt-8 flex gap-5 sm:gap-8"
             >
               <div>
                 <p className="font-serif text-xl font-medium tracking-tight">
@@ -120,7 +120,7 @@ export function Hero() {
               <Link href={`/products/${heroProduct.slug}`}>
                 <div
                   ref={tiltRef}
-                  className="relative z-10 h-[55svh] w-[55svh] sm:h-[65svh] sm:w-[65svh] lg:h-[80svh] lg:w-[80svh] cursor-pointer"
+                  className="relative z-10 h-[40svh] w-[40svh] sm:h-[55svh] sm:w-[55svh] md:h-[65svh] md:w-[65svh] lg:h-[80svh] lg:w-[80svh] cursor-pointer"
                   style={{ mask: "radial-gradient(ellipse 70% 70% at center, black 50%, transparent 100%)", WebkitMask: "radial-gradient(ellipse 70% 70% at center, black 50%, transparent 100%)" }}
                 >
                   <Image
